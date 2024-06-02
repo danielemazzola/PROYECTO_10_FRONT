@@ -11,8 +11,8 @@ export const Nav = () => {
       </div>
       <div id='containerNav'>
         <form id="formlogin">
-          <input type="email" placeholder="example@example.com" />
-          <input type="password" placeholder="********" />
+          <input id="email" type="email" placeholder="example@example.com" required />
+          <input id="password" type="password" placeholder="********" required />
           <button type="submit">Login</button>
         </form>
         <div class="containerbtns">
@@ -24,6 +24,5 @@ export const Nav = () => {
         `
   return nav
 }
-{
-  /* <button id='btn_login'>Login</button> */
-}
+
+/* <button id='btn_login'>Login</button> */

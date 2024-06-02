@@ -7,6 +7,6 @@ export const btnCloseComponent = () => {
     setTimeout(() => {
       auth.removeAttribute('class')
       auth.remove()
-    }, 200)
+    }, 100)
   })
 }

@@ -5,7 +5,7 @@ import {
   ForgotPassword
 } from '../../components/nav/templatesAuth'
 
-const app = document.querySelector('#app')
+const header = document.querySelector('header')
 const parentNav = document.querySelector('#containerNav')
 const btns = parentNav.querySelectorAll('button')
 const auth = document.createElement('div')
@@ -27,7 +27,7 @@ btns.forEach((btn) => {
       setTimeout(() => {
         auth.removeAttribute('class')
       }, 200)
-      app.appendChild(auth)
+      header.appendChild(auth)
       componentNav(btnAttribute)
       btnCloseComponent()
     }

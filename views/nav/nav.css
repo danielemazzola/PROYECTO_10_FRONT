@@ -42,6 +42,12 @@
 .containerbtns > button:hover {
   color: rgb(86, 206, 86);
 }
+
+#email,
+#password {
+  text-align: center;
+}
+
 #formlogin > button {
   background-color: rgb(86, 206, 86);
   color: white;
