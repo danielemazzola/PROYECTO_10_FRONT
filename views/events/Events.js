@@ -1,9 +1,10 @@
+import { cardEvent } from '../../components/cardEvents/cardEvents'
+
 import('./events.css')
 
 export const Events = () => {
   const section = document.createElement('section')
   section.id = 'sectionEvents'
-
   const eventContent = `
     <div class="infoWelcome">
       <div class="title">
@@ -15,38 +16,8 @@ export const Events = () => {
         </p>
       </div>
     </div>
-    <div class="containerEvents">
-      <div class="containerEventsWrapper">
-        <div class="containerEvent"> 
-          <div class="bannerEvent">
-            <img src="../../images/pizza.jpg" />
-          </div>
-          <div class="descriptionEvent">
-            <h2>Titulo</h2>
-            <p>Descripción Descripción Descripción Descripción Descripción Descripción Descripción </p>
-          </div>
-        </div>
-        <div class="containerEvent"> 
-          <div class="bannerEvent">
-            <img src="../../images/pizza.jpg" />
-          </div>
-          <div class="descriptionEvent">
-            <h2>Titulo</h2>
-            <p>Descripción Descripción Descripción Descripción Descripción Descripción Descripción </p>
-          </div>
-        </div>
-        <div class="containerEvent"> 
-          <div class="bannerEvent">
-            <img src="../../images/pizza.jpg" />
-          </div>
-          <div class="descriptionEvent">
-            <h2>Titulo</h2>
-            <p>Descripción Descripción Descripción Descripción Descripción Descripción Descripción </p>
-          </div>
-        </div>
-      </div>
-    </div>
   `
+  cardEvent()
   section.innerHTML = eventContent
   return section
 }

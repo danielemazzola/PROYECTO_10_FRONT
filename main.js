@@ -7,4 +7,4 @@ const header = document.querySelector('#header')
 header.append(Nav(), Search())
 
 const app = document.querySelector('#app')
-app.appendChild(Events())
+app.append(Events())
