@@ -7,7 +7,7 @@ export const Nav = () => {
   nav.innerHTML = `
     <nav class='nav'>
       <div class='logo'>
-        <img src='../../images/E.png' alt='Logo de TOP EVENTS' loading="lazy" />
+        <img src='../../images/E.png' alt='Logo de EVENTS' loading="lazy" />
       </div>
       <div id='containerNav'>
         <form id="formlogin">

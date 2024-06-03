@@ -4,23 +4,49 @@ export const Events = () => {
   const section = document.createElement('section')
   section.id = 'sectionEvents'
 
-  const containerWrapper = document.createElement('div')
-  containerWrapper.className = 'containerEventsWrapper'
-
   const eventContent = `
-    <div class="containerEvents"> 
-      <div class="bannerEvent">
-        <img src="../../images/pizza.jpg" />
+    <div class="infoWelcome">
+      <div class="title">
+        <h1>Tu Guía a Experiencias <span>Inolvidables❤️</span></h1>
       </div>
-      <div class="descriptionEvent">
-        <h2>Titulo</h2>
-        <p>Descripción Descripción Descripción Descripción Descripción Descripción Descripción </p>
+      <div class="description">
+        <p>
+          ¡Bienvenido a los mejores Eventos de tu ciudad! Aquí encontrarás una selección de los eventos más emocionantes y únicos. Puedes suscribirte a cualquier evento que te interese sin necesidad de crear una cuenta. Sin embargo, si deseas acceder a información detallada como la cantidad de asistentes y otras estadísticas, te invitamos a registrarte. Únete a nuestra comunidad y no te pierdas ningún momento épico.
+        </p>
+      </div>
+    </div>
+    <div class="containerEvents">
+      <div class="containerEventsWrapper">
+        <div class="containerEvent"> 
+          <div class="bannerEvent">
+            <img src="../../images/pizza.jpg" />
+          </div>
+          <div class="descriptionEvent">
+            <h2>Titulo</h2>
+            <p>Descripción Descripción Descripción Descripción Descripción Descripción Descripción </p>
+          </div>
+        </div>
+        <div class="containerEvent"> 
+          <div class="bannerEvent">
+            <img src="../../images/pizza.jpg" />
+          </div>
+          <div class="descriptionEvent">
+            <h2>Titulo</h2>
+            <p>Descripción Descripción Descripción Descripción Descripción Descripción Descripción </p>
+          </div>
+        </div>
+        <div class="containerEvent"> 
+          <div class="bannerEvent">
+            <img src="../../images/pizza.jpg" />
+          </div>
+          <div class="descriptionEvent">
+            <h2>Titulo</h2>
+            <p>Descripción Descripción Descripción Descripción Descripción Descripción Descripción </p>
+          </div>
+        </div>
       </div>
     </div>
   `
-
-  containerWrapper.innerHTML = eventContent
-  section.appendChild(containerWrapper)
-
+  section.innerHTML = eventContent
   return section
 }

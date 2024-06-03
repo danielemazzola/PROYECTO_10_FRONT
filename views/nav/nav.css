@@ -6,8 +6,8 @@
   align-items: end;
 }
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
   display: flex;
   align-items: center;
 }
@@ -59,11 +59,11 @@
 #formlogin > button:hover {
   background-color: rgb(78, 156, 78);
 }
-@media (max-width: 530px) {
+@media (max-width: 580px) {
   #formlogin {
     display: flex;
     flex-direction: column;
     align-items: end;
-    gap: 5px;
+    gap: 10px;
   }
 }

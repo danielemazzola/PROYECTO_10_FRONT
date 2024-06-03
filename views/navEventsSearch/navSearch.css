@@ -21,6 +21,11 @@
   color: blck;
   appearance: none;
   cursor: pointer;
+  transition: all 0.2s;
+}
+#navSearch > div > select:hover {
+  border: 3px solid rgb(86, 206, 86);
+  font-size: 20px;
 }
 #navSearch > div > select > option {
   font-size: 14px;

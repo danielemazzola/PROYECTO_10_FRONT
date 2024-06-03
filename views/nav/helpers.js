@@ -23,7 +23,9 @@ btns.forEach((btn) => {
       }, 200)
     } else {
       copyAttribute = btnAttribute
-      if (btnAttribute) auth.classList.add('animate-init')
+      if (btnAttribute) {
+        auth.classList.add('animate-init')
+      }
       setTimeout(() => {
         auth.removeAttribute('class')
       }, 200)
