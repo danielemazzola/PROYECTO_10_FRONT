@@ -1,37 +1,35 @@
 #navSearch {
-  height: 40px;
-  padding: 15px;
+  padding: 30px;
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
   border-bottom: 1px solid gray;
 }
 #navSearch > div {
-  width: 50%;
+  width: 30%;
   display: flex;
   flex-direction: column;
-  align-items: end;
   gap: 5px;
 }
 #navSearch > div > select {
   border-radius: 5px;
   width: 100%;
-  height: 30px;
+  height: 50px;
   text-align: center;
-  color: blck;
+  color: black;
   appearance: none;
   cursor: pointer;
   transition: all 0.2s;
 }
 #navSearch > div > select:hover {
-  border: 3px solid rgb(86, 206, 86);
+  border: 3px solid black;
   font-size: 20px;
 }
 #navSearch > div > select > option {
-  font-size: 14px;
+  font-size: 18px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 870px) {
   #navSearch > div {
     width: 100%;
   }
