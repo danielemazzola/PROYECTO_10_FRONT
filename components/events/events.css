@@ -1,10 +1,9 @@
 #sectionEvents {
   display: flex;
   flex-direction: column;
-  /*   padding: 10px; */
+  border-top: 1px solid gray;
 }
 .infoWelcome {
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;

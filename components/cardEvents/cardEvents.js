@@ -1,4 +1,4 @@
-import { getEvents } from '../../views/events/helpers'
+import { getEvents } from '../../services/fetchEvents'
 
 export const cardEvent = () => {
   getEvents().then((data) => {

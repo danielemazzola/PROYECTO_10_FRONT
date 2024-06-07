@@ -1,7 +1,6 @@
 import('./navSearch.css')
-export const Search = () => {
-  const search = document.createElement('div')
-  search.innerHTML = `
+export const NavSearch = () => {
+  const search = `
     <div id="navSearch">
       <div>
         <select>

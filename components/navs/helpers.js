@@ -1,9 +1,9 @@
-import { btnCloseComponent } from '../../components/nav/helpers'
 import {
-  Login,
-  Register,
-  ForgotPassword
-} from '../../components/nav/templatesAuth'
+  btnCloseComponent,
+  handleRegister,
+  handleForgotPassword
+} from '../nav/helpers'
+import { Login, Register, ForgotPassword } from '../nav/templatesAuth'
 
 const header = document.querySelector('header')
 const parentNav = document.querySelector('#containerNav')
@@ -38,6 +38,12 @@ btns.forEach((btn) => {
 
 const componentNav = (btnAttribute) => {
   if (btnAttribute === 'btn_login') auth.innerHTML = Login()
-  if (btnAttribute === 'btn_register') auth.innerHTML = Register()
-  if (btnAttribute === 'btn_forgot') auth.innerHTML = ForgotPassword()
+  if (btnAttribute === 'btn_register') {
+    auth.innerHTML = Register()
+    handleRegister()
+  }
+  if (btnAttribute === 'btn_forgot') {
+    auth.innerHTML = ForgotPassword()
+    handleForgotPassword()
+  }
 }

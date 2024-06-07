@@ -1,5 +1,4 @@
 import('./nav.css')
-import('../../views/nav/helpers')
 
 const Login = () => {
   const template = `
@@ -21,19 +20,19 @@ const Login = () => {
 const Register = () => {
   const template = `
   <div class="register-container animate-rebote">
-    <form @submit.prevent="handleSubmit" class="register-form">
-      <div class="form-group">
+    <div class="form-group">
+      <form id="register-form" class="register-form">
         <label for="name">Name</label>
-        <input id="name" required>
-        <label for="last-name">Last Name</label>
-        <input id="last-name" required>
+        <input id="name" name="name" required>
+        <label for="lastName">Last Name</label>
+        <input id="lastName" name="lastName" required>
         <label for="email">Email:</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" name="email" required>
         <label for="password">Password:</label>
-        <input type="password" id="password" required>
-      </div>
-      <button type="submit" class="btn-form">Register</button>
-    </form>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" class="btn-form" value="Register">
+      </form>
+    </div>
     <button class="closeContainer">Cerrar</button>
   </div>
   `
@@ -41,15 +40,15 @@ const Register = () => {
 }
 const ForgotPassword = () => {
   const template = `
-  <div class="forgot-password-container animate-rebote">
-    <form @submit.prevent="handleSubmit" class="forgot-password-form">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" required>
-      </div>
-      <button type="submit" class="btn-form">Reset Password</button>
+<div class="forgot-password-container animate-rebote">
+  <div class="form-group">
+    <form class="forgot-password-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <input type="submit" class="btn-form" value="Reset Password">
     </form>
-    <button class="closeContainer">Cerrar</button>
+  </div>
+  <button class="closeContainer">Cerrar</button>
 </div>
   `
   return template

@@ -2,12 +2,10 @@ import('./nav.css')
 import('./helpers')
 
 export const Nav = () => {
-  const nav = document.createElement('nav')
-
-  nav.innerHTML = `
+  const nav = `
     <nav class='nav'>
       <div class='logo'>
-        <img src='../../images/E.png' alt='Logo de EVENTS' loading="lazy" />
+        <a href="/" data-link class="linkHome">Events</a>
       </div>
       <div id='containerNav'>
         <form id="formlogin">
@@ -24,5 +22,3 @@ export const Nav = () => {
         `
   return nav
 }
-
-/* <button id='btn_login'>Login</button> */
