@@ -2,7 +2,6 @@ import '../events/events.css'
 import { handleRegister } from './helpers'
 import { getEvents, fetchRegisterEvent } from '../../services/fetchEvents'
 import { Alert } from '../alert/Alert'
-import { json } from 'express'
 
 export const cardEvent = () => {
   getEvents().then((data) => {
