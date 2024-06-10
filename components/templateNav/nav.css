@@ -1,0 +1,86 @@
+.register-container,
+.forgot-password-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 5px;
+  border-bottom: 1px solid rgb(206, 206, 206);
+}
+.register-form,
+.forgot-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: start;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-form,
+input {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+input {
+  background-color: rgb(233, 233, 233);
+}
+.btn-form {
+  margin-top: 5px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-form:hover {
+  color: rgb(255, 91, 27);
+}
+#closeAuth {
+  margin-top: 5px;
+  background-color: rgb(129, 0, 0);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.closeContainer {
+  background-color: transparent;
+  color: red;
+  border: none;
+  padding: 3px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.closeContainer:hover {
+  font-weight: 600;
+}
+
+.animate-init {
+  animation: animatedRebot 0.2s forwards;
+}
+
+.animate-close {
+  animation: animateClose 0.2s forwards;
+}
+
+@keyframes animatedRebot {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes animateClose {
+  0% {
+    opacity: 100px;
+  }
+  100% {
+    opacity: 0;
+  }
+}

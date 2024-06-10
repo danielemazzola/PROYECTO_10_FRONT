@@ -1,93 +1,74 @@
-import '../navs/nav.css'
-import { fetchRegister, fetchForgotPassword } from '../../services/fetchAuth'
+import { fetchLogin } from '../../services/fetchAuth'
+import {
+  btnCloseComponent,
+  handleRegister,
+  handleForgotPassword
+} from '../templateNav/helpers'
+import { Register, ForgotPassword } from '../templateNav/templatesAuth'
 
-export const btnCloseComponent = () => {
-  const btnClose = document.querySelector('.closeContainer')
-  btnClose.addEventListener('click', () => {
-    auth.classList.add('animate-close')
-    setTimeout(() => {
-      auth.removeAttribute('class')
-      auth.remove()
-    }, 100)
-  })
-}
+const header = document.querySelector('header')
+const parentNav = document.querySelector('#containerNav')
+const btns = parentNav.querySelectorAll('button')
+const auth = document.createElement('div')
 
-export const handleRegister = () => {
-  console.log('Register Function')
-  const registerContainer = document.querySelector('.nav')
-  const formRegister = document.querySelector('#register-form')
-  const msgDiv = document.createElement('div')
-  const msgP = document.createElement('p')
-  if (!formRegister) return
-  formRegister.addEventListener('submit', async (e) => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    let jsonData = {}
-    formData.forEach((value, key) => {
-      jsonData[key] = value
-    })
-    msgP.textContent = ''
-    const data = await fetchRegister(jsonData)
-    msgDiv.setAttribute(
-      'style',
-      'display:flex; justify-content:center; align-items:center; margin-top: 20px;'
-    )
-    msgP.textContent = data.data.message
+auth.id = 'auth'
+let copyAttribute = ''
 
-    if (data.status === 409) {
-      const formlogin = document.querySelector('#formlogin')
-      const btnLogin = formlogin.querySelector('button')
-      btnLogin.setAttribute('style', 'background-color:red;')
-    }
-    if (data.status === 201) {
-      registerContainer.classList.add('animate-close')
+// RETURN BUTTOMS
+btns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const btnAttribute = btn.getAttribute('id')
+    if (copyAttribute === btnAttribute) {
+      copyAttribute = ''
+      auth.classList.add('animate-close')
       setTimeout(() => {
-        registerContainer.removeAttribute('style')
-        registerContainer.remove()
-      }, 1000)
-    }
-    auth.append(msgDiv)
-    msgDiv.append(msgP)
-  })
-}
-
-export const handleForgotPassword = () => {
-  const forgotContainer = document.querySelector('.forgot-password-container')
-  const formForgot = document.querySelector('.forgot-password-form')
-  const msgDiv = document.createElement('div')
-  const msgP = document.createElement('p')
-  if (!formForgot) return
-  formForgot.addEventListener('submit', async (e) => {
-    e.preventDefault()
-    console.log(formForgot)
-    const formData = new FormData(e.target)
-    let jsonData = {}
-    formData.forEach((value, key) => {
-      jsonData[key] = value
-    })
-    console.log(jsonData)
-    msgP.textContent = ''
-    console.log(jsonData)
-    const data = await fetchForgotPassword(jsonData)
-    msgDiv.setAttribute(
-      'style',
-      'display:flex; justify-content:center; align-items:center; margin-top: 20px;'
-    )
-    msgP.textContent = data.data.message
-
-    if (data.status === 404) {
-      const formlogin = document.querySelector('#formlogin')
-      const btnLogin = formlogin.querySelector('button')
-      btnLogin.setAttribute('style', 'background-color:red;')
-    }
-    if (data.status === 200) {
-      forgotContainer.classList.add('animate-close')
+        auth.removeAttribute('class')
+        auth.remove()
+      }, 200)
+    } else {
+      copyAttribute = btnAttribute
+      if (btnAttribute) {
+        auth.classList.add('animate-init')
+      }
       setTimeout(() => {
-        forgotContainer.removeAttribute('style')
-        forgotContainer.remove()
-      }, 1000)
+        auth.removeAttribute('class')
+      }, 200)
+      header.appendChild(auth)
+      componentNav(btnAttribute)
+      btnCloseComponent()
     }
-    auth.append(msgDiv)
-    msgDiv.append(msgP)
   })
+})
+
+// RETURN ACTION - REGISTER - FORGOT PASSWORD
+const componentNav = (btnAttribute) => {
+  if (btnAttribute === 'btn_register') {
+    auth.innerHTML = Register()
+    handleRegister()
+  }
+  if (btnAttribute === 'btn_forgot') {
+    auth.innerHTML = ForgotPassword()
+    handleForgotPassword()
+  }
 }
+
+// LOGIN
+
+const formLogin = document.querySelector('#formlogin')
+const msgDiv = document.createElement('div')
+const msgP = document.createElement('p')
+formLogin.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const formData = new FormData(e.target)
+  let jsonData = {}
+  formData.forEach((value, key) => {
+    jsonData[key] = value
+  })
+  msgP.textContent = ''
+  const data = await fetchLogin(jsonData)
+  console.log(data)
+  /* msgDiv.setAttribute(
+        'style',
+        'display:flex; justify-content:center; align-items:center; font-size:18px; font-weight:bold;'
+      ) */
+})

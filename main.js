@@ -2,7 +2,7 @@ import './style.css'
 import { Home } from './pages/Home'
 import { RecoveryPassword } from './pages/RecoveryPassword'
 import { Error404 } from './pages/Error404'
-import { Nav } from './components/navs/Nav'
+import { Nav } from './components/nav/Nav'
 import { NavSearch } from './components/navEventsSearch/NavSearch'
 const routes = [
   { path: '/', view: Home },
@@ -53,8 +53,8 @@ window.addEventListener('popstate', router)
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('body')
   body.addEventListener('click', (e) => {
-    e.preventDefault()
     if (e.target.matches('[data-link]')) {
+      /**e.preventDefault() */
       navigateTo(e.target.href)
     }
   })

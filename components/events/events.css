@@ -74,6 +74,8 @@
 }
 
 .descriptionEvent {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -84,6 +86,24 @@
   text-align: center;
   transform: translateY(100%);
   transition: transform 0.3s ease;
+  gap: 10px;
+}
+.descriptionEvent > p {
+  text-align: justify;
+}
+#form-register-event {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+}
+#form-register-event > input {
+  width: 120px;
+}
+#btn-register-event {
+  background-color: rgb(86, 206, 86);
+  color: white;
 }
 
 .containerEvent:hover .descriptionEvent {
