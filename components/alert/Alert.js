@@ -17,9 +17,7 @@ export const Alert = (error, msg) => {
   divAlert.className = 'alert'
   msgAlert.className = 'messageAlert'
   msgAlert.textContent = msg
-  divAlert.style.backgroundColor = error
-    ? 'rgb(219, 168, 0)'
-    : 'rgb(0, 40, 219)'
+  divAlert.style.backgroundColor = error ? 'rgb(255, 0, 0)' : 'rgb(0, 40, 219)'
   containerAlert.appendChild(divAlert)
   divAlert.appendChild(msgAlert)
 
