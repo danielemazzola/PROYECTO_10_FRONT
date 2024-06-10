@@ -8,7 +8,7 @@ const getEvents = async () => {
     return data
   } catch (error) {
     console.log('Hubo un problema con la solicitud fetch:', error)
-    return
+    return null
   }
 }
 const fetchRegisterEvent = async (elements) => {
@@ -18,7 +18,7 @@ const fetchRegisterEvent = async (elements) => {
       {
         method: 'POST',
         headers: {
-          'content-type': 'application/json'
+          'Content-type': 'application/json'
         },
         body: JSON.stringify(elements.jsonData)
       }
@@ -28,6 +28,7 @@ const fetchRegisterEvent = async (elements) => {
     return { data, status }
   } catch (error) {
     console.log(error)
+    return null
   }
 }
 

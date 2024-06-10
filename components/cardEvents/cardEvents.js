@@ -1,6 +1,8 @@
 import '../events/events.css'
 import { handleRegister } from './helpers'
 import { getEvents, fetchRegisterEvent } from '../../services/fetchEvents'
+import { Alert } from '../alert/Alert'
+import { json } from 'express'
 
 export const cardEvent = () => {
   getEvents().then((data) => {
@@ -30,8 +32,6 @@ export const cardEvent = () => {
       const lastName = document.createElement('input')
       const email = document.createElement('input')
       const btnRegisterEvent = document.createElement('input')
-      const msgDiv = document.createElement('div')
-      const msgP = document.createElement('p')
 
       register.id = 'form-register-event'
       name.name = 'name'
@@ -59,17 +59,13 @@ export const cardEvent = () => {
         formData.forEach((value, key) => {
           jsonData[key] = value
         })
+
         let id = event._id
         const data = await fetchRegisterEvent({ jsonData, id })
-        msgP.textContent = ''
-        const { status } = data
-        msgDiv.setAttribute(
-          'style',
-          'display:flex; justify-content:center; align-items:center; font-size:18px; font-weight:bold;'
-        )
-        msgP.textContent = data.data.message
-        descriptionEvent.append(msgDiv)
-        msgDiv.append(msgP)
+        let error
+        if (data.status === 201) error = true
+        else error = false
+        Alert(error, data.data.message)
       })
     })
   })

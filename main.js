@@ -4,6 +4,8 @@ import { RecoveryPassword } from './pages/RecoveryPassword'
 import { Error404 } from './pages/Error404'
 import { Nav } from './components/nav/Nav'
 import { NavSearch } from './components/navEventsSearch/NavSearch'
+import { Alert } from './components/alert/Alert'
+
 const routes = [
   { path: '/', view: Home },
   { path: '/recovery-password/:token', view: RecoveryPassword }
@@ -13,7 +15,7 @@ const parseLocation = () => {
   return window.location.pathname
 }
 
-const findMatchingRoute = (routePath) => {
+const findRoute = (routePath) => {
   for (const route of routes) {
     const regex = new RegExp('^' + route.path.replace(/:\w+/g, '(.+)') + '$')
     const match = routePath.match(regex)
@@ -26,7 +28,7 @@ const findMatchingRoute = (routePath) => {
 
 const router = () => {
   const path = parseLocation()
-  const matchResult = findMatchingRoute(path)
+  const matchResult = findRoute(path)
 
   if (!matchResult) {
     document.getElementById('app').innerHTML = Error404()
@@ -41,6 +43,7 @@ const router = () => {
   `
   document.getElementById('app').innerHTML = `
   ${view}
+  ${Alert()}
   `
 }
 const navigateTo = (url) => {
