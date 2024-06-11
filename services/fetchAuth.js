@@ -49,8 +49,6 @@ const fetchLogin = async (jsonData) => {
     })
     const data = await response.json()
     const { status } = response
-    const token = data.token
-    localStorage.setItem('__EVENT_ACCESS__', token)
     return { data, status }
   } catch (error) {
     console.log(error)

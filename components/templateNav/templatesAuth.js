@@ -1,22 +1,5 @@
 import('./nav.css')
 
-/* const Login = () => {
-  const template = `
-  <div class="login-container">
-    <div class="form-group">
-      <form id="login-form" class="login-form">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit" class="btn-form" value='Login />
-      </div>
-    </form>
-    <button class="closeContainer">Cerrar</button>
-  </div>
-  `
-  return template
-} */
 const Register = () => {
   const template = `
   <div class="register-container animate-rebote">
@@ -54,4 +37,4 @@ const ForgotPassword = () => {
   return template
 }
 
-export { /* Login, */ Register, ForgotPassword }
+export { Register, ForgotPassword }

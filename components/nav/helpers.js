@@ -1,4 +1,5 @@
 import { fetchLogin } from '../../services/fetchAuth'
+import { Alert } from '../alert/Alert'
 import {
   btnCloseComponent,
   handleRegister,
@@ -6,7 +7,6 @@ import {
 } from '../templateNav/helpers'
 import { Register, ForgotPassword } from '../templateNav/templatesAuth'
 
-const header = document.querySelector('header')
 const parentNav = document.querySelector('#containerNav')
 const btns = parentNav.querySelectorAll('button')
 const auth = document.createElement('div')
@@ -14,7 +14,7 @@ const auth = document.createElement('div')
 auth.id = 'auth'
 let copyAttribute = ''
 
-// RETURN BUTTOMS
+// RETURN BUTTONS ACTIONS
 btns.forEach((btn) => {
   btn.addEventListener('click', () => {
     const btnAttribute = btn.getAttribute('id')
@@ -41,6 +41,7 @@ btns.forEach((btn) => {
 })
 
 // RETURN ACTION - REGISTER - FORGOT PASSWORD
+
 const componentNav = (btnAttribute) => {
   if (btnAttribute === 'btn_register') {
     auth.innerHTML = Register()
@@ -51,12 +52,8 @@ const componentNav = (btnAttribute) => {
     handleForgotPassword()
   }
 }
-
 // LOGIN
-
 const formLogin = document.querySelector('#formlogin')
-const msgDiv = document.createElement('div')
-const msgP = document.createElement('p')
 formLogin.addEventListener('submit', async (e) => {
   e.preventDefault()
   const formData = new FormData(e.target)
@@ -64,11 +61,19 @@ formLogin.addEventListener('submit', async (e) => {
   formData.forEach((value, key) => {
     jsonData[key] = value
   })
-  msgP.textContent = ''
   const data = await fetchLogin(jsonData)
-  console.log(data)
-  /* msgDiv.setAttribute(
-        'style',
-        'display:flex; justify-content:center; align-items:center; font-size:18px; font-weight:bold;'
-      ) */
+  let error
+  if (data.status === 200) {
+    console.log(data)
+    const token = data.data.token
+    localStorage.setItem('__EVENT_ACCESS__', token)
+    error = false
+    document.querySelector('header').remove()
+    Alert(error, `welcome ${data.data.user.name}, Please wait, redirecting...`)
+    setTimeout(() => {
+      window.location.assign('/dashboard')
+    }, 3000)
+  }
+  if (data.status === 404 || data.status === 409) error = true
+  Alert(error, data.data.message)
 })

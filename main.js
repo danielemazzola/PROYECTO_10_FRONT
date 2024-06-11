@@ -1,14 +1,14 @@
 import './style.css'
 import { Home } from './pages/Home'
 import { RecoveryPassword } from './pages/RecoveryPassword'
-import { Error404 } from './pages/Error404'
+import { Dashboard } from './pages/Dashboard'
 import { Nav } from './components/nav/Nav'
 import { NavSearch } from './components/navEventsSearch/NavSearch'
-import { Alert } from './components/alert/Alert'
 
 const routes = [
   { path: '/', view: Home },
-  { path: '/recovery-password/:token', view: RecoveryPassword }
+  { path: '/recovery-password/:token', view: RecoveryPassword },
+  { path: '/dashboard', view: Dashboard }
 ]
 
 const parseLocation = () => {
@@ -37,16 +37,27 @@ const router = () => {
 
   const { route, match } = matchResult
   const view = route.view(match[1])
-  document.querySelector('#header').innerHTML = `
-  ${Nav()}
-  ${NavSearch()}
-  `
+  const token = localStorage.getItem('__EVENT_ACCESS__')
+  if (token) {
+    if (route.path !== '/dashboard') {
+      navigateTo('/dashboard')
+      return
+    }
+  } else {
+    document.querySelector('#header').innerHTML = `
+          ${Nav()}
+          `
+    if (route.path === '/dashboard') {
+      navigateTo('/')
+      return
+    }
+  }
   document.getElementById('app').innerHTML = `
-  ${view}
-  ${Alert()}
-  `
+            ${NavSearch()}
+            ${view}
+            `
 }
-const navigateTo = (url) => {
+export const navigateTo = (url) => {
   history.pushState(null, null, url)
   router()
 }
@@ -57,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('body')
   body.addEventListener('click', (e) => {
     if (e.target.matches('[data-link]')) {
-      /**e.preventDefault() */
       navigateTo(e.target.href)
     }
   })

@@ -1,9 +1,5 @@
 import '../nav/nav.css'
-import {
-  fetchRegister,
-  fetchForgotPassword,
-  fetchLogin
-} from '../../services/fetchAuth'
+import { fetchRegister, fetchForgotPassword } from '../../services/fetchAuth'
 import { Alert } from '../alert/Alert'
 
 export const btnCloseComponent = () => {
@@ -18,7 +14,6 @@ export const btnCloseComponent = () => {
 }
 
 export const handleRegister = () => {
-  const registerContainer = document.querySelector('.register-container')
   const formRegister = document.querySelector('#register-form')
   if (!formRegister) return
   formRegister.addEventListener('submit', async (e) => {

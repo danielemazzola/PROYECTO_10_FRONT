@@ -14,6 +14,11 @@ export const Events = () => {
         </p>
       </div>
     </div>
+    <div id="contain-events">
+      <p id="messageEvents"></p>
+      <div id="card-events">
+      </div>
+    </div>
   </section>
   `
   cardEvent()
