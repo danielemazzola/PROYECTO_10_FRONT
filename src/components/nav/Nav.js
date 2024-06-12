@@ -1,3 +1,5 @@
+import { login } from './helpers'
+
 import('./nav.css')
 import('./helpers')
 
@@ -5,7 +7,7 @@ export const Nav = () => {
   const view = `
     <nav class='nav'>
       <div class='logo'>
-        <a href="./" data-link class="link-home">Events</a>
+        <a href="/" data-link class="link-home">Events</a>
       </div>
       <div id="containerNav">
         <form id="formlogin">
@@ -22,3 +24,12 @@ export const Nav = () => {
         `
   return view
 }
+
+window.addEventListener('load', () => {
+  const formLogin = document.querySelector('#formlogin')
+  if (!formLogin) return
+  formLogin.addEventListener('submit', (e) => {
+    e.preventDefault()
+    login(e)
+  })
+})
