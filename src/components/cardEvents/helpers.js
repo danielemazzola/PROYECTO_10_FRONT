@@ -1,4 +1,4 @@
-import { fetchRegisterEvent } from '../../services/fetchEvents'
+import { fetchRegisterEvent } from '../../src/services/fetchEvents'
 import { Alert } from '../alert/Alert'
 
 export const handleRegister = async (event, register) => {

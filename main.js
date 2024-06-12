@@ -4,16 +4,17 @@ import { RecoveryPassword } from './pages/RecoveryPassword'
 import { Dashboard } from './pages/Dashboard'
 import { Nav } from './components/nav/Nav'
 import { NavSearch } from './components/navEventsSearch/NavSearch'
+import { Error404 } from './pages/Error404'
+import { parseLocation } from './utils/helpers'
 
 const routes = [
   { path: '/', view: Home },
-  { path: '/recovery-password/:token', view: RecoveryPassword },
+  {
+    path: '/recovery-password/:token',
+    view: RecoveryPassword
+  },
   { path: '/dashboard', view: Dashboard }
 ]
-
-const parseLocation = () => {
-  return window.location.pathname
-}
 
 const findRoute = (routePath) => {
   for (const route of routes) {
@@ -29,14 +30,13 @@ const findRoute = (routePath) => {
 const router = () => {
   const path = parseLocation()
   const matchResult = findRoute(path)
-
   if (!matchResult) {
     document.getElementById('app').innerHTML = Error404()
     return
   }
 
   const { route, match } = matchResult
-  const view = route.view(match[1])
+  const view = route.view(match.slice(1)) // Pass all matches to the view
   const token = localStorage.getItem('__EVENT_ACCESS__')
   if (token) {
     if (route.path !== '/dashboard') {
@@ -44,32 +44,26 @@ const router = () => {
       return
     }
   } else {
-    document.querySelector('#header').innerHTML = `
-          ${Nav()}
-          `
     if (route.path === '/dashboard') {
       navigateTo('/')
       return
     }
   }
-  document.getElementById('app').innerHTML = `
-            ${NavSearch()}
-            ${view}
-            `
-}
-export const navigateTo = (url) => {
-  history.pushState(null, null, url)
-  router()
+  document.querySelector('#app').innerHTML = `${view}`
 }
 
 window.addEventListener('popstate', router)
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('body')
+
   body.addEventListener('click', (e) => {
-    if (e.target.matches('[data-link]')) {
-      navigateTo(e.target.href)
+    const target = e.target.closest('[data-link]')
+    if (target) {
+      e.preventDefault()
+      navigateTo(target.href)
     }
   })
+
   router()
 })

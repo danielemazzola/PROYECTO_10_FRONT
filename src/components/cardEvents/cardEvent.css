@@ -67,17 +67,17 @@
 .descriptionEvent > p {
   text-align: justify;
 }
-#form-register-event {
+.form-register-event {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   gap: 10px;
 }
-#form-register-event > input {
+.form-register-event > input {
   width: 120px;
 }
-#btn-register-event {
+.btn-register-event {
   background-color: rgb(86, 206, 86);
   color: white;
 }

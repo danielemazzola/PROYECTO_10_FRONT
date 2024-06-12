@@ -1,4 +1,5 @@
 import('./nav.css')
+import('./helpers')
 
 const Register = () => {
   const template = `

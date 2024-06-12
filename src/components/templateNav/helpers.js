@@ -1,6 +1,6 @@
 import '../nav/nav.css'
 import { fetchRegister, fetchForgotPassword } from '../../services/fetchAuth'
-import { Alert } from '../alert/Alert'
+import { Alert } from '../../../components/alert/Alert'
 
 export const btnCloseComponent = () => {
   const btnClose = document.querySelector('.closeContainer')
@@ -37,10 +37,7 @@ export const handleRegister = () => {
 }
 
 export const handleForgotPassword = () => {
-  const forgotContainer = document.querySelector('.forgot-password-container')
   const formForgot = document.querySelector('.forgot-password-form')
-
-  if (!formForgot) return
   formForgot.addEventListener('submit', async (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)

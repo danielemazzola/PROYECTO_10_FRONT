@@ -8,7 +8,7 @@ export const Alert = (error, msg) => {
   if (!containerAlert) {
     containerAlert = document.createElement('div')
     containerAlert.id = 'containerAlert'
-    body.appendChild(containerAlert)
+    body.append(containerAlert)
   }
 
   const divAlert = document.createElement('div')

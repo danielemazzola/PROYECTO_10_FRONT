@@ -1,14 +1,15 @@
 import './cardEvent.css'
 import { handleRegister } from './helpers'
-import { getEvents } from '../../services/fetchEvents'
+import { getEvents } from '../../src/services/fetchEvents'
 
 export const cardEvent = async () => {
   const events = await getEvents()
   const section = document.querySelector('#card-events')
   const pMessage = document.querySelector('#messageEvents')
-  pMessage.textContent = events.message
-  events.events.map((event) => {
+  pMessage.textContent = events?.message
+  events.events.map((event, index) => {
     const containerEvents = document.createElement('div')
+    containerEvents.id = index
     const containerEventsWrapper = document.createElement('div')
     const containerEvent = document.createElement('div')
     containerEvents.classList.add('containerEvents')
@@ -33,7 +34,7 @@ export const cardEvent = async () => {
     const email = document.createElement('input')
     const btnRegisterEvent = document.createElement('input')
 
-    register.id = 'form-register-event'
+    register.classList.add('form-register-event')
     name.name = 'name'
     name.placeholder = 'Name: George'
     lastName.name = 'lastName'
@@ -43,7 +44,7 @@ export const cardEvent = async () => {
     email.placeholder = 'E-mail:george@email.com'
     btnRegisterEvent.type = 'submit'
     btnRegisterEvent.value = 'Register'
-    btnRegisterEvent.id = 'btn-register-event'
+    btnRegisterEvent.classList.add('btn-register-event')
 
     section.appendChild(containerEvents)
     containerEvents.appendChild(containerEventsWrapper)

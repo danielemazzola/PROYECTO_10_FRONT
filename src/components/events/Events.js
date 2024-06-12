@@ -1,4 +1,5 @@
 import('./events.css')
+import('../cardEvents/helpers')
 import { cardEvent } from '../cardEvents/cardEvents'
 
 export const Events = () => {
