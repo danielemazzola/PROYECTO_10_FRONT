@@ -1,11 +1,10 @@
-import './style.css'
-import { Home } from './pages/Home'
-import { RecoveryPassword } from './pages/RecoveryPassword'
-import { Dashboard } from './pages/Dashboard'
-import { Nav } from './components/nav/Nav'
-import { NavSearch } from './components/navEventsSearch/NavSearch'
-import { Error404 } from './pages/Error404'
-import { parseLocation } from './utils/helpers'
+import './src/assets/style.css'
+import { Home } from './src/pages/home/Home'
+import { RecoveryPassword } from './src/pages/recovery-password/RecoveryPassword'
+import { Dashboard } from './src/pages/auth/Dashboard'
+import { Nav } from './src/components/nav/Nav'
+import { NavSearch } from './src/components/navEventsSearch/NavSearch'
+import { parseLocation, navigateTo } from './src/utils/helpers'
 
 const routes = [
   { path: '/', view: Home },
@@ -27,11 +26,11 @@ const findRoute = (routePath) => {
   return null
 }
 
-const router = () => {
+export const router = () => {
   const path = parseLocation()
   const matchResult = findRoute(path)
   if (!matchResult) {
-    document.getElementById('app').innerHTML = Error404()
+    document.getElementById('app').innerHTML = Nav() + NavSearch() + Home()
     return
   }
 
@@ -44,12 +43,13 @@ const router = () => {
       return
     }
   } else {
+    document.querySelector('header').innerHTML = Nav() + NavSearch()
     if (route.path === '/dashboard') {
       navigateTo('/')
       return
     }
   }
-  document.querySelector('#app').innerHTML = `${view}`
+  document.querySelector('#app').innerHTML = view
 }
 
 window.addEventListener('popstate', router)

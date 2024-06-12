@@ -1,6 +1,6 @@
 import '../nav/nav.css'
 import { fetchRegister, fetchForgotPassword } from '../../services/fetchAuth'
-import { Alert } from '../../../components/alert/Alert'
+import { Alert } from '../alert/Alert'
 
 export const btnCloseComponent = () => {
   const btnClose = document.querySelector('.closeContainer')

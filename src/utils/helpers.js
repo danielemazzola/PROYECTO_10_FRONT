@@ -1,3 +1,5 @@
+import { router } from '../../main'
+
 export const parseLocation = () => {
   return window.location.pathname
 }

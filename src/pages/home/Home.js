@@ -1,9 +1,7 @@
-import('./events.css')
-import('../cardEvents/helpers')
-import { cardEvent } from '../cardEvents/cardEvents'
-
-export const Events = () => {
-  const eventContent = `
+import('./home.css')
+import('./helpers')
+export const Home = () => {
+  const view = `
   <section id="sectionEvents">
     <div class="infoWelcome">
       <div class="title">
@@ -22,6 +20,5 @@ export const Events = () => {
     </div>
   </section>
   `
-  cardEvent()
-  return eventContent
+  return view
 }
