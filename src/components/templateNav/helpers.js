@@ -4,6 +4,7 @@ import { Alert } from '../alert/Alert'
 
 export const btnCloseComponent = () => {
   const btnClose = document.querySelector('.closeContainer')
+  const auth = document.querySelector('#auth')
   btnClose.addEventListener('click', () => {
     auth.classList.add('animate-close')
     setTimeout(() => {
@@ -31,7 +32,10 @@ export const handleRegister = () => {
     }
     let error
     if (data.status === 409) error = true
-    else error = false
+    else {
+      error = false
+      auth.remove()
+    }
     Alert(error, data.data.message)
   })
 }
@@ -48,7 +52,10 @@ export const handleForgotPassword = () => {
     const data = await fetchForgotPassword(jsonData)
     let error
     if (data.status === 404) error = true
-    else error = false
+    else {
+      error = false
+      auth.remove()
+    }
     Alert(error, data.data.message)
   })
 }

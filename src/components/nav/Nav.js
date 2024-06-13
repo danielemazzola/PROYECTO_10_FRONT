@@ -1,4 +1,4 @@
-import { login } from './helpers'
+import { toggleForm, login } from './helpers'
 
 import('./nav.css')
 import('./helpers')
@@ -25,11 +25,49 @@ export const Nav = () => {
   return view
 }
 
-window.addEventListener('load', () => {
+const initializeToggleButtons = () => {
   const formLogin = document.querySelector('#formlogin')
   if (!formLogin) return
   formLogin.addEventListener('submit', (e) => {
     e.preventDefault()
     login(e)
   })
-})
+
+  const buttons = document.querySelectorAll('#btn_register, #btn_forgot')
+  if (!buttons.length) return
+
+  let activeButton = ''
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () =>
+      handleButtonClick(
+        button,
+        activeButton,
+        (newActiveButton) => (activeButton = newActiveButton)
+      )
+    )
+  })
+}
+
+const handleButtonClick = (button, activeButton, setActiveButton) => {
+  const formType = button.id
+  const auth = document.querySelector('#auth')
+
+  if (auth) {
+    auth.classList.add('animate-close')
+    setTimeout(() => {
+      auth.remove()
+      if (activeButton !== formType) {
+        toggleForm(formType)
+        setActiveButton(formType)
+      } else {
+        setActiveButton('')
+      }
+    }, 100)
+  } else {
+    toggleForm(formType)
+    setActiveButton(formType)
+  }
+}
+
+window.addEventListener('load', initializeToggleButtons)

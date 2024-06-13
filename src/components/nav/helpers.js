@@ -12,36 +12,22 @@ import { Register, ForgotPassword } from '../templateNav/templatesAuth'
 /* const parentNav = document.querySelector('.containerbtns')
 const btns = parentNav.querySelectorAll('button') */
 
-export const createForm = (btn) => {
+export const toggleForm = (btn) => {
   const auth = document.createElement('div')
-
   auth.id = 'auth'
-  let copyAttribute = ''
-  // RETURN BUTTONS ACTIONS
-
-  if (copyAttribute === btn) {
-    copyAttribute = ''
-    auth.classList.add('animate-close')
-    setTimeout(() => {
-      auth.removeAttribute('class')
-      auth.remove()
-    }, 200)
-  } else {
-    copyAttribute = btn
-    if (btn) {
-      auth.classList.add('animate-init')
-    }
-    setTimeout(() => {
-      auth.removeAttribute('class')
-    }, 200)
-    header.appendChild(auth)
-    componentNav(btn)
-    btnCloseComponent()
-  }
+  auth.classList.add('animate-init')
+  setTimeout(() => {
+    auth.removeAttribute('class')
+  }, 200)
+  document.querySelector('header').appendChild(auth)
+  componentNav(btn)
+  btnCloseComponent()
 }
 
 // RETURN ACTION - REGISTER - FORGOT PASSWORD
-export const componentNav = (btnAttribute) => {
+const componentNav = (btnAttribute) => {
+  const auth = document.querySelector('#auth')
+  if (!auth) return
   if (btnAttribute === 'btn_register') {
     auth.innerHTML = Register()
     handleRegister()
@@ -67,7 +53,7 @@ export const login = async (e) => {
     error = false
     Alert(error, `welcome ${data.data.user.name}, Please wait, redirecting...`)
     setTimeout(() => {
-      document.querySelector('header').remove()
+      document.querySelector('header').innerHTML = ``
       document.querySelector('#app').innerHTML = Dashboard()
     }, 3000)
   }
