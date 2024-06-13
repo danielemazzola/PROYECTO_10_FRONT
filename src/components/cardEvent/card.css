@@ -1,0 +1,126 @@
+#card-events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  margin: 20px 0;
+}
+#messageEvents {
+  margin: 20px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 24px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+.containerEvents {
+  width: 33%;
+  align-items: center;
+}
+
+.containerEventsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.containerEvent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.271);
+  transition: transform 0.3s ease;
+}
+
+.bannerEvent {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.bannerEvent img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.containerEvent:hover .bannerEvent img {
+  transform: scale(1.1);
+}
+
+.descriptionEvent {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.812);
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  gap: 10px;
+}
+.descriptionEvent > p {
+  text-align: justify;
+}
+.form-register-event {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+}
+.form-register-event > input {
+  width: 120px;
+}
+.btn-register-event {
+  background-color: rgb(86, 206, 86);
+  color: white;
+}
+
+.containerEvent:hover .descriptionEvent {
+  transform: translateY(0);
+}
+
+.descriptionEvent h2,
+.descriptionEvent p {
+  margin: 0;
+}
+
+.descriptionEvent h2 {
+  font-size: 1.5em;
+}
+
+.descriptionEvent p {
+  font-size: 1em;
+}
+
+@media (max-width: 1994px) {
+  .containerEvents {
+    width: 47%;
+  }
+}
+@media (max-width: 1299px) {
+  .containerEvents {
+    width: 47%;
+  }
+}
+@media (max-width: 777px) {
+  .containerEvents {
+    width: 98%;
+  }
+}

@@ -1,6 +1,6 @@
 import('./home.css')
 import('./helpers')
-import { cardEvent } from './helpers'
+import { CardEvent } from '../../components/cardEvent/CardEvent'
 export const Home = () => {
   const view = `
   <section id="sectionEvents">
@@ -21,7 +21,7 @@ export const Home = () => {
     </div>
   </section>
   `
-  cardEvent()
+  CardEvent()
 
   return view
 }
