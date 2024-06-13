@@ -1,5 +1,8 @@
+import { Loader } from '../components/loader/Loader'
+
 const fetchRegister = async (jsonData) => {
   try {
+    Loader(true)
     const response = await fetch(
       `${import.meta.env.VITE_URL_API}/auth/register`,
       {
@@ -12,14 +15,17 @@ const fetchRegister = async (jsonData) => {
     )
     const data = await response.json()
     const { status } = response
+    Loader(false)
     return { data, status }
   } catch (error) {
+    Loader(false)
     console.log(error)
   }
 }
 
 const fetchForgotPassword = async (jsonData) => {
   try {
+    Loader(true)
     const response = await fetch(
       `${import.meta.env.VITE_URL_API}/auth/recovery-password`,
       {
@@ -32,14 +38,17 @@ const fetchForgotPassword = async (jsonData) => {
     )
     const data = await response.json()
     const { status } = response
+    Loader(false)
     return { data, status }
   } catch (error) {
+    Loader(false)
     console.log(error)
   }
 }
 
 const fetchLogin = async (jsonData) => {
   try {
+    Loader(true)
     const response = await fetch(`${import.meta.env.VITE_URL_API}/auth/login`, {
       method: 'POST',
       headers: {
@@ -49,14 +58,17 @@ const fetchLogin = async (jsonData) => {
     })
     const data = await response.json()
     const { status } = response
+    Loader(false)
     return { data, status }
   } catch (error) {
+    Loader(false)
     console.log(error)
   }
 }
 
 const fetchRecoveryPassword = async (jsonData, token) => {
   try {
+    Loader(true)
     const response = await fetch(
       `${import.meta.env.VITE_URL_API}/auth/recovery-password/${token}`,
       {
@@ -69,8 +81,10 @@ const fetchRecoveryPassword = async (jsonData, token) => {
     )
     const data = await response.json()
     const { status } = response
+    Loader(false)
     return { data, status }
   } catch (error) {
+    Loader(false)
     console.log(error)
   }
 }

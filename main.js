@@ -1,4 +1,5 @@
 import './src/assets/style.css'
+import { Loader } from './src/components/loader/Loader'
 import { Nav } from './src/components/nav/Nav'
 import { NavSearch } from './src/components/navEventsSearch/NavSearch'
 import { NotFound } from './src/pages/404/NotFound'
@@ -10,15 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const token = localStorage.getItem('__EVENT_ACCESS__')
   const appElement = document.querySelector('#app')
   const headerElement = document.querySelector('header')
-
   const path = window.location.pathname
-  // Verificar si la ruta no es la raíz ni una ruta válida de recuperación de contraseña
+
   if (!(path === '/' || path.startsWith('/recovery-password/'))) {
     headerElement.innerHTML = Nav() + NavSearch()
     appElement.innerHTML = NotFound()
-    return // Salir de la función si la ruta no es válida
+    return
   }
-
   if (token) {
     appElement.innerHTML = Dashboard()
   } else {
