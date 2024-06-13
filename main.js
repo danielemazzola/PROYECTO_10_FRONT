@@ -1,6 +1,7 @@
 import './src/assets/style.css'
 import { Nav } from './src/components/nav/Nav'
 import { NavSearch } from './src/components/navEventsSearch/NavSearch'
+import { NotFound } from './src/pages/404/NotFound'
 import { Dashboard } from './src/pages/auth/Dashboard'
 import { Home } from './src/pages/home/Home'
 import { RecoveryPassword } from './src/pages/recovery-password/RecoveryPassword'
@@ -11,15 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const headerElement = document.querySelector('header')
 
   const path = window.location.pathname
-  const recoveryPasswordMatch = path.match(/^\/recovery-password\/(.+)/)
+  // Verificar si la ruta no es la raíz ni una ruta válida de recuperación de contraseña
+  if (!(path === '/' || path.startsWith('/recovery-password/'))) {
+    headerElement.innerHTML = Nav() + NavSearch()
+    appElement.innerHTML = NotFound()
+    return // Salir de la función si la ruta no es válida
+  }
 
   if (token) {
     appElement.innerHTML = Dashboard()
   } else {
+    const recoveryPasswordMatch = path.match(/^\/recovery-password\/(.+)/)
     if (recoveryPasswordMatch) {
       const recoveryToken = recoveryPasswordMatch[1]
-      appElement.innerHTML =
-        Nav() + NavSearch() + RecoveryPassword(recoveryToken)
+      headerElement.innerHTML = Nav() + NavSearch()
+      appElement.innerHTML = RecoveryPassword(recoveryToken)
     } else {
       headerElement.innerHTML = Nav() + NavSearch()
       appElement.innerHTML = Home()

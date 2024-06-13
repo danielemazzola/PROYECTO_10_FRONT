@@ -55,4 +55,24 @@ const fetchLogin = async (jsonData) => {
   }
 }
 
-export { fetchRegister, fetchForgotPassword, fetchLogin }
+const fetchRecoveryPassword = async (jsonData, token) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_API}/auth/recovery-password/${token}`,
+      {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+      }
+    )
+    const data = await response.json()
+    const { status } = response
+    return { data, status }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { fetchRegister, fetchForgotPassword, fetchLogin, fetchRecoveryPassword }
