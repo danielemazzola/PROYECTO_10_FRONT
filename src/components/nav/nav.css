@@ -70,7 +70,7 @@
   background-color: rgb(78, 156, 78);
 }
 @media (max-width: 580px) {
-  #form-login {
+  #formlogin {
     display: flex;
     flex-direction: column;
     align-items: end;
