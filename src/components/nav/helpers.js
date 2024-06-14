@@ -48,7 +48,6 @@ export const login = async (e) => {
   const data = await fetchLogin(jsonData)
   let error
   if (data.status === 200) {
-    console.log(data)
     const token = data.data.token
     localStorage.setItem('__EVENT_ACCESS__', token)
     error = false

@@ -79,8 +79,9 @@ export const profile = async (token) => {
     let error = false
     Alert(error, '❤️Thank you for visiting us❤️')
     setTimeout(() => {
-      document.querySelector('header').innerHTML = Nav() + NavSearch()
-      document.querySelector('#app').innerHTML = Home()
+      /* document.querySelector('header').innerHTML = Nav() + NavSearch()
+      document.querySelector('#app').innerHTML = Home() */
+      window.location.assign('/')
     }, 3000)
   })
 }
