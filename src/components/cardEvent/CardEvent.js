@@ -7,6 +7,7 @@ export const CardEvent = async () => {
   const events = await getEvents()
   if (!events) return null
   const section = document.querySelector('#card-events')
+  if (!section) return null
   const pMessage = document.querySelector('#messageEvents')
   pMessage.textContent = events.message
   events.events.map((event, index) => {

@@ -1,15 +1,10 @@
-import { isAuth } from '../../services/fetchIsAuth'
+import './dashboard.css'
+import './helpers'
+import { profile } from './helpers'
 
-export const Dashboard = (token) => {
-  profile(token)
-}
-
-const profile = async (token) => {
-  const app = document.querySelector('#app')
-  const { data } = await isAuth(token)
-  const divContentUser = document.createElement('div')
-  const h3Title = document.createElement('h3')
-  h3Title.textContent = data.name
-  app.appendChild(divContentUser)
-  divContentUser.append(h3Title)
+export const Dashboard = () => {
+  const token = localStorage.getItem('__EVENT_ACCESS__')
+  if (token) {
+    profile(token)
+  }
 }

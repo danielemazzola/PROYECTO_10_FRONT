@@ -48,10 +48,11 @@ export const login = async (e) => {
   const data = await fetchLogin(jsonData)
   let error
   if (data.status === 200) {
+    console.log(data)
     const token = data.data.token
     localStorage.setItem('__EVENT_ACCESS__', token)
     error = false
-    Alert(error, `welcome ${data.data.user.name}, Please wait, redirecting...`)
+    Alert(error, `welcome ${data.data.data.name}, Please wait, redirecting...`)
     setTimeout(() => {
       document.querySelector('header').innerHTML = ``
       document.querySelector('#app').innerHTML = Dashboard()
