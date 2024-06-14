@@ -50,6 +50,7 @@ const fetchForgotPassword = async (jsonData) => {
 
 const fetchLogin = async (jsonData) => {
   try {
+    Loader(true)
     const response = await fetch(`${import.meta.env.VITE_URL_API}/auth/login`, {
       method: 'POST',
       headers: {
@@ -59,8 +60,10 @@ const fetchLogin = async (jsonData) => {
     })
     const data = await response.json()
     const { status } = response
+    Loader(false)
     return { data, status }
   } catch (error) {
+    Loader(false)
     console.log(error)
     return null
   }
