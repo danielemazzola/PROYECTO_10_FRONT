@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!(path === '/' || path.startsWith('/recovery-password/'))) {
     headerElement.innerHTML = Nav() + NavSearch()
     appElement.innerHTML = NotFound()
-    return
+    return null
   }
   if (token) {
     appElement.innerHTML = Dashboard(token)

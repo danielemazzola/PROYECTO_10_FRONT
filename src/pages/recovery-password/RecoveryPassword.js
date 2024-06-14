@@ -3,13 +3,6 @@ import { fetchRecoveryPassword } from '../../services/fetchAuth'
 import { handleRecoveryPassword } from './helpers'
 
 export const RecoveryPassword = (token) => {
-  if (!token) {
-    return `
-    <h1>Token Page</h1>
-    <p>No token provided.</p>
-    `
-  }
-
   const template = `
   <div class="form-group">
     <h1>Recovery password</h1>
@@ -24,7 +17,7 @@ export const RecoveryPassword = (token) => {
   `
   window.addEventListener('load', () => {
     const saveNewPassword = document.querySelector('.recovery-password-form')
-    if (!saveNewPassword) return
+    if (!saveNewPassword) return null
     saveNewPassword.addEventListener('submit', (e) => {
       e.preventDefault()
       handleRecoveryPassword(e, token)

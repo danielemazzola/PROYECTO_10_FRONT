@@ -5,7 +5,7 @@ import { handleRegister } from './helpers'
 
 export const CardEvent = async () => {
   const events = await getEvents()
-  if (!events) return
+  if (!events) return null
   const section = document.querySelector('#card-events')
   const pMessage = document.querySelector('#messageEvents')
   pMessage.textContent = events.message

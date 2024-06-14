@@ -1,7 +1,7 @@
 import './alert.css'
 
 export const Alert = (error, msg) => {
-  if (!msg) return
+  if (!msg) return null
   const body = document.querySelector('body')
   let containerAlert = document.querySelector('#containerAlert')
 

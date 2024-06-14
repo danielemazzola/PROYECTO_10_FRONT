@@ -27,7 +27,7 @@ export const toggleForm = (btn) => {
 // RETURN ACTION - REGISTER - FORGOT PASSWORD
 const componentNav = (btnAttribute) => {
   const auth = document.querySelector('#auth')
-  if (!auth) return
+  if (!auth) return null
   if (btnAttribute === 'btn_register') {
     auth.innerHTML = Register()
     handleRegister()

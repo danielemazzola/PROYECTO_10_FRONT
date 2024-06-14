@@ -16,7 +16,7 @@ export const btnCloseComponent = () => {
 
 export const handleRegister = () => {
   const formRegister = document.querySelector('#register-form')
-  if (!formRegister) return
+  if (!formRegister) return null
   formRegister.addEventListener('submit', async (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)

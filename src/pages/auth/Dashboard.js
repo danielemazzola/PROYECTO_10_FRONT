@@ -1,15 +1,15 @@
 import { isAuth } from '../../services/fetchIsAuth'
 
 export const Dashboard = (token) => {
-  const view = `
-    <div>
-      <h1>Hola mundo</h1>
-    </div>
-  `
-  const profile = async (token) => {
-    const data = await isAuth(token)
-    console.log(data)
-  }
   profile(token)
-  return view
+}
+
+const profile = async (token) => {
+  const app = document.querySelector('#app')
+  const { data } = await isAuth(token)
+  const divContentUser = document.createElement('div')
+  const h3Title = document.createElement('h3')
+  h3Title.textContent = data.name
+  app.appendChild(divContentUser)
+  divContentUser.append(h3Title)
 }
