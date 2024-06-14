@@ -27,6 +27,7 @@ export const Nav = () => {
 
 const initializeToggleButtons = () => {
   const formLogin = document.querySelector('#formlogin')
+  if (!formLogin) return
   formLogin.addEventListener('submit', async (e) => {
     e.preventDefault()
     await login(e)

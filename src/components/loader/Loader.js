@@ -6,12 +6,12 @@ export const Loader = (active) => {
       <span class="loader"></span>
     </div>
   `
-  const headerElement = document.querySelector('#navSearch')
+  const headerElement = document.querySelector('#app')
   const loaderElement = document.querySelector('.container-loader')
 
   if (active) {
     if (!loaderElement) {
-      headerElement.innerHTML += loaderHTML
+      headerElement.insertAdjacentHTML('afterbegin', loaderHTML)
     }
   } else {
     if (loaderElement) {

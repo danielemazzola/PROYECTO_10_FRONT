@@ -59,6 +59,7 @@ const fetchLogin = async (jsonData) => {
       body: JSON.stringify(jsonData)
     })
     const data = await response.json()
+    console.log(data)
     const { status } = response
     Loader(false)
     return { data, status }

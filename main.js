@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return
   }
   if (token) {
-    appElement.innerHTML = Dashboard()
+    appElement.innerHTML = Dashboard(token)
   } else {
     const recoveryPasswordMatch = path.match(/^\/recovery-password\/(.+)/)
     if (recoveryPasswordMatch) {
