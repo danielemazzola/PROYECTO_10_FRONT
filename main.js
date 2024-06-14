@@ -1,4 +1,5 @@
 import './src/assets/style.css'
+import { CardEvent } from './src/components/cardEvent/CardEvent'
 import { Loader } from './src/components/loader/Loader'
 import { Nav } from './src/components/nav/Nav'
 import { NavSearch } from './src/components/navEventsSearch/NavSearch'

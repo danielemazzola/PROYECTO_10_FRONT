@@ -54,7 +54,8 @@ export const login = async (e) => {
     Alert(error, `welcome ${data.data.data.name}, Please wait, redirecting...`)
     setTimeout(() => {
       document.querySelector('header').innerHTML = ``
-      document.querySelector('#app').innerHTML = Dashboard()
+      const app = (document.querySelector('#app').innerHTML = ``)
+      app.innerHTML = Dashboard()
     }, 3000)
   } else {
     error = true
