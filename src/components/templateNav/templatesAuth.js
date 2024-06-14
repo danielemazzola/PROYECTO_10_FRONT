@@ -27,8 +27,8 @@ const ForgotPassword = () => {
 <div class="forgot-password-container animate-rebote">
   <div class="form-group">
     <form class="forgot-password-form">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
+      <label for="email-forgot">Email:</label>
+      <input type="email" id="email-forgot" name="email" required>
       <input type="submit" class="btn-form" value="Reset Password">
     </form>
   </div>

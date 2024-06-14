@@ -1,8 +1,6 @@
-import './home.css'
 import { fetchRegisterEvent } from '../../services/fetchEvents'
-import { Alert } from '../../components/alert/Alert'
+import { Alert } from '../alert/Alert'
 
-//REGISTER EVENTS
 export const handleRegister = async (event, register) => {
   const formData = new FormData(register)
   let jsonData = {}

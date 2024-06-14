@@ -20,6 +20,7 @@ const fetchRegister = async (jsonData) => {
   } catch (error) {
     Loader(false)
     console.log(error)
+    return null
   }
 }
 
@@ -43,12 +44,12 @@ const fetchForgotPassword = async (jsonData) => {
   } catch (error) {
     Loader(false)
     console.log(error)
+    return null
   }
 }
 
 const fetchLogin = async (jsonData) => {
   try {
-    Loader(true)
     const response = await fetch(`${import.meta.env.VITE_URL_API}/auth/login`, {
       method: 'POST',
       headers: {
@@ -58,11 +59,10 @@ const fetchLogin = async (jsonData) => {
     })
     const data = await response.json()
     const { status } = response
-    Loader(false)
     return { data, status }
   } catch (error) {
-    Loader(false)
     console.log(error)
+    return null
   }
 }
 
@@ -86,6 +86,7 @@ const fetchRecoveryPassword = async (jsonData, token) => {
   } catch (error) {
     Loader(false)
     console.log(error)
+    return null
   }
 }
 

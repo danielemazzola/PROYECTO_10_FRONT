@@ -6,7 +6,7 @@ export const Loader = (active) => {
       <span class="loader"></span>
     </div>
   `
-  const headerElement = document.querySelector('header')
+  const headerElement = document.querySelector('#navSearch')
   const loaderElement = document.querySelector('.container-loader')
 
   if (active) {

@@ -27,14 +27,12 @@ export const Nav = () => {
 
 const initializeToggleButtons = () => {
   const formLogin = document.querySelector('#formlogin')
-  if (!formLogin) return
-  formLogin.addEventListener('submit', (e) => {
+  formLogin.addEventListener('submit', async (e) => {
     e.preventDefault()
-    login(e)
+    await login(e)
   })
 
   const buttons = document.querySelectorAll('#btn_register, #btn_forgot')
-  if (!buttons.length) return
 
   let activeButton = ''
 

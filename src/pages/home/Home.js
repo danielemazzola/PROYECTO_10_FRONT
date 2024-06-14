@@ -1,5 +1,4 @@
 import('./home.css')
-import('./helpers')
 import { CardEvent } from '../../components/cardEvent/CardEvent'
 import { Loader } from '../../components/loader/Loader'
 export const Home = () => {

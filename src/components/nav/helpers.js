@@ -56,8 +56,7 @@ export const login = async (e) => {
       document.querySelector('header').innerHTML = ``
       document.querySelector('#app').innerHTML = Dashboard()
     }, 3000)
-  }
-  if (data.status === 404 || data.status === 409) {
+  } else {
     error = true
     Alert(error, data.data.message)
   }

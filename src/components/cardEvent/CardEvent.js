@@ -1,6 +1,7 @@
 import './card.css'
+import './helpers'
 import { getEvents } from '../../services/fetchEvents'
-import { handleRegister } from '../../pages/home/helpers'
+import { handleRegister } from './helpers'
 
 export const CardEvent = async () => {
   const events = await getEvents()
