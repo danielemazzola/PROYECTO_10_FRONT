@@ -1,28 +1,36 @@
 import { Alert } from '../../components/alert/Alert'
 import './dashboard.css'
 
+let isOpenToggle = Boolean()
 export const openAvatar = (data) => {
+  if (isOpenToggle) {
+    isOpenToggle = false
+    closeAvatar()
+    return
+  }
   const contain = document.querySelector('#avatarToggle')
   if (contain) contain.remove()
+
   const containImg = `
       <div id="avatarToggle">
         <img alt="avatar by ${data.data.name}" src=${
     data.data.avatar
   } loading='lazy' />
         <div class="infoToggle">
-          <p>Name: <span>${data.data.name}</span></p>
-          <p>Lastname: <span>${data.data.lastName}</span></p>
-          <p>E-mail: <span>${data.data.email}</span></p>
-          <p>Role: ${data.data.roles.map(
-            (val, index) => `<span key=${index}> ${val}</span>`
-          )}</p>
+        <p>Name: <span>${data.data.name}</span></p>
+        <p>Lastname: <span>${data.data.lastName}</span></p>
+        <p>E-mail: <span>${data.data.email}</span></p>
+        <p>Role: ${data.data.roles.map(
+          (val, index) => `<span key=${index}> ${val}</span>`
+        )}</p>
         </div>
-      </div>
-    `
+        </div>
+        `
   app.innerHTML = containImg
+  isOpenToggle = true
   return
 }
-export const closeAvatar = () => {
+const closeAvatar = () => {
   const containImg = document.querySelector('#avatarToggle')
   containImg.style.animation = 'animateClose 0.3s forwards'
   setTimeout(() => {

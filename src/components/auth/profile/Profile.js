@@ -1,8 +1,4 @@
-import {
-  closeAvatar,
-  closeSession,
-  openAvatar
-} from '../../../pages/auth/helpers'
+import { closeSession, openAvatar } from '../../../pages/auth/helpers'
 import { isAuth } from '../../../services/fetchIsAuth'
 import { Nav } from '../../nav/Nav'
 import './profile.css'
@@ -54,8 +50,7 @@ export const Profile = async (token) => {
   containInfoUser.append(h3Title, config)
 
   //AVATAR
-  avatarImg.addEventListener('mouseenter', () => openAvatar(data))
-  avatarImg.addEventListener('mouseleave', () => closeAvatar())
+  avatarImg.addEventListener('click', () => openAvatar(data))
 
   //ADMIN
   if (data.data.roles.includes('admin')) {

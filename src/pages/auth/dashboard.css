@@ -12,6 +12,10 @@
 #avatarToggle > img {
   position: relative;
   width: 250px;
+  transition: all 0.3s;
+}
+#avatarToggle > img:hover {
+  transform: scale(1.1);
 }
 .infoToggle {
   width: 0.5;
@@ -52,10 +56,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: rgb(209, 209, 209);
-    width: 100%;
-    padding: 20px 0;
+    align-items: start;
+    background-color: rgb(238, 238, 238);
+    width: 90%;
+    padding: 20px 10px;
     border-radius: 10px;
   }
   #avatarToggle > img {
