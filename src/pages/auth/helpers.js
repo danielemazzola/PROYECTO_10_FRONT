@@ -44,15 +44,15 @@ export const openAvatar = (data, token) => {
       if (file) {
         const avatar = document.querySelectorAll('#avatar-img')
         const fileURL = URL.createObjectURL(file)
-        for (const av of avatar) {
-          av.src = fileURL
-        }
+
         try {
           const data = await changeAvatar(file, token)
-          Alert(data.status !== 200, data.data.message)
+          for (const av of avatar) {
+            av.src = `${data.data.updateAvatar.avatar}`
+          }
+          Alert(data.status !== 201, data.data.message)
         } catch (error) {
-          console.error('Error al enviar archivo:', error)
-          Alert(true, 'Error al enviar archivo')
+          Alert(true, 'There was an error, please try again😢')
         }
       } else {
         console.log('No se seleccionó ningún archivo.')

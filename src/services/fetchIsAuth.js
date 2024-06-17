@@ -1,5 +1,6 @@
 import { Loader } from '../components/loader/Loader'
 
+let user = {}
 export const isAuth = async (token) => {
   try {
     Loader(true)
@@ -15,7 +16,8 @@ export const isAuth = async (token) => {
     const data = await response.json()
     const { status } = response
     Loader(false)
-    return { data, status }
+    user = { data, status }
+    return user
   } catch (error) {
     Loader(false)
     console.log(error)
@@ -41,6 +43,7 @@ export const changeAvatar = async (file, token) => {
     const data = await response.json()
     const { status } = response
     Loader(false)
+    user.data.avatar = data.updateAvatar.avatar
     return { data, status }
   } catch (error) {
     Loader(false)
