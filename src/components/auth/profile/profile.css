@@ -28,10 +28,10 @@
 .admin {
   font-size: 12px;
 }
-.settings {
+.menu-icon {
   transition: all 0.3s;
 }
-.settings:hover {
+.menu-icon:hover {
   cursor: pointer;
   transform: scale(1.1) !important;
 }
@@ -42,4 +42,22 @@
   border: 1px solid black;
   padding: 5px 0;
   border-radius: 3px;
+}
+#menu-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px 0;
+}
+#menu-items > button {
+  padding: 10px 5px;
+  width: 140px;
+  font-size: 18px;
+  color: white;
+  background-color: rgb(46, 179, 46);
+  border: none;
+  border-radius: 5px;
 }

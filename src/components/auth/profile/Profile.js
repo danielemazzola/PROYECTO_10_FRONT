@@ -30,7 +30,7 @@ export const Profile = async (token) => {
   const h3Title = document.createElement('h3')
   const config = document.createElement('div')
   const containSettings = document.createElement('div')
-  const settings = document.createElement('img')
+  const menu = document.createElement('img')
   const logout = document.createElement('img')
 
   divContentUser.classList.add('containerUser')
@@ -38,7 +38,7 @@ export const Profile = async (token) => {
   h3Title.classList.add('title-user')
   avatarImg.classList.add('avatarImg')
   config.classList.add('container-config')
-  settings.classList.add('settings')
+  menu.classList.add('menu-icon')
   logout.classList.add('settings')
 
   h3Title.textContent = data.data.name
@@ -46,16 +46,16 @@ export const Profile = async (token) => {
   avatarImg.setAttribute('loading', 'lazy')
   avatarImg.src = data.data.avatar
   avatarImg.alt = `avatar by ${data.data.name}`
-  settings.alt = `Settings`
-  settings.setAttribute('loading', 'lazy')
+  menu.alt = `Settings`
+  menu.setAttribute('loading', 'lazy')
   logout.alt = `Logout`
-  settings.src =
-    'https://static-00.iconduck.com/assets.00/settings-icon-2048x2046-cw28eevx.png'
-  settings.setAttribute('style', 'width:20px;')
+  menu.src =
+    'https://static.vecteezy.com/system/resources/previews/019/858/703/non_2x/menu-flat-color-outline-icon-free-png.png'
+  menu.setAttribute('style', 'width:20px;')
 
-  logout.src =
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Human-gnome-logout.svg/1200px-Human-gnome-logout.svg.png'
+  logout.src = 'https://cdn-icons-png.flaticon.com/512/4943/4943215.png'
   logout.setAttribute('style', 'width:20px;')
+  logout.setAttribute('title', 'Close session')
   logout.setAttribute('loading', 'lazy')
 
   containerNav.append(divContentUser)
@@ -75,7 +75,7 @@ export const Profile = async (token) => {
     config.innerHTML = `<div></div>`
   }
   config.append(containSettings)
-  containSettings.append(settings, logout)
+  containSettings.append(menu, logout)
   app.innerHTML = `
     <div id="contain-events">
         <p id="messageEvents"></p>
@@ -88,6 +88,42 @@ export const Profile = async (token) => {
   for (const form of forms) {
     form.remove()
   }
+
+  let active
+  menu.addEventListener('click', () => {
+    if (active) {
+      active = false
+
+      const menuItems = document.querySelector('#menu-items')
+      menuItems.removeAttribute('class')
+      menuItems.classList.add('animate-close')
+      setTimeout(() => {
+        menuItems.remove()
+      }, 300)
+      return
+    } else {
+      active = true
+      const itemsMenu = `
+        <div id="menu-items" class="animate-init">
+          <button>Create Event</button>
+          <button>My Events</button>
+          <button id="close-sesion">Close sesion</button>
+        </div>
+      `
+      app.insertAdjacentHTML('afterbegin', itemsMenu)
+      const closeSesion = document.querySelector('#close-sesion')
+      closeSesion.addEventListener('click', () => {
+        const menuItems = document.querySelector('#menu-items')
+        menuItems.removeAttribute('class')
+        menuItems.classList.add('animate-close')
+        closeSession()
+        setTimeout(() => {
+          menuItems.remove()
+        }, 300)
+      })
+      return
+    }
+  })
 
   logout.addEventListener('click', () => closeSession())
 }
