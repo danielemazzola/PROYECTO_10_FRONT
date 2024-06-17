@@ -8,11 +8,8 @@ export const openAvatar = (data) => {
     closeAvatar()
     return
   }
-  const contain = document.querySelector('#avatarToggle')
-  if (contain) contain.remove()
-
   const containImg = `
-      <div id="avatarToggle">
+  <div id="avatarToggle">
         <div class="containTitleAvatar">
           <h4>Profile</h4>
             <img alt="avatar by ${data.data.name}" src=${
@@ -26,10 +23,12 @@ export const openAvatar = (data) => {
         <p>Role: ${data.data.roles.map(
           (val, index) => `<span key=${index}> ${val}</span>`
         )}</p>
-        </div>
-        </div>
-        `
-  app.innerHTML += containImg
+          </div>
+          </div>
+          `
+  if (app) {
+    app.insertAdjacentHTML('afterbegin', containImg)
+  }
   isOpenToggle = true
   return
 }
