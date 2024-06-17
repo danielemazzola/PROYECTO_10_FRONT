@@ -13,9 +13,12 @@ export const openAvatar = (data) => {
 
   const containImg = `
       <div id="avatarToggle">
-        <img alt="avatar by ${data.data.name}" src=${
+        <div class="containTitleAvatar">
+          <h4>Profile</h4>
+            <img alt="avatar by ${data.data.name}" src=${
     data.data.avatar
   } loading='lazy' />
+        </div>
         <div class="infoToggle">
         <p>Name: <span>${data.data.name}</span></p>
         <p>Lastname: <span>${data.data.lastName}</span></p>
@@ -26,7 +29,7 @@ export const openAvatar = (data) => {
         </div>
         </div>
         `
-  app.innerHTML = containImg
+  app.innerHTML += containImg
   isOpenToggle = true
   return
 }

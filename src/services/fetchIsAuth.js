@@ -6,7 +6,6 @@ export const isAuth = async (token) => {
     const response = await fetch(
       `${import.meta.env.VITE_URL_API}/auth/profile`,
       {
-        method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Asegúrate de establecer los headers correctos
           Authorization: `Bearer ${token}` // Si se usa token en la cabecera, ajusta según tu API

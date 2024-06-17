@@ -1,5 +1,4 @@
 import { Dashboard } from '../../pages/auth/Dashboard'
-import { Home } from '../../pages/home/Home'
 import { fetchLogin } from '../../services/fetchAuth'
 import { Alert } from '../alert/Alert'
 import {

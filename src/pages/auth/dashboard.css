@@ -1,5 +1,5 @@
 #avatarToggle {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -8,13 +8,21 @@
   padding: 20px 0;
   border-bottom: 1px solid black;
 }
-
-#avatarToggle > img {
+.containTitleAvatar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.containTitleAvatar > h4 {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.containTitleAvatar > img {
   position: relative;
   width: 250px;
   transition: all 0.3s;
 }
-#avatarToggle > img:hover {
+.containTitleAvatar > img:hover {
   transform: scale(1.1);
 }
 .infoToggle {
@@ -49,8 +57,12 @@
 
 @media (max-width: 675px) {
   #avatarToggle {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 15px;
+  }
+  .containTitleAvatar {
+    width: 100%;
+    align-items: center;
   }
   .infoToggle {
     display: flex;

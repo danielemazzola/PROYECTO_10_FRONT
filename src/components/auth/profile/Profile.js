@@ -1,5 +1,8 @@
 import { closeSession, openAvatar } from '../../../pages/auth/helpers'
+import { getEvents } from '../../../services/fetchEvents'
 import { isAuth } from '../../../services/fetchIsAuth'
+import { Alert } from '../../alert/Alert'
+import { CardEvent } from '../../cardEvent/CardEvent'
 import { Nav } from '../../nav/Nav'
 import './profile.css'
 
@@ -10,8 +13,17 @@ export const Profile = async (token) => {
   header.innerHTML += Nav()
   const containerNav = header.querySelector('#containerNav')
   containerNav.innerHTML = ``
-
+  let error
   const data = await isAuth(token)
+  if (!data) {
+    error = true
+    Alert(error, 'there is a problem with the connection, redirecting...')
+    setTimeout(() => {
+      localStorage.removeItem('__EVENT_ACCESS__')
+      window.location.assign('/')
+    }, 2000)
+    return
+  }
   const divContentUser = document.createElement('div')
   const avatarImg = document.createElement('img')
   const containInfoUser = document.createElement('div')
@@ -63,6 +75,14 @@ export const Profile = async (token) => {
   }
   config.append(containSettings)
   containSettings.append(settings, logout)
+  app.innerHTML = `
+    <div id="contain-events">
+        <p id="messageEvents"></p>
+        <div id="card-events">
+        </div>
+      </div>
+  `
+  await CardEvent()
 
   logout.addEventListener('click', () => closeSession())
 }
