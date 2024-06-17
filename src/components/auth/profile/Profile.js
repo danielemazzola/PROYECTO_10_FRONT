@@ -1,6 +1,5 @@
 import { closeSession, openAvatar } from '../../../pages/auth/helpers'
-import { getEvents } from '../../../services/fetchEvents'
-import { isAuth } from '../../../services/fetchIsAuth'
+import { getEventsisAuth, isAuth } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
 import { Nav } from '../../nav/Nav'
@@ -83,11 +82,13 @@ export const Profile = async (token) => {
         </div>
       </div>
   `
-  await CardEvent()
-  const forms = document.querySelectorAll('.form-register-event')
-  for (const form of forms) {
-    form.remove()
-  }
+  getEventsisAuth(token)
+    .then((events) => {
+      CardEvent(events)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 
   let active
   menu.addEventListener('click', () => {

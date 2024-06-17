@@ -51,3 +51,28 @@ export const changeAvatar = async (file, token) => {
     return null
   }
 }
+
+export const getEventsisAuth = async (token) => {
+  try {
+    Loader(true)
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_API}/events/events-auth`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText)
+    }
+    const data = await response.json()
+    Loader(false)
+    console.log(data)
+    return data
+  } catch (error) {
+    Loader(false)
+    console.log('Hubo un problema con la solicitud fetch:', error)
+    return null
+  }
+}

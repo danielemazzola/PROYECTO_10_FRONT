@@ -3,8 +3,7 @@ import './helpers'
 import { getEvents } from '../../services/fetchEvents'
 import { handleRegister } from './helpers'
 
-export const CardEvent = async () => {
-  const events = await getEvents()
+export const CardEvent = async (events) => {
   if (!events) return null
   const section = document.querySelector('#card-events')
   if (!section) return null
@@ -12,7 +11,7 @@ export const CardEvent = async () => {
   pMessage.textContent = events.message
   events.events.map((event, index) => {
     const containerEvents = document.createElement('div')
-    containerEvents.id = index
+    containerEvents.id = event._id
     const containerEventsWrapper = document.createElement('div')
     const containerEvent = document.createElement('div')
     containerEvents.classList.add('containerEvents')

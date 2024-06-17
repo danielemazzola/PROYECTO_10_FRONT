@@ -1,6 +1,7 @@
 import('./home.css')
 import { CardEvent } from '../../components/cardEvent/CardEvent'
 import { Loader } from '../../components/loader/Loader'
+import { getEvents } from '../../services/fetchEvents'
 export const Home = () => {
   const view = `
     <section id="sectionEvents">
@@ -21,6 +22,15 @@ export const Home = () => {
       </div>
     </section>
     `
-  CardEvent()
+  document.getElementById('app').innerHTML = view
+
+  getEvents()
+    .then((events) => {
+      CardEvent(events)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
   return view
 }
