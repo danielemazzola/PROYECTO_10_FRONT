@@ -68,7 +68,6 @@ export const getEventsisAuth = async (token) => {
     }
     const data = await response.json()
     Loader(false)
-    console.log(data)
     return data
   } catch (error) {
     Loader(false)

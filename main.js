@@ -1,5 +1,4 @@
 import './src/assets/style.css'
-import { Loader } from './src/components/loader/Loader'
 import { Nav } from './src/components/nav/Nav'
 import { NavSearch } from './src/components/navEventsSearch/NavSearch'
 import { NotFound } from './src/pages/404/NotFound'

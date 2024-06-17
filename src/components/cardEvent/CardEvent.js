@@ -1,9 +1,9 @@
 import './card.css'
 import './helpers'
-import { getEvents } from '../../services/fetchEvents'
 import { handleRegister } from './helpers'
 
 export const CardEvent = async (events) => {
+  console.log(events.events[0])
   if (!events) return null
   const section = document.querySelector('#card-events')
   if (!section) return null
@@ -51,7 +51,20 @@ export const CardEvent = async (events) => {
     section.appendChild(containerEvents)
     containerEvents.appendChild(containerEventsWrapper)
     containerEventsWrapper.appendChild(containerEvent)
-    containerEvent.append(bannerEvent, descriptionEvent)
+    containerEvent.append(bannerEvent)
+
+    const attendees = events.events[0].attendees
+
+    if (!attendees) {
+      containerEvent.append(descriptionEvent)
+    }
+
+    if (typeof attendees === 'number') {
+      //TEMPLATE USER AUTH
+    } else if (Array.isArray(attendees)) {
+      //TEMPLATE ADMIN
+    }
+
     bannerEvent.appendChild(imgEvent)
     descriptionEvent.append(title, description, register)
     register.append(name, lastName, email, btnRegisterEvent)
