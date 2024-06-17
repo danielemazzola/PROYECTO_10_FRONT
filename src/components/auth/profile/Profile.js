@@ -42,6 +42,7 @@ export const Profile = async (token) => {
   logout.classList.add('settings')
 
   h3Title.textContent = data.data.name
+  avatarImg.id = 'avatar-img'
   avatarImg.setAttribute('loading', 'lazy')
   avatarImg.src = data.data.avatar
   avatarImg.alt = `avatar by ${data.data.name}`
@@ -62,7 +63,7 @@ export const Profile = async (token) => {
   containInfoUser.append(h3Title, config)
 
   //AVATAR
-  avatarImg.addEventListener('click', () => openAvatar(data))
+  avatarImg.addEventListener('click', () => openAvatar(data, token))
 
   //ADMIN
   if (data.data.roles.includes('admin')) {

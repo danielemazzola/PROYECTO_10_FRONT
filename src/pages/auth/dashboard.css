@@ -37,6 +37,26 @@
   font-weight: 300;
   font-size: 16px;
 }
+
+.modified-avatar {
+  display: none;
+}
+.add-avatar {
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  padding: 5px 10px;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 3;
+  transform: translate(50px, 50px);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.add-avatar:hover {
+  font-size: 20px;
+  border: 1px solid rgb(255, 255, 255);
+}
 @keyframes animatedOpen {
   0% {
     opacity: 0;
