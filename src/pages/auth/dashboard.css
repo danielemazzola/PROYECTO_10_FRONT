@@ -17,12 +17,15 @@
   text-transform: uppercase;
   font-size: 18px;
 }
-.containTitleAvatar > img {
+.containTitleAvatar > div {
+  position: relative;
+}
+.containTitleAvatar > div > img {
   position: relative;
   width: 250px;
   transition: all 0.3s;
 }
-.containTitleAvatar > img:hover {
+.containTitleAvatar > div > img:hover {
   transform: scale(1.1);
 }
 .infoToggle {
@@ -42,20 +45,21 @@
   display: none;
 }
 .add-avatar {
+  position: absolute;
+  right: -15px;
+  top: -15px;
   font-size: 18px;
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  background-color: rgb(86, 206, 86);
   padding: 5px 10px;
   border-radius: 10px;
-  position: absolute;
   z-index: 3;
-  transform: translate(50px, 50px);
   cursor: pointer;
   transition: all 0.3s;
 }
 .add-avatar:hover {
+  background-color: rgb(55, 177, 55);
   font-size: 20px;
-  border: 1px solid rgb(255, 255, 255);
 }
 @keyframes animatedOpen {
   0% {

@@ -84,6 +84,10 @@ export const Profile = async (token) => {
       </div>
   `
   await CardEvent()
+  const forms = document.querySelectorAll('.form-register-event')
+  for (const form of forms) {
+    form.remove()
+  }
 
   logout.addEventListener('click', () => closeSession())
 }

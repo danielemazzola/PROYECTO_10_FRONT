@@ -13,11 +13,13 @@ export const openAvatar = (data, token) => {
   <div id="avatarToggle">
         <div class="containTitleAvatar">
           <h4>Profile</h4>
-          <div class="add-avatar" for="modified-avatar">&#9998;</div>
-            <input id="modified-avatar" type="file" class="modified-avatar" accept="image/*" />
-            <img id="avatar-img" alt="avatar by ${data.data.name}" src=${
+          <div>
+            <p class="add-avatar" for="modified-avatar">&#9998;</p>
+              <input id="modified-avatar" type="file" class="modified-avatar" accept="image/*" />
+              <img id="avatar-img" alt="avatar by ${data.data.name}" src=${
     data.data.avatar
   } loading='lazy' />
+          </div>
         </div>
         <div class="infoToggle">
         <p>Name: <span>${data.data.name}</span></p>
