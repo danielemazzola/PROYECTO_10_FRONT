@@ -28,7 +28,11 @@ export const CardEvent = async (events) => {
     bannerEvent.classList.add('bannerEvent')
     const descriptionEvent = document.createElement('div')
     const title = document.createElement('h2')
-    title.textContent = `${event.title} (${event.location})`
+    const dateP = document.createElement('span')
+    title.textContent = `${event.title}`
+    dateP.textContent = `Location: ${event.location} - ${date(
+      event.date
+    )} hours`
     const description = document.createElement('p')
     description.textContent = event.description
     descriptionEvent.classList.add('descriptionEvent')
@@ -47,8 +51,8 @@ export const CardEvent = async (events) => {
     const attendees = events.events[0].attendees
 
     bannerEvent.appendChild(imgEvent)
-    descriptionEvent.append(title, description)
-    if (!attendees) {
+    descriptionEvent.append(title, dateP, description)
+    if (Object.keys(user).length === 0) {
       register.classList.add('form-register-event')
       name.name = 'name'
       name.placeholder = 'Name: George'
@@ -101,9 +105,9 @@ export const CardEvent = async (events) => {
             })
           })
         }
+        console.log(event)
         const subscribeEvent = document.querySelector('#subscribe-event')
         subscribeEvent.addEventListener('click', async () => {
-          console.log(user)
           let jsonData = {
             name: user.data.name,
             lastName: user.data.lastName,
@@ -112,9 +116,14 @@ export const CardEvent = async (events) => {
           let id = event._id
           const data = await fetchRegisterEvent({ jsonData, id })
           if (data.status === 200) {
-            event.attendees.push(jsonData)
             const attendesCount = document.querySelector('#attendes-count')
-            attendesCount.textContent = `Attendees: ${event.attendees.length}`
+            if (user.data.roles.includes('admin')) {
+              event.attendees.push(jsonData)
+              attendesCount.textContent = `Attendees: ${event.attendees.length}`
+            } else {
+              event.attendees += 1
+              attendesCount.textContent = `Attendees: ${event.attendees}`
+            }
           }
           Alert(data.status !== 200, data.data.message)
         })
@@ -129,7 +138,6 @@ export const CardEvent = async (events) => {
 }
 
 const DescriptionEvent = (event) => {
-  console.log(event)
   const app = document.querySelector('#app')
   if (Array.isArray(event.attendees)) {
     const template = `
@@ -146,7 +154,7 @@ const DescriptionEvent = (event) => {
           </div>
           <div><p id="attendes-count">Attendees: ${
             event.attendees.length
-          } <span class="more">more...</span></p></div>
+          } <span class="more">more info...</span></p></div>
           <div class="subscribe-btn">
             <button id="subscribe-event">Subscribe</button>
             <button id="close-info">Close</button>
@@ -166,7 +174,7 @@ const DescriptionEvent = (event) => {
           <div><p>Description: ${event.description}</p></div>
           <div><p>Date: ${date(event.date)}</p></div>
           <div><p>Created by ${event.creator.name}</p></div>
-          <div><p>Attendees: ${event.attendees}</p></div>
+          <div><p id="attendes-count">Attendees: ${event.attendees}</p></div>
           <div class="subscribe-btn">
             <button id="subscribe-event">Subscribe</button>
             <button id="close-info">Close</button>

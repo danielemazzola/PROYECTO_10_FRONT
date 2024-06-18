@@ -76,6 +76,17 @@
 .descriptionEvent > p {
   text-align: justify;
 }
+.descriptionEvent > span {
+  background-color: white;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: black;
+  border-radius: 5px;
+  padding-right: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
 .form-register-event {
   margin-top: 10px;
   display: flex;
