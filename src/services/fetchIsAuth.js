@@ -1,6 +1,6 @@
 import { Loader } from '../components/loader/Loader'
 
-let user = {}
+export let user = {}
 export const isAuth = async (token) => {
   try {
     Loader(true)

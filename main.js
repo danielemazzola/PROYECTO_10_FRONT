@@ -1,6 +1,5 @@
 import './src/assets/style.css'
 import { Nav } from './src/components/nav/Nav'
-import { NavSearch } from './src/components/navEventsSearch/NavSearch'
 import { NotFound } from './src/pages/404/NotFound'
 import { Dashboard } from './src/pages/auth/Dashboard'
 import { Home } from './src/pages/home/Home'
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname
 
   if (!(path === '/' || path.startsWith('/recovery-password/'))) {
-    headerElement.innerHTML = Nav() + NavSearch()
+    headerElement.innerHTML = Nav()
     appElement.innerHTML = NotFound()
     return null
   }
@@ -23,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const recoveryPasswordMatch = path.match(/^\/recovery-password\/(.+)/)
     if (recoveryPasswordMatch) {
       const recoveryToken = recoveryPasswordMatch[1]
-      headerElement.innerHTML = Nav() + NavSearch()
+      headerElement.innerHTML = Nav()
       appElement.innerHTML = RecoveryPassword(recoveryToken)
     } else {
-      headerElement.innerHTML = Nav() + NavSearch()
+      headerElement.innerHTML = Nav()
       appElement.innerHTML = Home()
     }
   }
