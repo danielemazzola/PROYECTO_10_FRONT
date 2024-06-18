@@ -1,12 +1,10 @@
-import { fetchRegisterEvent } from '../../services/fetchEvents'
-import { user } from '../../services/fetchIsAuth'
-import { date } from '../../utils/date'
-import { Alert } from '../alert/Alert'
 import './card.css'
 import './helpers'
-import { DescriptionEvent, handleRegister } from './helpers'
+import { date } from '../../utils/date'
+import { user } from '../../services/fetchIsAuth'
+import { MoreInfo, handleRegister } from './helpers'
 
-export const CardEvent = async (events) => {
+export const CardEvent = async (events, token) => {
   if (!events) return null
   const section = document.querySelector('#card-events')
   if (!section) return null
@@ -80,60 +78,7 @@ export const CardEvent = async (events) => {
       descriptionEvent.append(divBtn)
       divBtn.append(btnMoreInfo)
       btnMoreInfo.addEventListener('click', () => {
-        DescriptionEvent(event)
-        if (user.data.roles.includes('admin')) {
-          const allAttendees = document.querySelector('.more')
-          if (event.attendees.length > 0) {
-            allAttendees.addEventListener('click', () => {
-              const attendeesList = event.attendees
-                .map(
-                  (ele, index) =>
-                    `<li class="${index % 2 === 0 ? 'grey' : 'white'}">${
-                      ele.name
-                    } ${ele.lastName} - ${ele.email}</li>`
-                )
-                .join('')
-              const template = `
-                <div class="info-attendees">
-                  <ul>${attendeesList}</ul>
-                  <button class="close-attendees">X</button>
-                </div>
-              `
-              app.insertAdjacentHTML('beforeend', template)
-              const closeAttendees = document.querySelector('.close-attendees')
-              closeAttendees.addEventListener('click', () => {
-                document.querySelector('.info-attendees').remove()
-              })
-            })
-          } else {
-            Alert(true, 'There are not attendees to this event😑')
-          }
-        }
-        const subscribeEvent = document.querySelector('#subscribe-event')
-        subscribeEvent.addEventListener('click', async () => {
-          let jsonData = {
-            name: user.data.name,
-            lastName: user.data.lastName,
-            email: user.data.email
-          }
-          let id = event._id
-          const data = await fetchRegisterEvent({ jsonData, id })
-          if (data.status === 200) {
-            const attendesCount = document.querySelector('#attendes-count')
-            if (user.data.roles.includes('admin')) {
-              event.attendees.push(jsonData)
-              attendesCount.textContent = `Attendees: ${event.attendees.length}`
-            } else {
-              event.attendees += 1
-              attendesCount.textContent = `Attendees: ${event.attendees}`
-            }
-          }
-          Alert(data.status !== 200, data.data.message)
-        })
-        const closeInfo = document.querySelector('#close-info')
-        closeInfo.addEventListener('click', () => {
-          document.querySelector('.container-info').remove()
-        })
+        MoreInfo(token, event)
       })
     }
     containerEvent.append(descriptionEvent)

@@ -1,4 +1,4 @@
-import { closeSession, openAvatar } from '../../../pages/auth/helpers'
+import { openAvatar } from '../../../pages/auth/helpers'
 import { getEventsisAuth, isAuth } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
@@ -76,7 +76,7 @@ export const Profile = async (token) => {
   `
   getEventsisAuth(token)
     .then((events) => {
-      CardEvent(events)
+      CardEvent(events, token)
     })
     .catch((error) => {
       console.log(error)
@@ -98,7 +98,6 @@ export const Profile = async (token) => {
       const itemsMenu = `
         <div id="menu-items" class="animate-init">
           <button>Create Event</button>
-          <button>My Events</button>
           <button id="close-sesion">Close sesion</button>
         </div>
       `

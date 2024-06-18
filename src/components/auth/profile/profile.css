@@ -97,7 +97,7 @@
   font-size: 16px;
 }
 
-@media (max-width: 366px) {
+@media (max-width: 499px) {
   #menu-items {
     width: 100%;
   }

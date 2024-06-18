@@ -1,8 +1,6 @@
 import('./home.css')
-import { CardEvent } from '../../components/cardEvent/CardEvent'
-import { Loader } from '../../components/loader/Loader'
-import { getEvents } from '../../services/fetchEvents'
 import { getAllEvents } from './helpers'
+
 export const Home = () => {
   const view = `
     <section id="sectionEvents">

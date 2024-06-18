@@ -1,5 +1,4 @@
 import './recovery.css'
-import { fetchRecoveryPassword } from '../../services/fetchAuth'
 import { handleRecoveryPassword } from './helpers'
 
 export const RecoveryPassword = (token) => {
