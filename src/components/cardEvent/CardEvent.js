@@ -83,27 +83,31 @@ export const CardEvent = async (events) => {
         DescriptionEvent(event)
         if (user.data.roles.includes('admin')) {
           const allAttendees = document.querySelector('.more')
-          allAttendees.addEventListener('click', () => {
-            const attendeesList = event.attendees
-              .map(
-                (ele, index) =>
-                  `<li class="${index % 2 === 0 ? 'grey' : 'white'}">${
-                    ele.name
-                  } ${ele.lastName} - ${ele.email}</li>`
-              )
-              .join('')
-            const template = `
-              <div class="info-attendees">
-                <ul>${attendeesList}</ul>
-                <button class="close-attendees">X</button>
-              </div>
-            `
-            app.insertAdjacentHTML('beforeend', template)
-            const closeAttendees = document.querySelector('.close-attendees')
-            closeAttendees.addEventListener('click', () => {
-              document.querySelector('.info-attendees').remove()
+          if (event.attendees.length > 0) {
+            allAttendees.addEventListener('click', () => {
+              const attendeesList = event.attendees
+                .map(
+                  (ele, index) =>
+                    `<li class="${index % 2 === 0 ? 'grey' : 'white'}">${
+                      ele.name
+                    } ${ele.lastName} - ${ele.email}</li>`
+                )
+                .join('')
+              const template = `
+                <div class="info-attendees">
+                  <ul>${attendeesList}</ul>
+                  <button class="close-attendees">X</button>
+                </div>
+              `
+              app.insertAdjacentHTML('beforeend', template)
+              const closeAttendees = document.querySelector('.close-attendees')
+              closeAttendees.addEventListener('click', () => {
+                document.querySelector('.info-attendees').remove()
+              })
             })
-          })
+          } else {
+            Alert(true, 'There are not attendees to this event😑')
+          }
         }
         const subscribeEvent = document.querySelector('#subscribe-event')
         subscribeEvent.addEventListener('click', async () => {

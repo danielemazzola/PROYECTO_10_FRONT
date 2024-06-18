@@ -231,13 +231,14 @@
   border-radius: 10px;
 }
 li.grey {
-  background-color: rgb(86, 206, 86);
+  background-color: black;
   color: white;
 }
 
 li.white {
-  background-color: #000000;
-  color: white;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
 }
 .close-attendees {
   position: fixed;
