@@ -30,7 +30,6 @@ export const Profile = async (token) => {
   const config = document.createElement('div')
   const containSettings = document.createElement('div')
   const menu = document.createElement('img')
-  const logout = document.createElement('img')
 
   divContentUser.classList.add('containerUser')
   containSettings.classList.add('containSettings')
@@ -38,7 +37,6 @@ export const Profile = async (token) => {
   avatarImg.classList.add('avatarImg')
   config.classList.add('container-config')
   menu.classList.add('menu-icon')
-  logout.classList.add('settings')
 
   h3Title.textContent = data.data.name
   avatarImg.id = 'avatar-img'
@@ -47,34 +45,29 @@ export const Profile = async (token) => {
   avatarImg.alt = `avatar by ${data.data.name}`
   menu.alt = `Settings`
   menu.setAttribute('loading', 'lazy')
-  logout.alt = `Logout`
-  menu.src =
-    'https://static.vecteezy.com/system/resources/previews/019/858/703/non_2x/menu-flat-color-outline-icon-free-png.png'
+  menu.src = 'https://cdn-icons-png.flaticon.com/512/8212/8212731.png'
   menu.setAttribute('style', 'width:20px;')
 
-  logout.src = 'https://cdn-icons-png.flaticon.com/512/4943/4943215.png'
-  logout.setAttribute('style', 'width:20px;')
-  logout.setAttribute('title', 'Close session')
-  logout.setAttribute('loading', 'lazy')
-
-  containerNav.append(divContentUser)
+  header.append(divContentUser)
   divContentUser.append(avatarImg, containInfoUser)
-  containInfoUser.append(h3Title, config)
+  containInfoUser.append(h3Title)
+  containerNav.append(config)
+  containerNav
 
   //AVATAR
   avatarImg.addEventListener('click', () => openAvatar(data, token))
 
   //ADMIN
+  const adminTarget = document.createElement('span')
+  adminTarget.classList.add('admin')
   if (data.data.roles.includes('admin')) {
-    const adminTarget = document.createElement('span')
-    adminTarget.classList.add('admin')
     adminTarget.textContent = 'Admin'
-    config.append(adminTarget)
   } else {
-    config.innerHTML = `<div></div>`
+    adminTarget.textContent = 'User'
   }
+  containInfoUser.append(adminTarget)
   config.append(containSettings)
-  containSettings.append(menu, logout)
+  containSettings.append(menu)
   app.innerHTML = `
     <div id="contain-events">
         <p id="messageEvents"></p>
@@ -125,6 +118,4 @@ export const Profile = async (token) => {
       return
     }
   })
-
-  logout.addEventListener('click', () => closeSession())
 }
