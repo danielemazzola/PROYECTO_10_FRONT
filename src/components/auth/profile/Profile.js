@@ -1,4 +1,4 @@
-import { openAvatar } from '../../../pages/auth/helpers'
+import { closeSession, openAvatar } from '../../../pages/auth/helpers'
 import { getEventsisAuth, isAuth } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
