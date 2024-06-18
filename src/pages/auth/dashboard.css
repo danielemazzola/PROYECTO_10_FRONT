@@ -6,7 +6,6 @@
   animation: animatedOpen 0.3s forwards;
   margin: 10px 10px;
   padding: 20px 0;
-  border-bottom: 1px solid black;
 }
 .containTitleAvatar {
   display: flex;

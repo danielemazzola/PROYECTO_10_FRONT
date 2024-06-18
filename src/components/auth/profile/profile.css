@@ -15,11 +15,20 @@
 }
 .avatarImg {
   width: 65px;
+  height: 65px;
   display: flex;
   object-fit: cover;
+  border-radius: 10px;
 }
 .avatarImg:hover {
   cursor: pointer;
+}
+.containTitleAvatar > div > img {
+  width: 165px;
+  height: 165px;
+  display: flex;
+  object-fit: cover;
+  border-radius: 10px;
 }
 .container-config {
   display: flex;

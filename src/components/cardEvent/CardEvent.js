@@ -105,7 +105,6 @@ export const CardEvent = async (events) => {
             })
           })
         }
-        console.log(event)
         const subscribeEvent = document.querySelector('#subscribe-event')
         subscribeEvent.addEventListener('click', async () => {
           let jsonData = {
