@@ -44,8 +44,14 @@
   padding: 3px 5px;
 }
 .menu-icon {
-  transition: all 0.3s;
   z-index: 6;
+  position: fixed;
+  right: 20px;
+  top: 50px;
+  transition: all 0.3s;
+  background-color: black;
+  padding: 3px;
+  border-radius: 3px;
 }
 .menu-icon:hover {
   cursor: pointer;

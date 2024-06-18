@@ -45,8 +45,7 @@ export const Profile = async (token) => {
   avatarImg.alt = `avatar by ${data.data.name}`
   menu.alt = `Settings`
   menu.setAttribute('loading', 'lazy')
-  menu.src = 'https://cdn-icons-png.flaticon.com/512/8212/8212731.png'
-  menu.setAttribute('style', 'width:20px;')
+  menu.src = '../../images/menu.png'
 
   header.append(divContentUser)
   divContentUser.append(avatarImg, containInfoUser)
@@ -87,7 +86,6 @@ export const Profile = async (token) => {
   menu.addEventListener('click', () => {
     if (active) {
       active = false
-
       const menuItems = document.querySelector('#menu-items')
       menuItems.removeAttribute('class')
       menuItems.classList.add('animate-close')
