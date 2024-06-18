@@ -149,15 +149,15 @@ const DescriptionEvent = (event) => {
           <div class="banner-event"><img src=${event.image} /></div>
           <div><h3>${event.title} (${event.location})</h3></div>
           <div><p>Description: ${event.description}</p></div>
-          <div><p>Date: ${date(event.date)}</p></div>
-          <div class="user-creator"><p>Created by ${event.creator.name}</p>
+          <div><p id="date-event">Date: ${date(event.date)}</p></div>
+          <div class="user-creator"><p>Created by "${event.creator.name}"</p>
             <img alt=${event.creator.name} src=${
       event.creator.avatar
-    } width=20px />
+    } width=20px loading="lazy" />
           </div>
           <div><p id="attendes-count">Attendees: ${
             event.attendees.length
-          } <span class="more">more info...</span></p></div>
+          } <span class="more">¿WHO?</span></p></div>
           <div class="subscribe-btn">
             <button id="subscribe-event">Subscribe</button>
             <button id="close-info">Close</button>

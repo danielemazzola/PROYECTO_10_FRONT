@@ -149,6 +149,18 @@
   padding: 20px;
   width: 80%;
 }
+.container-description > div > h3 {
+  font-size: 18px;
+}
+.container-description > div > p {
+  font-size: 14px;
+}
+#date-event {
+  background-color: white;
+  color: black;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
 .banner-event {
   width: 100%;
   height: 400px;
@@ -174,30 +186,47 @@
   justify-content: center;
   align-items: center;
 }
+.user-creator > p {
+  font-size: 10px !important;
+}
 .user-creator > img {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   display: flex;
   object-fit: cover;
+  transition: all 0.5s;
 }
 .user-creator > img:hover {
-  transform: scale(9);
+  transform: scale(5);
+}
+.subscribe-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 .subscribe-btn > button {
-  padding: 5px;
+  padding: 10px 15px;
   border: none;
   cursor: pointer;
+  background-color: rgb(64, 201, 0);
+  color: white;
+  border-radius: 5px;
+}
+.subscribe-btn > button:first-child {
+  font-size: 18px;
 }
 .subscribe-btn > button:last-child {
   padding: 5px;
   background-color: red;
-  color: white;
 }
 .more {
   font-size: 12px;
+  padding: 2px;
+  border-radius: 3px;
   cursor: pointer;
-  color: yellow;
+  color: black;
+  background-color: rgb(255, 239, 13);
   transition: all 0.3s;
 }
 .more:hover {
