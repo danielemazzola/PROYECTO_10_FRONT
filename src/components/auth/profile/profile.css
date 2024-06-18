@@ -60,7 +60,7 @@
   border-radius: 3px;
 }
 #menu-items {
-  width: 200px;
+  width: 50%;
   right: 0px;
   top: -20px;
   bottom: -20px;
@@ -73,7 +73,7 @@
   gap: 10px;
   margin: 20px 0;
   padding: 40px 0;
-  background-color: rgb(223, 223, 223);
+  background-color: rgba(61, 61, 61, 0.932);
 }
 #menu-items > button {
   padding: 10px 5px;
@@ -83,4 +83,10 @@
   background-color: black;
   border: none;
   border-radius: 5px;
+}
+
+@media (max-width: 366px) {
+  #menu-items {
+    width: 100%;
+  }
 }
