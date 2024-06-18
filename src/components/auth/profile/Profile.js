@@ -27,6 +27,7 @@ export const Profile = async (token) => {
   const avatarImg = document.createElement('img')
   const containInfoUser = document.createElement('div')
   const h3Title = document.createElement('h3')
+  const pEmail = document.createElement('email')
   const config = document.createElement('div')
   const containSettings = document.createElement('div')
   const menu = document.createElement('img')
@@ -34,11 +35,13 @@ export const Profile = async (token) => {
   divContentUser.classList.add('containerUser')
   containSettings.classList.add('containSettings')
   h3Title.classList.add('title-user')
+  pEmail.classList.add('title-user')
   avatarImg.classList.add('avatarImg')
   config.classList.add('container-config')
   menu.classList.add('menu-icon')
 
   h3Title.textContent = data.data.name
+  pEmail.textContent = data.data.email
   avatarImg.id = 'avatar-img'
   avatarImg.setAttribute('loading', 'lazy')
   avatarImg.src = data.data.avatar
@@ -49,7 +52,7 @@ export const Profile = async (token) => {
 
   header.append(divContentUser)
   divContentUser.append(avatarImg, containInfoUser)
-  containInfoUser.append(h3Title)
+  containInfoUser.append(h3Title, pEmail)
   containerNav.append(config)
   containerNav
 
