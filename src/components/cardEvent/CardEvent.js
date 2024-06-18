@@ -26,7 +26,6 @@ export const CardEvent = async (events) => {
     imgEvent.src = event.image
     imgEvent.alt = event.title
     bannerEvent.classList.add('bannerEvent')
-    console.log(event)
     const descriptionEvent = document.createElement('div')
     const title = document.createElement('h2')
     title.textContent = `${event.title} (${event.location})`
@@ -78,28 +77,30 @@ export const CardEvent = async (events) => {
       divBtn.append(btnMoreInfo)
       btnMoreInfo.addEventListener('click', () => {
         DescriptionEvent(event)
-        const allAttendees = document.querySelector('.more')
-        allAttendees.addEventListener('click', () => {
-          const attendeesList = event.attendees
-            .map(
-              (ele, index) =>
-                `<li class="${index % 2 === 0 ? 'grey' : 'white'}">${
-                  ele.name
-                } ${ele.lastName} - ${ele.email}</li>`
-            )
-            .join('')
-          const template = `
-            <div class="info-attendees">
-              <ul>${attendeesList}</ul>
-              <button class="close-attendees">X</button>
-            </div>
-          `
-          app.insertAdjacentHTML('beforeend', template)
-          const closeAttendees = document.querySelector('.close-attendees')
-          closeAttendees.addEventListener('click', () => {
-            document.querySelector('.info-attendees').remove()
+        if (user.data.roles.includes('admin')) {
+          const allAttendees = document.querySelector('.more')
+          allAttendees.addEventListener('click', () => {
+            const attendeesList = event.attendees
+              .map(
+                (ele, index) =>
+                  `<li class="${index % 2 === 0 ? 'grey' : 'white'}">${
+                    ele.name
+                  } ${ele.lastName} - ${ele.email}</li>`
+              )
+              .join('')
+            const template = `
+              <div class="info-attendees">
+                <ul>${attendeesList}</ul>
+                <button class="close-attendees">X</button>
+              </div>
+            `
+            app.insertAdjacentHTML('beforeend', template)
+            const closeAttendees = document.querySelector('.close-attendees')
+            closeAttendees.addEventListener('click', () => {
+              document.querySelector('.info-attendees').remove()
+            })
           })
-        })
+        }
         const subscribeEvent = document.querySelector('#subscribe-event')
         subscribeEvent.addEventListener('click', async () => {
           console.log(user)
@@ -128,6 +129,7 @@ export const CardEvent = async (events) => {
 }
 
 const DescriptionEvent = (event) => {
+  console.log(event)
   const app = document.querySelector('#app')
   if (Array.isArray(event.attendees)) {
     const template = `
