@@ -5,12 +5,13 @@ import { user } from '../../services/fetchIsAuth'
 import { MoreInfo, handleRegister } from './helpers'
 
 export const CardEvent = async (events, token) => {
+  const reversedEvents = [...events.events].reverse()
   if (!events) return null
   const section = document.querySelector('#card-events')
   if (!section) return null
   const pMessage = document.querySelector('#messageEvents')
   pMessage.textContent = events.message
-  events.events.map((event, index) => {
+  reversedEvents.map((event, index) => {
     const containerEvents = document.createElement('div')
     containerEvents.id = event._id
     const containerEventsWrapper = document.createElement('div')
