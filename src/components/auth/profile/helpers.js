@@ -2,7 +2,7 @@ import { closeSession } from '../../../pages/auth/helpers'
 import { CreateEvent } from '../createEvent/CreateEvent'
 
 let active = Boolean()
-export const menuToggle = () => {
+export const menuToggle = (events) => {
   if (active) {
     active = false
     const menuItems = document.querySelector('#menu-items')
@@ -24,7 +24,7 @@ export const menuToggle = () => {
 
     //CREATE EVENT
     const createEvent = document.querySelector('#create-event')
-    createEvent.addEventListener('click', () => CreateEvent())
+    createEvent.addEventListener('click', () => CreateEvent(events))
 
     //CLOSE
     const closeSesion = document.querySelector('#close-sesion')

@@ -47,19 +47,15 @@
   transition: all 0.3s;
 }
 
-#close-btn {
-  color: white;
-  background-color: red;
-}
-#close-btn:hover {
-  color: red;
-  background-color: white;
-  border: 1px solid red;
-}
 .form-create-event > button:hover {
   color: black;
   background-color: white;
   border: 1px solid black;
+}
+.date-hour {
+  font-weight: 900;
+  font-size: 14px;
+  margin: 10px 0 0 10px;
 }
 .option-img-event {
   position: relative;
@@ -76,6 +72,12 @@
   display: flex;
   object-fit: contain;
 }
-#img-event:hover {
-  transform: scale(1.1);
+#close-btn {
+  color: white;
+  background-color: red;
+}
+#close-btn:hover {
+  color: red;
+  background-color: white;
+  border: 1px solid red;
 }

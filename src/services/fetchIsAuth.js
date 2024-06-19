@@ -99,3 +99,35 @@ export const getEvent = async (token, event) => {
     return null
   }
 }
+
+export const createEvent = async (jsonData) => {
+  const token = localStorage.getItem('__EVENT_ACCESS__')
+  try {
+    Loader(true)
+    const formData = new FormData()
+    for (const key in jsonData) {
+      formData.append(key, jsonData[key])
+    }
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_API}/events/create-event`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formData
+      }
+    )
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText)
+    }
+    const data = await response.json()
+    const { status } = response
+    Loader(false)
+    return { data, status }
+  } catch (error) {
+    Loader(false)
+    console.log('Hubo un problema con la solicitud fetch:', error)
+    return null
+  }
+}

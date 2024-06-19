@@ -6,6 +6,7 @@ import { Nav } from '../../nav/Nav'
 import { menuToggle } from './helpers'
 import './profile.css'
 
+let events = {}
 export const Profile = async (token) => {
   document.querySelector('#app').innerHTML = ``
   const app = document.querySelector('#app')
@@ -79,7 +80,8 @@ export const Profile = async (token) => {
       </div>
   `
   getEventsisAuth(token)
-    .then((events) => {
+    .then((evs) => {
+      events = { ...evs }
       CardEvent(events, token)
     })
     .catch((error) => {
@@ -87,6 +89,6 @@ export const Profile = async (token) => {
     })
 
   menu.addEventListener('click', () => {
-    menuToggle()
+    menuToggle(events)
   })
 }
