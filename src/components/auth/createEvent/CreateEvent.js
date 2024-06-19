@@ -13,9 +13,10 @@ export const CreateEvent = () => {
     <input placeholder="Location: Madrid" />
     <input type="datetime-local" />
     <div class="option-img-event">
-      <label class="add-img-event" for="file-create">&#9998;</label>
+      <label class="add-img-event" for="file-create">
+        <img id="img-event" loading="lazy" src="https://t4.ftcdn.net/jpg/02/17/88/73/360_F_217887350_mDfLv2ootQNeffWXT57VQr8OX7IvZKvB.jpg" alt="event-example" />
+      </label>
       <input id="file-create" type="file" accept="image/*" />
-      <img id="img-event" src="https://www.v3rtice.com/wp-content/uploads/2021/06/organizacion-de-eventosblog-v3rtice-1.jpg" alt="event-example" />
     </div>
     <button>Create new event</button>
     <button id="close-btn">Close</button>
