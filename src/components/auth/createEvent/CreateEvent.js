@@ -7,6 +7,11 @@ import { CardEvent } from '../../cardEvent/CardEvent'
 export const CreateEvent = (events) => {
   menuToggle()
   const app = document.querySelector('#app')
+  const existComponent = document.querySelector('.title-create-event')
+  if (existComponent) {
+    existComponent.remove()
+    return
+  }
   const template = `
   <div class="title-create-event">
     <h4>Create your Event</h4>
