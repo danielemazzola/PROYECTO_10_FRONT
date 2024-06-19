@@ -4,11 +4,17 @@ import './dashboard.css'
 
 let isOpenToggle = Boolean()
 export const openAvatar = (data, token) => {
+  const eventsContain = document.querySelector('#contain-events')
+
   if (isOpenToggle) {
+    setTimeout(() => {
+      eventsContain.setAttribute('style', 'display:inline-block;')
+    }, 300)
     isOpenToggle = false
     closeAvatar()
     return
   }
+  eventsContain.setAttribute('style', 'display:none;')
   const containImg = `
   <div id="avatarToggle">
         <div class="containTitleAvatar">

@@ -78,9 +78,7 @@
 }
 .descriptionEvent > span {
   background-color: white;
-  display: flex;
-  justify-content: end;
-  align-items: center;
+  width: 290px;
   color: black;
   border-radius: 5px;
   padding-right: 5px;

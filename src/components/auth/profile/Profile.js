@@ -3,6 +3,7 @@ import { getEventsisAuth, isAuth } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
 import { Nav } from '../../nav/Nav'
+import { menuToggle } from './helpers'
 import './profile.css'
 
 export const Profile = async (token) => {
@@ -82,40 +83,10 @@ export const Profile = async (token) => {
       CardEvent(events, token)
     })
     .catch((error) => {
-      console.log(error)
+      Alert(true, error)
     })
 
-  let active
   menu.addEventListener('click', () => {
-    if (active) {
-      active = false
-      const menuItems = document.querySelector('#menu-items')
-      menuItems.removeAttribute('class')
-      menuItems.classList.add('animate-close')
-      setTimeout(() => {
-        menuItems.remove()
-      }, 300)
-      return
-    } else {
-      active = true
-      const itemsMenu = `
-        <div id="menu-items" class="animate-init">
-          <button>Create Event</button>
-          <button id="close-sesion">Close sesion</button>
-        </div>
-      `
-      app.insertAdjacentHTML('afterbegin', itemsMenu)
-      const closeSesion = document.querySelector('#close-sesion')
-      closeSesion.addEventListener('click', () => {
-        const menuItems = document.querySelector('#menu-items')
-        menuItems.removeAttribute('class')
-        menuItems.classList.add('animate-close')
-        closeSession()
-        setTimeout(() => {
-          menuItems.remove()
-        }, 300)
-      })
-      return
-    }
+    menuToggle()
   })
 }

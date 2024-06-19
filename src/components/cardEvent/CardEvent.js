@@ -28,9 +28,7 @@ export const CardEvent = async (events, token) => {
     const title = document.createElement('h2')
     const dateP = document.createElement('span')
     title.textContent = `${event.title}`
-    dateP.textContent = `Location: ${event.location} - ${date(
-      event.date
-    )} hours`
+    dateP.textContent = `Location: ${event.location} ${date(event.date)} hours`
     const description = document.createElement('p')
     description.textContent = event.description
     descriptionEvent.classList.add('descriptionEvent')
@@ -54,9 +52,12 @@ export const CardEvent = async (events, token) => {
       register.classList.add('form-register-event')
       name.name = 'name'
       name.placeholder = 'Name: George'
+      name.required = true
       lastName.name = 'lastName'
+      lastName.required = true
       lastName.placeholder = 'Last name: Alvarez'
       email.type = 'email'
+      email.required = true
       email.name = 'email'
       email.placeholder = 'E-mail:george@email.com'
       btnRegisterEvent.type = 'submit'
