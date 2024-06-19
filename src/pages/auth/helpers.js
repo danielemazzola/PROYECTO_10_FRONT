@@ -20,7 +20,7 @@ export const openAvatar = (data, token) => {
         <div class="containTitleAvatar">
           <h4>Profile</h4>
           <div>
-            <p class="add-avatar" for="modified-avatar">&#9998;</p>
+            <label class="add-avatar" for="modified-avatar">&#9998;</label>
               <input id="modified-avatar" type="file" class="modified-avatar" accept="image/*" />
               <img id="avatar-img" alt="avatar by ${data.data.name}" src=${
     data.data.avatar
