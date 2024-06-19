@@ -9,14 +9,19 @@
 }
 
 .alert {
+  min-width: 200px;
   padding: 20px; /* Ajusta según sea necesario */
   margin-left: 4px;
-  border-radius: 10px 0 0 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
   animation: slideIn 0.3s ease-out;
   font-weight: bold;
   font-size: 16px;
+  border-left: 4px solid rgb(0, 0, 0);
+}
+
+.alert.error {
+  border-left: 4px solid rgb(255, 0, 0); /* Borde rojo para errores */
 }
 
 @keyframes slideIn {
