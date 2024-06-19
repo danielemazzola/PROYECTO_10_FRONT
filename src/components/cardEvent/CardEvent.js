@@ -10,7 +10,9 @@ export const CardEvent = async (events, token) => {
   const section = document.querySelector('#card-events')
   if (!section) return null
   const pMessage = document.querySelector('#messageEvents')
-  pMessage.textContent = events.message
+  if (reversedEvents.length <= 0)
+    pMessage.textContent = 'You have no events created'
+  else pMessage.textContent = events.message
 
   reversedEvents.forEach((event) => {
     const containerEvents = document.createElement('div')

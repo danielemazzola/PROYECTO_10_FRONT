@@ -14,10 +14,4 @@ export const MyEvents = async () => {
     .catch((error) => {
       Alert(true, error)
     })
-
-  /* const existComponent = document.querySelector('.title-create-event')
-  if (existComponent) {
-    existComponent.remove()
-    return
-  } */
 }
