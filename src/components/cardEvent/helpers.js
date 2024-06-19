@@ -25,9 +25,11 @@ export const handleRegister = async (event, register) => {
 
 export const DescriptionEvent = (event) => {
   const app = document.querySelector('#app')
+  const contentCard = document.querySelector('#contain-events')
+  contentCard.setAttribute('style', 'display:none')
   if (Array.isArray(event.attendees)) {
     const template = `
-      <div class="container-info">
+      <div id="container-info" class="container-info">
         <div class="container-description">
           <div class="banner-event"><img src=${event.image} /></div>
           <div><h3>${event.title} (${event.location})</h3></div>
@@ -38,7 +40,7 @@ export const DescriptionEvent = (event) => {
       event.creator.avatar
     } width=20px loading="lazy" />
           </div>
-          <div><p id="attendes-count">Attendees: ${
+          <div id="who"><p id="attendes-count">Attendees: ${
             event.attendees.length
           } <span class="more">¿WHO?</span></p></div>
           <div class="subscribe-btn">
@@ -48,7 +50,7 @@ export const DescriptionEvent = (event) => {
         </div>
       </div>
     `
-    app.insertAdjacentHTML('beforeend', template)
+    app.insertAdjacentHTML('afterbegin', template)
 
     return
   } else {
@@ -82,6 +84,15 @@ export const MoreInfo = async (token, event) => {
     const allAttendees = document.querySelector('.more')
     if (event.attendees.length > 0) {
       allAttendees.addEventListener('click', () => {
+        let infoAttendees = document.querySelector('.info-attendees')
+        if (!infoAttendees) {
+          infoAttendees = document.createElement('div')
+          infoAttendees.classList.add('info-attendees')
+          infoAttendees.id = infoAttendees
+          document
+            .querySelector('.container-description')
+            .appendChild(infoAttendees)
+        }
         const attendeesList = event.attendees
           .map(
             (ele, index) =>
@@ -90,16 +101,17 @@ export const MoreInfo = async (token, event) => {
               } - ${ele.email}</li>`
           )
           .join('')
-        const template = `
-         <div class="info-attendees">
-           <ul>${attendeesList}</ul>
-           <button class="close-attendees">X</button>
-         </div>
-       `
-        app.insertAdjacentHTML('beforeend', template)
+        infoAttendees.innerHTML = `
+          <ul>${attendeesList}</ul>
+          <button class="close-attendees">Close List</button>
+        `
+        infoAttendees.scrollIntoView({ behavior: 'smooth', block: 'start' })
         const closeAttendees = document.querySelector('.close-attendees')
         closeAttendees.addEventListener('click', () => {
-          document.querySelector('.info-attendees').remove()
+          infoAttendees.remove()
+          document
+            .querySelector('#header')
+            .scrollIntoView({ behavior: 'smooth', block: 'start' })
         })
       })
     } else {
@@ -129,6 +141,8 @@ export const MoreInfo = async (token, event) => {
   })
   const closeInfo = document.querySelector('#close-info')
   closeInfo.addEventListener('click', () => {
+    const contentCard = document.querySelector('#contain-events')
+    contentCard.setAttribute('style', 'display:inline-block')
     document.querySelector('.container-info').remove()
   })
 }

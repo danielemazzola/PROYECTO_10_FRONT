@@ -11,7 +11,8 @@ export const CardEvent = async (events, token) => {
   if (!section) return null
   const pMessage = document.querySelector('#messageEvents')
   pMessage.textContent = events.message
-  reversedEvents.map((event, index) => {
+
+  reversedEvents.forEach((event) => {
     const containerEvents = document.createElement('div')
     containerEvents.id = event._id
     const containerEventsWrapper = document.createElement('div')
@@ -62,7 +63,7 @@ export const CardEvent = async (events, token) => {
       email.type = 'email'
       email.required = true
       email.name = 'email'
-      email.placeholder = 'E-mail:george@email.com'
+      email.placeholder = 'E-mail: george@email.com'
       btnRegisterEvent.type = 'submit'
       btnRegisterEvent.value = 'Register'
       btnRegisterEvent.classList.add('btn-register-event')
@@ -73,7 +74,7 @@ export const CardEvent = async (events, token) => {
         handleRegister(event, register)
       })
     } else {
-      //TEMPLATE USER AUTH
+      // TEMPLATE USER AUTH
       const divBtn = document.createElement('div')
       const btnMoreInfo = document.createElement('button')
       divBtn.classList.add('event-more-information')
