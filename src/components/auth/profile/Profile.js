@@ -16,7 +16,7 @@ export const Profile = async (token) => {
   containerNav.innerHTML = ``
   let error
   const data = await isAuth(token)
-  if (!data) {
+  if (!data || data.status === 401) {
     error = true
     Alert(error, 'there is a problem with the connection, redirecting...')
     setTimeout(() => {

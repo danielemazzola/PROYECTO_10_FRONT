@@ -1,3 +1,4 @@
+import { Alert } from '../components/alert/Alert'
 import { Loader } from '../components/loader/Loader'
 
 export let user = {}
@@ -116,6 +117,32 @@ export const createEvent = async (jsonData) => {
           Authorization: `Bearer ${token}`
         },
         body: formData
+      }
+    )
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText)
+    }
+    const data = await response.json()
+    const { status } = response
+    Loader(false)
+    return { data, status }
+  } catch (error) {
+    Loader(false)
+    Alert('Hubo un problema con la solicitud fetch:', error)
+    return
+  }
+}
+
+export const getMyEvent = async () => {
+  const token = localStorage.getItem('__EVENT_ACCESS__')
+  try {
+    Loader(true)
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_API}/events/my-events`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
     )
     if (!response.ok) {

@@ -6,6 +6,11 @@ import { CardEvent } from '../../cardEvent/CardEvent'
 
 export const CreateEvent = (events) => {
   menuToggle()
+  const cardEvents = document.querySelector('#contain-events')
+  cardEvents.setAttribute('style', 'display:none;')
+  document
+    .querySelector('#header')
+    .scrollIntoView({ behavior: 'smooth', block: 'start' })
   const app = document.querySelector('#app')
   const existComponent = document.querySelector('.title-create-event')
   if (existComponent) {
@@ -79,6 +84,10 @@ export const CreateEvent = (events) => {
   const formCreate = document.querySelector('.title-create-event')
   const btnClose = document.querySelector('#close-btn')
   btnClose.addEventListener('click', () => {
+    cardEvents.setAttribute('style', 'display:inline-block;')
+    document
+      .querySelector('#header')
+      .scrollIntoView({ behavior: 'smooth', block: 'start' })
     formCreate.remove()
   })
 }
