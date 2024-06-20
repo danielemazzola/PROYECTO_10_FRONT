@@ -1,7 +1,8 @@
 import { fetchRegisterEvent } from '../../services/fetchEvents'
 import { Alert } from '../alert/Alert'
 import { date } from '../../utils/date'
-import { getEvent, user } from '../../services/fetchIsAuth'
+import { createEvent, getEvent, user } from '../../services/fetchIsAuth'
+import { editEvent } from '../auth/createEvent/CreateEvent'
 
 export const handleRegister = async (event, register) => {
   const formData = new FormData(register)
@@ -27,7 +28,9 @@ export const DescriptionEvent = (event) => {
   const app = document.querySelector('#app')
   const contentCard = document.querySelector('#contain-events')
   contentCard.setAttribute('style', 'display:none')
-  if (Array.isArray(event.attendees)) {
+
+  console.log(event)
+  if (user.data.roles.includes('admin')) {
     const template = `
       <div id="container-info" class="container-info">
         <div class="container-description">
@@ -44,15 +47,20 @@ export const DescriptionEvent = (event) => {
             event.attendees.length
           } <span class="more">¿WHO?</span></p></div>
           <div class="subscribe-btn">
-            <button id="subscribe-event">Subscribe</button>
+            <div id="btn-options">
+              <button id="subscribe-event">Subscribe</button>
+              ${
+                editEventAuthority(event)
+                  ? '<button id="edit-event">Edit</button>'
+                  : ''
+              }
+            </div>
             <button id="close-info">Close</button>
           </div>
         </div>
       </div>
     `
     app.insertAdjacentHTML('afterbegin', template)
-
-    return
   } else {
     const template = `
       <div class="container-info">
@@ -62,17 +70,24 @@ export const DescriptionEvent = (event) => {
           <div><p>Description: ${event.description}</p></div>
           <div><p>Date: ${date(event.date)}</p></div>
           <div><p>Created by ${event.creator.name}</p></div>
-          <div><p id="attendes-count">Attendees: ${event.attendees}</p></div>
+          <div><p id="attendes-count">Attendees: ${
+            event.attendees.length
+          }</p></div>
           <div class="subscribe-btn">
-            <button id="subscribe-event">Subscribe</button>
+            <div id="btn-options">
+              <button id="subscribe-event">Subscribe</button>
+              ${
+                editEventAuthority(event)
+                  ? '<button id="edit-event">Edit</button>'
+                  : ''
+              }
+            </div>
             <button id="close-info">Close</button>
           </div>
         </div>
       </div>
     `
     app.insertAdjacentHTML('beforeend', template)
-
-    return
   }
 }
 
@@ -139,10 +154,26 @@ export const MoreInfo = async (token, event) => {
     }
     Alert(data.status !== 200, data.data.message)
   })
+
+  //EDIT EVENT
+  const btnEdit = document.querySelector('#edit-event')
+  if (btnEdit) {
+    btnEdit.addEventListener('click', () => {
+      editEvent(event)
+    })
+  }
+
   const closeInfo = document.querySelector('#close-info')
   closeInfo.addEventListener('click', () => {
     const contentCard = document.querySelector('#contain-events')
     contentCard.setAttribute('style', 'display:inline-block')
     document.querySelector('.container-info').remove()
   })
+}
+
+const editEventAuthority = (event) => {
+  const creator = user.data
+  if (event.creator._id === creator._id || creator.roles.includes('admin'))
+    return true
+  else return false
 }

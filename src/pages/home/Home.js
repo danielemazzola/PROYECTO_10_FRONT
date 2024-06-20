@@ -16,6 +16,7 @@ export const Home = () => {
       </div>
       <div id="contain-events">
         <p id="messageEvents"></p>
+        <p id="events-lenght"></p>
         <div id="card-events">
         </div>
       </div>

@@ -3,6 +3,7 @@ import { menuToggle } from '../profile/helpers'
 import { createEvent } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
+import { FormComponent } from './helpers'
 
 export const CreateEvent = (events) => {
   menuToggle()
@@ -32,27 +33,7 @@ export const CreateEvent = (events) => {
     return
   }
 
-  const template = `
-  <div class="title-create-event">
-    <h4>Create your Event</h4>
-    <form class="form-create-event">
-    <input name="title" placeholder='Tilte: Pizza Lovers' required />
-    <textarea name="description"  placeholder="Description: Welcome to..." cols="50" required></textarea>
-    <input name="location" placeholder="Location: Madrid" required />
-    <label class="date-hour">Date and Hour&#8595;</label>
-    <input name="date" type="datetime-local" required />
-    <div class="option-img-event">
-      <label class="add-img-event" for="file-create">
-        <img id="img-event" loading="lazy" src="https://t4.ftcdn.net/jpg/02/17/88/73/360_F_217887350_mDfLv2ootQNeffWXT57VQr8OX7IvZKvB.jpg" alt="event-example" />
-      </label>
-      <input name="image" id="file-create" type="file" accept=".png, .jpeg, .jpg" />
-    </div>
-    <button>Create new event</button>
-    <button id="close-btn">Close</button>
-    </form>
-  </div>
-  `
-  app.insertAdjacentHTML('afterbegin', template)
+  FormComponent()
 
   //VIEW IMAGE
   document.querySelector('.add-img-event').addEventListener('click', () => {
@@ -106,4 +87,11 @@ export const CreateEvent = (events) => {
       .querySelector('#header')
       .scrollIntoView({ behavior: 'smooth', block: 'start' })
   })
+}
+
+export const editEvent = (event) => {
+  const containerInfo = document.querySelector('#container-info')
+  containerInfo.style.display = 'none'
+
+  FormComponent(event)
 }

@@ -202,13 +202,19 @@
   width: 100%;
   margin: 20px 0;
 }
-.subscribe-btn > button {
+.subscribe-btn > button,
+.subscribe-btn > div > button {
   padding: 10px 15px;
   border: none;
   cursor: pointer;
-  background-color: rgb(64, 201, 0);
-  color: white;
   border-radius: 5px;
+  color: rgb(255, 255, 255);
+}
+#subscribe-event {
+  background-color: rgb(64, 201, 0);
+}
+#edit-event {
+  background-color: black;
 }
 .subscribe-btn > button:first-child {
   font-size: 18px;
@@ -216,6 +222,10 @@
 .subscribe-btn > button:last-child {
   padding: 5px;
   background-color: red;
+}
+.subscribe-btn > button:hover,
+.subscribe-btn > div > button:hover {
+  transform: scale(1.07);
 }
 .more {
   font-size: 12px;

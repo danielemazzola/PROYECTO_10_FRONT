@@ -49,8 +49,6 @@ export const CardEvent = async (events, token) => {
     containerEventsWrapper.appendChild(containerEvent)
     containerEvent.append(bannerEvent)
 
-    const attendees = events.events[0].attendees
-
     bannerEvent.appendChild(imgEvent)
     descriptionEvent.append(title, dateP, description)
     if (Object.keys(user).length === 0) {
