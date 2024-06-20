@@ -1,9 +1,12 @@
+#contain-events {
+  margin: 0 20px;
+}
 #card-events {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  margin: 10px;
+  margin: 20px 0;
 }
 #messageEvents {
   margin: 20px 0;
@@ -270,7 +273,7 @@ li.white {
 
 @media (max-width: 1994px) {
   .containerEvents {
-    width: 49%;
+    width: 32%;
   }
 }
 @media (max-width: 1299px) {
@@ -280,6 +283,6 @@ li.white {
 }
 @media (max-width: 777px) {
   .containerEvents {
-    width: 98%;
+    width: 100%;
   }
 }

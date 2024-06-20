@@ -10,7 +10,9 @@ export const CardEvent = async (events, token) => {
   const section = document.querySelector('#card-events')
   if (!section) return null
   const pMessage = document.querySelector('#messageEvents')
+  const pEventsLength = document.querySelector('#events-lenght')
   pMessage.textContent = events.message
+  pEventsLength.textContent = `Total events: ${reversedEvents.length}`
   reversedEvents.forEach((event) => {
     const containerEvents = document.createElement('div')
     containerEvents.id = event._id

@@ -8,7 +8,10 @@ export const openAvatar = (data, token) => {
 
   if (isOpenToggle) {
     setTimeout(() => {
-      eventsContain.setAttribute('style', 'display:inline-block;')
+      eventsContain.setAttribute(
+        'style',
+        'display:flex; flex-direction:column;'
+      )
     }, 300)
     isOpenToggle = false
     closeAvatar()

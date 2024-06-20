@@ -6,17 +6,32 @@ import { CardEvent } from '../../cardEvent/CardEvent'
 
 export const CreateEvent = (events) => {
   menuToggle()
+  const app = document.querySelector('#app')
   const cardEvents = document.querySelector('#contain-events')
-  cardEvents.setAttribute('style', 'display:none;')
+
+  if (!cardEvents) {
+    app.innerHTML = `
+    <div id="contain-events">
+        <p id="messageEvents"></p>
+        <p id="events-lenght"></p>
+        <div id="card-events">
+        </div>
+      </div>
+  `
+    cardEvents = document.querySelector('#contain-events')
+  }
+
+  cardEvents.style.display = 'none'
   document
     .querySelector('#header')
     .scrollIntoView({ behavior: 'smooth', block: 'start' })
-  const app = document.querySelector('#app')
-  const existComponent = document.querySelector('.title-create-event')
+  let existComponent = document.querySelector('.title-create-event')
   if (existComponent) {
     existComponent.remove()
+    cardEvents.setAttribute('style', 'display:flex; flex-direction:column')
     return
   }
+
   const template = `
   <div class="title-create-event">
     <h4>Create your Event</h4>
@@ -30,7 +45,7 @@ export const CreateEvent = (events) => {
       <label class="add-img-event" for="file-create">
         <img id="img-event" loading="lazy" src="https://t4.ftcdn.net/jpg/02/17/88/73/360_F_217887350_mDfLv2ootQNeffWXT57VQr8OX7IvZKvB.jpg" alt="event-example" />
       </label>
-      <input name="image" id="file-create" type="file" accept="image/*" />
+      <input name="image" id="file-create" type="file" accept=".png, .jpeg, .jpg" />
     </div>
     <button>Create new event</button>
     <button id="close-btn">Close</button>
@@ -84,10 +99,11 @@ export const CreateEvent = (events) => {
   const formCreate = document.querySelector('.title-create-event')
   const btnClose = document.querySelector('#close-btn')
   btnClose.addEventListener('click', () => {
-    cardEvents.setAttribute('style', 'display:inline-block;')
+    formCreate.remove()
+    cardEvents.setAttribute('style', 'display:flex; flex-direction:column')
+
     document
       .querySelector('#header')
       .scrollIntoView({ behavior: 'smooth', block: 'start' })
-    formCreate.remove()
   })
 }
