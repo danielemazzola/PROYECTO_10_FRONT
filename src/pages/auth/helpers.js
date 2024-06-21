@@ -1,14 +1,13 @@
 import { Alert } from '../../components/alert/Alert'
+import { CardEvent } from '../../components/cardEvent/CardEvent'
 import { changeAvatar } from '../../services/fetchIsAuth'
 import './dashboard.css'
 
 let isOpenToggle = Boolean()
-export const openAvatar = (data, token) => {
-  const eventsContain = document.querySelector('#contain-events')
-
+export const openAvatar = (data, token, events) => {
   if (isOpenToggle) {
     isOpenToggle = false
-    closeAvatar()
+    closeAvatar(events)
     return
   }
   const containImg = `
@@ -33,16 +32,14 @@ export const openAvatar = (data, token) => {
           </div>
           </div>
           `
-  if (app) {
-    app.insertAdjacentHTML('afterbegin', containImg)
-  }
+  app.innerHTML = containImg
   document.querySelector('.add-avatar').addEventListener('click', () => {
     document.getElementById('modified-avatar').click()
   })
   document
     .getElementById('modified-avatar')
-    .addEventListener('change', async (event) => {
-      const fileInput = event.target
+    .addEventListener('change', async (e) => {
+      const fileInput = e.target
       const file = fileInput.files[0]
 
       if (file) {
@@ -65,13 +62,16 @@ export const openAvatar = (data, token) => {
   isOpenToggle = true
   return
 }
-const closeAvatar = () => {
+const closeAvatar = (events) => {
+  CardEvent(events)
   const containImg = document.querySelector('#avatarToggle')
-  containImg.style.animation = 'animateClose 0.3s forwards'
-  setTimeout(() => {
-    containImg.remove()
-  }, 300)
-  return
+  if (containImg) {
+    containImg.style.animation = 'animateClose 0.3s forwards'
+    setTimeout(() => {
+      containImg.remove()
+    }, 300)
+    return
+  }
 }
 
 //CLOSE SESION

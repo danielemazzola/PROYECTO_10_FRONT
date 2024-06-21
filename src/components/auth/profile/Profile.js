@@ -58,8 +58,21 @@ export const Profile = async (token) => {
   containerNav.append(config)
   containerNav
 
+  //EVENTS
+  getEventsisAuth(token)
+    .then((evs) => {
+      events = { ...evs }
+      CardEvent(events, token)
+    })
+    .catch((error) => {
+      Alert(true, error)
+    })
+
   //AVATAR
-  avatarImg.addEventListener('click', () => openAvatar(data, token))
+  avatarImg.addEventListener('click', () => {
+    app.innerHTML = ``
+    openAvatar(data, token, events)
+  })
 
   //ADMIN
   const adminTarget = document.createElement('span')
@@ -72,14 +85,6 @@ export const Profile = async (token) => {
   containInfoUser.append(adminTarget)
   config.append(containSettings)
   containSettings.append(menu)
-  getEventsisAuth(token)
-    .then((evs) => {
-      events = { ...evs }
-      CardEvent(events, token)
-    })
-    .catch((error) => {
-      Alert(true, error)
-    })
 
   menu.addEventListener('click', () => {
     menuToggle(events)
