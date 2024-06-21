@@ -1,9 +1,10 @@
-import { editEventForm } from '../../../services/fetchIsAuth'
+import { editEventForm, createEvent } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
-import { DescriptionEvent, MoreInfo } from '../../cardEvent/helpers'
+import { CardEvent } from '../../cardEvent/CardEvent'
+import { MoreInfo } from '../../cardEvent/helpers'
 import { FormEvent } from '../editEvent/template'
 
-export const FormComponent = (event) => {
+export const FormComponent = ({ event, events }) => {
   const app = document.querySelector('#app')
   const exist = document.querySelector('.contain-create-event')
   if (exist) exist.remove()
@@ -16,10 +17,18 @@ export const FormComponent = (event) => {
   }
 
   // EDIT EVENT
-  const formGroup = document.querySelector('.form-create-event')
-  if (formGroup) {
-    formGroup.addEventListener('submit', (e) =>
-      updateEvent(e, event, formGroup)
+  const formGroupEdit = document.querySelector('.form-edit-event')
+  if (formGroupEdit) {
+    formGroupEdit.addEventListener('submit', (e) =>
+      updateEvent(e, event, formGroupEdit)
+    )
+  }
+
+  // CRETAE NEW EVENT
+  const formGroupCreate = document.querySelector('.form-create-event')
+  if (formGroupCreate) {
+    formGroupCreate.addEventListener('submit', (e) =>
+      createNewEvent(e, events, formGroupCreate)
     )
   }
 
@@ -60,7 +69,7 @@ const closeBtnComponent = () => {
 }
 
 // EDIT EVENT
-const updateEvent = async (e, event, formGroup) => {
+const updateEvent = async (e, event, formGroupEdit) => {
   e.preventDefault()
   const formData = new FormData(e.target)
   let jsonData = {}
@@ -70,7 +79,7 @@ const updateEvent = async (e, event, formGroup) => {
   try {
     const data = await editEventForm(formData, event)
     if (data.status === 201) {
-      formGroup.reset()
+      formGroupEdit.reset()
       const containerInfo = document.querySelector('.container-info')
       if (containerInfo) {
         containerInfo.remove()
@@ -83,5 +92,28 @@ const updateEvent = async (e, event, formGroup) => {
     }
   } catch (error) {
     Alert(true, 'An error occurred while editing the event. ' + error)
+  }
+}
+
+// CREATE NEW EVENT
+const createNewEvent = async (e, events, formGroupCreate) => {
+  e.preventDefault()
+  console.log(events)
+  const formData = new FormData(e.target)
+  let jsonData = {}
+  formData.forEach((value, key) => {
+    jsonData[key] = value
+  })
+  const data = await createEvent(jsonData)
+  if (data.status === 200) {
+    events.events.push(data.data.newEvent)
+    document.querySelector('#card-events').innerHTML = ``
+    CardEvent(events)
+    formGroupCreate.reset()
+    document.getElementById('img-event').src =
+      'https://t4.ftcdn.net/jpg/02/17/88/73/360_F_217887350_mDfLv2ootQNeffWXT57VQr8OX7IvZKvB.jpg'
+    Alert(false, data.data.message)
+  } else {
+    Alert(true, data.data.message)
   }
 }

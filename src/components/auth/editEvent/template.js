@@ -3,7 +3,7 @@ export const FormEvent = (event) => {
   const formEventHTML = `
     <div class="contain-create-event">
       <h4>${event ? 'Edit your event' : 'Create your Event'}</h4>
-      <form class="form-create-event">
+      <form class=${event ? 'form-edit-event' : 'form-create-event'}>
         <input name="title" placeholder="Title: Pizza Lovers" required value="${
           event ? event.title : ''
         }" />
