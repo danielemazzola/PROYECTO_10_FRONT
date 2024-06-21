@@ -94,7 +94,7 @@
   transition: all 0.3s;
 }
 #menu-items > button:hover {
-  font-size: 16px;
+  transform: scale(1.05);
 }
 
 @media (max-width: 499px) {
