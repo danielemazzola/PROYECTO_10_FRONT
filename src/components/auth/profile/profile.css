@@ -55,7 +55,6 @@
   background-color: white;
   padding: 3px;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px rgb(184, 184, 184);
 }
 .menu-icon:hover {
   cursor: pointer;
