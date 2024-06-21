@@ -4,31 +4,12 @@ import { date } from '../../utils/date'
 import { createEvent, getEvent, user } from '../../services/fetchIsAuth'
 import { editEvent } from '../auth/createEvent/CreateEvent'
 
-export const handleRegister = async (event, register) => {
-  const formData = new FormData(register)
-  let jsonData = {}
-  formData.forEach((value, key) => {
-    jsonData[key] = value
-  })
-  let id = event._id
-  const data = await fetchRegisterEvent({ jsonData, id })
-  let error
-  if (data.status === 409) error = true
-  else if (data.status === 201) {
-    error = true
-    register.innerHTML = ``
-  } else {
-    error = false
-    register.innerHTML = ``
-  }
-  Alert(error, data.data.message)
-}
-
 export const DescriptionEvent = (event) => {
   const app = document.querySelector('#app')
   const contentCard = document.querySelector('#contain-events')
   contentCard.setAttribute('style', 'display:none')
   const existContainer = document.querySelector('.container-info')
+
   if (existContainer) existContainer.remove()
   if (user.data.roles.includes('admin')) {
     const template = `
@@ -91,8 +72,9 @@ export const DescriptionEvent = (event) => {
   }
 }
 
-export const MoreInfo = async (token, event) => {
-  const data = await getEvent(token, event)
+// MORE INFORMATION
+export const MoreInfo = async (event) => {
+  const data = await getEvent(event)
   Alert(data === 200, data.data.message)
   DescriptionEvent(data.data.event)
   if (user.data.roles.includes('admin')) {
@@ -133,42 +115,73 @@ export const MoreInfo = async (token, event) => {
       Alert(true, 'There are not attendees to this event😑')
     }
   }
-  const subscribeEvent = document.querySelector('#subscribe-event')
-  subscribeEvent.addEventListener('click', async () => {
-    let jsonData = {
-      name: user.data.name,
-      lastName: user.data.lastName,
-      email: user.data.email
-    }
-    let id = event._id
-    const data = await fetchRegisterEvent({ jsonData, id })
-    if (data.status === 200) {
-      const attendesCount = document.querySelector('#attendes-count')
-      if (user.data.roles.includes('admin')) {
-        event.attendees.push(jsonData)
-        attendesCount.textContent = `Attendees: ${event.attendees.length}`
-      } else {
-        event.attendees += 1
-        attendesCount.textContent = `Attendees: ${event.attendees}`
-      }
-    }
-    Alert(data.status !== 200, data.data.message)
-  })
 
-  //EDIT EVENT
+  const subscribeEvent = document.querySelector('#subscribe-event')
+  if (subscribeEvent)
+    subscribeEvent.addEventListener('click', () =>
+      subscribeFunction(event, user)
+    )
+
   const btnEdit = document.querySelector('#edit-event')
-  if (btnEdit) {
-    btnEdit.addEventListener('click', () => {
-      editEvent(event)
-    })
-  }
+  if (btnEdit) btnEdit.addEventListener('click', () => editFunction(event))
 
   const closeInfo = document.querySelector('#close-info')
-  closeInfo.addEventListener('click', () => {
-    const contentCard = document.querySelector('#contain-events')
-    contentCard.setAttribute('style', 'display:inline-block')
-    document.querySelector('.container-info').remove()
+  if (closeInfo) closeInfo.addEventListener('click', () => closeComponent())
+}
+
+//SUBSCRIBE EVENT INVITED
+export const handleRegister = async (event, register) => {
+  const formData = new FormData(register)
+  let jsonData = {}
+  formData.forEach((value, key) => {
+    jsonData[key] = value
   })
+  let id = event._id
+  const data = await fetchRegisterEvent({ jsonData, id })
+  let error
+  if (data.status === 409) error = true
+  else if (data.status === 201) {
+    error = true
+    register.innerHTML = ``
+  } else {
+    error = false
+    register.innerHTML = ``
+  }
+  Alert(error, data.data.message)
+}
+
+//SUBSCRIBE EVENT USER
+const subscribeFunction = async (event, user) => {
+  let jsonData = {
+    name: user.data.name,
+    lastName: user.data.lastName,
+    email: user.data.email
+  }
+  let id = event._id
+  const data = await fetchRegisterEvent({ jsonData, id })
+  if (data.status === 200) {
+    const attendesCount = document.querySelector('#attendes-count')
+    if (user.data.roles.includes('admin')) {
+      event.attendees.push(jsonData)
+      attendesCount.textContent = `Attendees: ${event.attendees.length}`
+    } else {
+      event.attendees += 1
+      attendesCount.textContent = `Attendees: ${event.attendees}`
+    }
+  }
+  Alert(data.status !== 200, data.data.message)
+}
+
+//EDIT EVENT
+const editFunction = (event) => {
+  editEvent(event)
+}
+
+//CLOSE COMPONENT
+const closeComponent = () => {
+  const contentCard = document.querySelector('#contain-events')
+  contentCard.setAttribute('style', 'display:inline-block')
+  document.querySelector('.container-info').remove()
 }
 
 const editEventAuthority = (event) => {

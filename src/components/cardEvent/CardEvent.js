@@ -82,7 +82,10 @@ export const CardEvent = async (events, token) => {
       descriptionEvent.append(divBtn)
       divBtn.append(btnMoreInfo)
       btnMoreInfo.addEventListener('click', () => {
-        MoreInfo(token, event)
+        document
+          .querySelector('#header')
+          .scrollIntoView({ behavior: 'smooth', block: 'start' })
+        MoreInfo(event)
       })
     }
     containerEvent.append(descriptionEvent)

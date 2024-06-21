@@ -76,7 +76,8 @@ export const getEventsisAuth = async (token) => {
     return null
   }
 }
-export const getEvent = async (token, event) => {
+export const getEvent = async (event) => {
+  const token = localStorage.getItem('__EVENT_ACCESS__')
   try {
     Loader(true)
     const response = await fetch(
