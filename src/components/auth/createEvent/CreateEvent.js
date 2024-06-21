@@ -26,7 +26,7 @@ export const CreateEvent = (events) => {
   document
     .querySelector('#header')
     .scrollIntoView({ behavior: 'smooth', block: 'start' })
-  let existComponent = document.querySelector('.title-create-event')
+  let existComponent = document.querySelector('.contain-create-event')
   if (existComponent) {
     existComponent.remove()
     cardEvents.setAttribute('style', 'display:flex; flex-direction:column')
@@ -75,23 +75,13 @@ export const CreateEvent = (events) => {
       Alert(true, data.data.message)
     }
   })
-
-  //CLOSE COMPONENT
-  const formCreate = document.querySelector('.title-create-event')
-  const btnClose = document.querySelector('#close-btn')
-  btnClose.addEventListener('click', () => {
-    formCreate.remove()
-    cardEvents.setAttribute('style', 'display:flex; flex-direction:column')
-
-    document
-      .querySelector('#header')
-      .scrollIntoView({ behavior: 'smooth', block: 'start' })
-  })
 }
 
+//EDIT EVENT
 export const editEvent = (event) => {
-  const containerInfo = document.querySelector('#container-info')
+  const containerInfo = document.querySelector('.container-info')
   containerInfo.style.display = 'none'
-
+  const editForm = document.querySelector('.contain-create-event')
+  if (editForm) editForm.remove()
   FormComponent(event)
 }

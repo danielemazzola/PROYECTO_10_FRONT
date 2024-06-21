@@ -28,8 +28,8 @@ export const DescriptionEvent = (event) => {
   const app = document.querySelector('#app')
   const contentCard = document.querySelector('#contain-events')
   contentCard.setAttribute('style', 'display:none')
-
-  console.log(event)
+  const existContainer = document.querySelector('.container-info')
+  if (existContainer) existContainer.remove()
   if (user.data.roles.includes('admin')) {
     const template = `
       <div id="container-info" class="container-info">

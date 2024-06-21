@@ -1,10 +1,10 @@
-.title-create-event {
+.contain-create-event {
   margin: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.title-create-event > h4 {
+.contain-create-event > h4 {
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 800;
