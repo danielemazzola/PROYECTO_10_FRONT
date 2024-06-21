@@ -7,7 +7,7 @@ export const FormEvent = (event) => {
         <input name="title" placeholder="Title: Pizza Lovers" required value="${
           event ? event.title : ''
         }" />
-        <textarea name="description" placeholder="Description: Welcome to..." cols="50" rows="10" required>${
+        <textarea name="description" placeholder="Description(250chars): Welcome to..." cols="50" rows="10" maxlength="250" required>${
           event ? event.description : ''
         }</textarea>
         <input name="location" placeholder="Location: Madrid" required value="${

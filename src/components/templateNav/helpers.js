@@ -16,28 +16,33 @@ export const btnCloseComponent = () => {
 
 export const handleRegister = () => {
   const formRegister = document.querySelector('#register-form')
-  if (!formRegister) return null
-  formRegister.addEventListener('submit', async (e) => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    let jsonData = {}
-    formData.forEach((value, key) => {
-      jsonData[key] = value
+  if (formRegister) {
+    formRegister.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      let jsonData = {}
+      formData.forEach((value, key) => {
+        jsonData[key] = value
+      })
+      if (jsonData.password.length < 8) {
+        Alert(true, 'The password must contain at least 8 characters😢')
+        return
+      }
+      const data = await fetchRegister(jsonData)
+      if (data.status === 409) {
+        const formlogin = document.querySelector('#formlogin')
+        const btnLogin = formlogin.querySelector('.btnLogin')
+        btnLogin.setAttribute('style', 'background-color:red;')
+      }
+      let error
+      if (data.status === 409) error = true
+      else {
+        error = false
+        auth.remove()
+      }
+      Alert(error, data.data.message)
     })
-    const data = await fetchRegister(jsonData)
-    if (data.status === 409) {
-      const formlogin = document.querySelector('#formlogin')
-      const btnLogin = formlogin.querySelector('.btnLogin')
-      btnLogin.setAttribute('style', 'background-color:red;')
-    }
-    let error
-    if (data.status === 409) error = true
-    else {
-      error = false
-      auth.remove()
-    }
-    Alert(error, data.data.message)
-  })
+  }
 }
 
 export const handleForgotPassword = () => {

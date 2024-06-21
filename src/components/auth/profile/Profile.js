@@ -6,7 +6,7 @@ import { Nav } from '../../nav/Nav'
 import { menuToggle } from './helpers'
 import './profile.css'
 
-let events = {}
+export let events = {}
 export const Profile = async (token) => {
   const app = document.querySelector('#app')
   app.innerHTML = ``

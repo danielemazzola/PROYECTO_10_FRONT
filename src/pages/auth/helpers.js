@@ -10,7 +10,7 @@ export const openAvatar = (data, token, events) => {
     closeAvatar(events)
     return
   }
-  const containImg = `
+  app.innerHTML = `
   <div id="avatarToggle">
         <div class="containTitleAvatar">
           <h4>Profile</h4>
@@ -32,10 +32,29 @@ export const openAvatar = (data, token, events) => {
           </div>
           </div>
           `
-  app.innerHTML = containImg
   document.querySelector('.add-avatar').addEventListener('click', () => {
-    document.getElementById('modified-avatar').click()
+    updateAvatar(token)
   })
+
+  isOpenToggle = true
+  return
+}
+
+//CLOSE AVATAR COMPONENT
+const closeAvatar = (events) => {
+  CardEvent(events)
+  const containImg = document.querySelector('#avatarToggle')
+  if (containImg) {
+    containImg.style.animation = 'animateClose 0.3s forwards'
+    setTimeout(() => {
+      containImg.remove()
+    }, 300)
+    return
+  }
+}
+
+// ADD AVATAR
+const updateAvatar = (token) => {
   document
     .getElementById('modified-avatar')
     .addEventListener('change', async (e) => {
@@ -53,25 +72,12 @@ export const openAvatar = (data, token, events) => {
           }
           Alert(data.status !== 201, data.data.message)
         } catch (error) {
-          Alert(true, 'There was an error, please try again😢')
+          Alert(true, 'There was an error, please try again😢' + error)
         }
       } else {
-        console.log('No se seleccionó ningún archivo.')
+        console.log('Not selected a image.')
       }
     })
-  isOpenToggle = true
-  return
-}
-const closeAvatar = (events) => {
-  CardEvent(events)
-  const containImg = document.querySelector('#avatarToggle')
-  if (containImg) {
-    containImg.style.animation = 'animateClose 0.3s forwards'
-    setTimeout(() => {
-      containImg.remove()
-    }, 300)
-    return
-  }
 }
 
 //CLOSE SESION

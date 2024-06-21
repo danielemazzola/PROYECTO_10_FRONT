@@ -26,6 +26,15 @@ export const Nav = () => {
 }
 
 const initializeToggleButtons = () => {
+  function hasMinDistinctCharacters(str, minDistinct) {
+    var charSet = new Set()
+
+    for (var i = 0; i < str.length; i++) {
+      charSet.add(str[i])
+    }
+
+    return charSet.size >= minDistinct
+  }
   const formLogin = document.querySelector('#formlogin')
   if (!formLogin) return
   formLogin.addEventListener('submit', async (e) => {
@@ -62,7 +71,7 @@ const handleButtonClick = (button, activeButton, setActiveButton) => {
       } else {
         setActiveButton('')
       }
-    }, 100)
+    }, 300)
   } else {
     toggleForm(formType)
     setActiveButton(formType)

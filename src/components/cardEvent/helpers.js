@@ -4,6 +4,8 @@ import { date } from '../../utils/date'
 import { createEvent, getEvent, user } from '../../services/fetchIsAuth'
 import { editEvent } from '../auth/createEvent/CreateEvent'
 import { myAttendances } from '../auth/myEvents/helpers'
+import { CardEvent } from './CardEvent'
+import { events } from '../auth/profile/Profile'
 
 let active = Boolean()
 const btnOptionCompare = (event, active) => {
@@ -14,7 +16,7 @@ const btnOptionCompare = (event, active) => {
 export const DescriptionEvent = (event) => {
   const app = document.querySelector('#app')
   const contentCard = document.querySelector('#contain-events')
-  contentCard.setAttribute('style', 'display:none')
+  if (contentCard) contentCard.setAttribute('style', 'display:none')
   const existContainer = document.querySelector('.container-info')
 
   if (existContainer) existContainer.remove()
@@ -82,6 +84,7 @@ export const DescriptionEvent = (event) => {
 
 // MORE INFORMATION
 export const MoreInfo = async (event) => {
+  app.innerHTML = ``
   const data = await getEvent(event)
   Alert(data === 200, data.data.message)
   DescriptionEvent(data.data.event)
@@ -187,9 +190,11 @@ const editFunction = (event) => {
 
 //CLOSE COMPONENT
 const closeComponent = () => {
-  const contentCard = document.querySelector('#contain-events')
-  contentCard.setAttribute('style', 'display:inline-block')
+  document
+    .querySelector('#header')
+    .scrollIntoView({ behavior: 'smooth', block: 'start' })
   document.querySelector('.container-info').remove()
+  CardEvent(events)
 }
 
 const editEventAuthority = (event) => {

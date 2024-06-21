@@ -3,6 +3,7 @@ import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
 import { MoreInfo } from '../../cardEvent/helpers'
 import { FormEvent } from '../editEvent/template'
+import { events } from '../profile/Profile'
 
 export const FormComponent = ({ event, events }) => {
   const app = document.querySelector('#app')
@@ -35,7 +36,7 @@ export const FormComponent = ({ event, events }) => {
   // CLOSE EVENT
   const btnClose = document.querySelector('#close-btn')
   if (btnClose) {
-    btnClose.addEventListener('click', () => closeBtnComponent(events))
+    btnClose.addEventListener('click', () => closeBtnComponent())
   }
 }
 
@@ -53,7 +54,7 @@ const addImage = (e) => {
 }
 
 // CLOSE EVENT
-const closeBtnComponent = (events) => {
+const closeBtnComponent = () => {
   const formCreate = document.querySelector('.contain-create-event')
   document
     .querySelector('#header')
@@ -73,13 +74,9 @@ const updateEvent = async (e, event, formGroupEdit) => {
   try {
     const data = await editEventForm(formData, event)
     if (data.status === 201) {
+      app.innerHTML = ``
+      MoreInfo(data.data.updateEvent)
       formGroupEdit.reset()
-      const containerInfo = document.querySelector('.container-info')
-      if (containerInfo) {
-        containerInfo.remove()
-        MoreInfo(data.data.updateEvent)
-      }
-      document.querySelector('.contain-create-event').remove()
       Alert(false, data.data.message)
     } else {
       Alert(true, data.data.message)
@@ -92,20 +89,23 @@ const updateEvent = async (e, event, formGroupEdit) => {
 // CREATE NEW EVENT
 const createNewEvent = async (e, events, formGroupCreate) => {
   e.preventDefault()
-  console.log(events)
   const formData = new FormData(e.target)
   let jsonData = {}
   formData.forEach((value, key) => {
     jsonData[key] = value
   })
+  let tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  if (new Date(jsonData.date) <= tomorrow) {
+    Alert(true, 'The date must be more than 24 hours from now.')
+    return
+  }
   const data = await createEvent(jsonData)
   if (data.status === 200) {
     events.events.push(data.data.newEvent)
-    document.querySelector('#card-events').innerHTML = ``
+    document.querySelector('#app').innerHTML = ``
     CardEvent(events)
     formGroupCreate.reset()
-    document.getElementById('img-event').src =
-      'https://t4.ftcdn.net/jpg/02/17/88/73/360_F_217887350_mDfLv2ootQNeffWXT57VQr8OX7IvZKvB.jpg'
     Alert(false, data.data.message)
   } else {
     Alert(true, data.data.message)
