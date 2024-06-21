@@ -20,10 +20,12 @@
   display: flex;
   object-fit: cover;
   border-radius: 100%;
+  animation: scaleLogo 2s infinite;
 }
 .avatarImg:hover {
   cursor: pointer;
 }
+
 .containTitleAvatar > div > img {
   width: 165px;
   height: 165px;
@@ -44,15 +46,16 @@
   padding: 3px 5px;
 }
 .menu-icon {
-  width: 18px;
+  width: 20px;
   z-index: 6;
   position: fixed;
   right: 20px;
   top: 50px;
   transition: all 0.3s;
-  background-color: black;
-  padding: 3px 5px;
-  border-radius: 3px;
+  background-color: white;
+  padding: 3px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgb(184, 184, 184);
 }
 .menu-icon:hover {
   cursor: pointer;
@@ -100,5 +103,15 @@
 @media (max-width: 499px) {
   #menu-items {
     width: 100%;
+  }
+}
+
+@keyframes scaleLogo {
+  0%,
+  100% {
+    transform: scale(1); /* Tamaño original */
+  }
+  50% {
+    transform: scale(1.1); /* Aumenta el tamaño en un 10% */
   }
 }

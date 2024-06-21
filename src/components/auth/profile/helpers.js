@@ -8,6 +8,8 @@ import { MyAttendances } from '../myEvents/MyEvents'
 let active = Boolean()
 export const menuToggle = (events) => {
   if (active) {
+    const menu = document.querySelector('#menu-icon')
+    if (menu) menu.setAttribute('style', 'background-color:white')
     active = false
     const menuItems = document.querySelector('#menu-items')
     menuItems.removeAttribute('class')
