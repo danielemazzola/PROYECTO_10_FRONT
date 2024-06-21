@@ -7,17 +7,10 @@ export const openAvatar = (data, token) => {
   const eventsContain = document.querySelector('#contain-events')
 
   if (isOpenToggle) {
-    setTimeout(() => {
-      eventsContain.setAttribute(
-        'style',
-        'display:flex; flex-direction:column;'
-      )
-    }, 300)
     isOpenToggle = false
     closeAvatar()
     return
   }
-  eventsContain.setAttribute('style', 'display:none;')
   const containImg = `
   <div id="avatarToggle">
         <div class="containTitleAvatar">

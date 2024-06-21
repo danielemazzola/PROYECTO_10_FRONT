@@ -1,7 +1,9 @@
 import { closeSession } from '../../../pages/auth/helpers'
+import { user } from '../../../services/fetchIsAuth'
 import { AllEvents } from '../allEvents/AllEvents'
 import { CreateEvent } from '../createEvent/CreateEvent'
 import { MyEvents } from '../myEvents/MyEvents'
+import { MyAttendances } from '../myEvents/MyEvents'
 
 let active = Boolean()
 export const menuToggle = (events) => {
@@ -19,6 +21,7 @@ export const menuToggle = (events) => {
     const itemsMenu = `
       <div id="menu-items" class="animate-init">
         <button id="all-events">All Event</button>
+        <button id="my-attendances">My Attendances</button>
         <button id="create-event">Create Event</button>
         <button id="my-events">My Events</button>
         <button id="close-sesion">Close sesion</button>
@@ -28,18 +31,25 @@ export const menuToggle = (events) => {
 
     //ALL EVENTS
     const allEvents = document.querySelector('#all-events')
-    allEvents.addEventListener('click', () => AllEvents(events))
+    if (allEvents) allEvents.addEventListener('click', () => AllEvents(events))
+
+    const myAttendances = document.querySelector('#my-attendances')
+    if (myAttendances)
+      myAttendances.addEventListener('click', () => MyAttendances(user, events))
+
     //CREATE EVENT
     const createEvent = document.querySelector('#create-event')
-    createEvent.addEventListener('click', () => CreateEvent(events))
+    if (createEvent)
+      createEvent.addEventListener('click', () => CreateEvent(events))
 
     //MY EVENTS
     const myEvents = document.querySelector('#my-events')
-    myEvents.addEventListener('click', () => MyEvents())
+    if (myEvents) myEvents.addEventListener('click', () => MyEvents())
 
     //CLOSE
     const closeSesion = document.querySelector('#close-sesion')
-    closeSesion.addEventListener('click', () => closeSesionMenu())
+    if (closeSesion)
+      closeSesion.addEventListener('click', () => closeSesionMenu())
     return
   }
 }

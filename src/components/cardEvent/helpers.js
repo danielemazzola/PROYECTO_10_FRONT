@@ -3,7 +3,14 @@ import { Alert } from '../alert/Alert'
 import { date } from '../../utils/date'
 import { createEvent, getEvent, user } from '../../services/fetchIsAuth'
 import { editEvent } from '../auth/createEvent/CreateEvent'
+import { myAttendances } from '../auth/myEvents/helpers'
 
+let active = Boolean()
+const btnOptionCompare = (event, active) => {
+  if (active || event.attendees.some((att) => att.email === user.data.email))
+    return `<button id="unsubscribe-event">Unsubscribe</button>`
+  else return `<button id="subscribe-event">Subscribe</button>`
+}
 export const DescriptionEvent = (event) => {
   const app = document.querySelector('#app')
   const contentCard = document.querySelector('#contain-events')
@@ -29,7 +36,8 @@ export const DescriptionEvent = (event) => {
           } <span class="more">¿WHO?</span></p></div>
           <div class="subscribe-btn">
             <div id="btn-options">
-              <button id="subscribe-event">Subscribe</button>
+            ${btnOptionCompare(event)}
+              
               ${
                 editEventAuthority(event)
                   ? '<button id="edit-event">Edit</button>'
@@ -56,7 +64,7 @@ export const DescriptionEvent = (event) => {
           }</p></div>
           <div class="subscribe-btn">
             <div id="btn-options">
-              <button id="subscribe-event">Subscribe</button>
+              ${btnOptionCompare(event)}
               ${
                 editEventAuthority(event)
                   ? '<button id="edit-event">Edit</button>'
@@ -160,14 +168,14 @@ const subscribeFunction = async (event, user) => {
   let id = event._id
   const data = await fetchRegisterEvent({ jsonData, id })
   if (data.status === 200) {
+    document.querySelector('#btn-options').innerHTML = ``
+    document.querySelector('#btn-options').innerHTML = btnOptionCompare(
+      event,
+      true
+    )
     const attendesCount = document.querySelector('#attendes-count')
-    if (user.data.roles.includes('admin')) {
-      event.attendees.push(jsonData)
-      attendesCount.textContent = `Attendees: ${event.attendees.length}`
-    } else {
-      event.attendees += 1
-      attendesCount.textContent = `Attendees: ${event.attendees}`
-    }
+    event.attendees.push(jsonData)
+    attendesCount.textContent = `Attendees: ${event.attendees.length}`
   }
   Alert(data.status !== 200, data.data.message)
 }

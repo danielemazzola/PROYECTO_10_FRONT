@@ -19,14 +19,12 @@ export const CreateEvent = (events) => {
     cardEvents = document.querySelector('#contain-events')
   }
 
-  cardEvents.style.display = 'none'
   document
     .querySelector('#header')
     .scrollIntoView({ behavior: 'smooth', block: 'start' })
   let existComponent = document.querySelector('.contain-create-event')
   if (existComponent) {
     existComponent.remove()
-    cardEvents.setAttribute('style', 'display:flex; flex-direction:column')
     return
   }
   FormComponent({ events })

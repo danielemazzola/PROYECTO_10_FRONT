@@ -134,7 +134,7 @@ export const createEvent = async (jsonData) => {
   }
 }
 
-export const getMyEvent = async () => {
+export const getMyEvents = async () => {
   const token = localStorage.getItem('__EVENT_ACCESS__')
   try {
     Loader(true)

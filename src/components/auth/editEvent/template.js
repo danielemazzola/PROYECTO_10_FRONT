@@ -34,5 +34,5 @@ export const FormEvent = (event) => {
       </form>
     </div>
   `
-  app.insertAdjacentHTML('afterbegin', formEventHTML)
+  app.insertAdjacentHTML('beforebegin', formEventHTML)
 }
