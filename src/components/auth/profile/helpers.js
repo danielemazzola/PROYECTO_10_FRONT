@@ -27,24 +27,38 @@ export const menuToggle = (events) => {
         <button id="close-sesion">Close sesion</button>
       </div>
     `
-    app.insertAdjacentHTML('afterbegin', itemsMenu)
+    header.insertAdjacentHTML('afterbegin', itemsMenu)
 
     //ALL EVENTS
     const allEvents = document.querySelector('#all-events')
-    if (allEvents) allEvents.addEventListener('click', () => AllEvents(events))
+    if (allEvents)
+      allEvents.addEventListener('click', () => {
+        app.innerHTML = ``
+        AllEvents(events)
+      })
 
     const myAttendances = document.querySelector('#my-attendances')
     if (myAttendances)
-      myAttendances.addEventListener('click', () => MyAttendances(user, events))
+      myAttendances.addEventListener('click', () => {
+        app.innerHTML = ``
+        MyAttendances(user, events)
+      })
 
     //CREATE EVENT
     const createEvent = document.querySelector('#create-event')
     if (createEvent)
-      createEvent.addEventListener('click', () => CreateEvent(events))
+      createEvent.addEventListener('click', () => {
+        app.innerHTML = ``
+        CreateEvent(events)
+      })
 
     //MY EVENTS
     const myEvents = document.querySelector('#my-events')
-    if (myEvents) myEvents.addEventListener('click', () => MyEvents())
+    if (myEvents)
+      myEvents.addEventListener('click', () => {
+        app.innerHTML = ``
+        MyEvents()
+      })
 
     //CLOSE
     const closeSesion = document.querySelector('#close-sesion')
@@ -57,8 +71,7 @@ export const menuToggle = (events) => {
 //CLOSE SESION
 const closeSesionMenu = () => {
   const menuItems = document.querySelector('#menu-items')
-  menuItems.removeAttribute('class')
-  menuItems.classList.add('animate-close')
+  menuToggle()
   closeSession()
   setTimeout(() => {
     menuItems.remove()

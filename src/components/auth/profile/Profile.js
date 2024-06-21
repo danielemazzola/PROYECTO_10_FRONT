@@ -8,8 +8,8 @@ import './profile.css'
 
 let events = {}
 export const Profile = async (token) => {
-  document.querySelector('#app').innerHTML = ``
   const app = document.querySelector('#app')
+  app.innerHTML = ``
   const header = document.querySelector('header')
   header.innerHTML += Nav()
   const containerNav = header.querySelector('#containerNav')
@@ -72,14 +72,6 @@ export const Profile = async (token) => {
   containInfoUser.append(adminTarget)
   config.append(containSettings)
   containSettings.append(menu)
-  app.innerHTML = `
-    <div id="contain-events">
-        <p id="messageEvents"></p>
-        <p id="events-lenght"></p>
-        <div id="card-events">
-        </div>
-      </div>
-  `
   getEventsisAuth(token)
     .then((evs) => {
       events = { ...evs }

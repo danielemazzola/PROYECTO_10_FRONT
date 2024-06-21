@@ -28,11 +28,9 @@ export const FormEvent = (event) => {
           <input name="image" id="file-create" type="file" accept=".png, .jpeg, .jpg" />
         </div>
         <button type="submit">${event ? 'Update' : 'Create new event'}</button>
-        <button type="button" id="close-btn">${
-          event ? 'Cancel' : 'Cancel'
-        }</button>
+        <button type="button" id="close-btn">Cancel</button>
       </form>
     </div>
   `
-  app.insertAdjacentHTML('beforebegin', formEventHTML)
+  app.innerHTML = formEventHTML
 }

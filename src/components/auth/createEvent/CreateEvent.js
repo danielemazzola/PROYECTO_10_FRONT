@@ -4,21 +4,6 @@ import { FormComponent } from './helpers'
 
 export const CreateEvent = (events) => {
   menuToggle()
-  const app = document.querySelector('#app')
-  const cardEvents = document.querySelector('#contain-events')
-
-  if (!cardEvents) {
-    app.innerHTML = `
-    <div id="contain-events">
-        <p id="messageEvents"></p>
-        <p id="events-lenght"></p>
-        <div id="card-events">
-        </div>
-      </div>
-  `
-    cardEvents = document.querySelector('#contain-events')
-  }
-
   document
     .querySelector('#header')
     .scrollIntoView({ behavior: 'smooth', block: 'start' })

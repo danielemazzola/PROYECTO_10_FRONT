@@ -35,7 +35,7 @@ export const FormComponent = ({ event, events }) => {
   // CLOSE EVENT
   const btnClose = document.querySelector('#close-btn')
   if (btnClose) {
-    btnClose.addEventListener('click', () => closeBtnComponent())
+    btnClose.addEventListener('click', () => closeBtnComponent(events))
   }
 }
 
@@ -53,19 +53,13 @@ const addImage = (e) => {
 }
 
 // CLOSE EVENT
-const closeBtnComponent = () => {
+const closeBtnComponent = (events) => {
   const formCreate = document.querySelector('.contain-create-event')
-  const cardEvents = document.querySelector('.container-info')
-  const infoCard = document.querySelector('#contain-events')
   document
     .querySelector('#header')
     .scrollIntoView({ behavior: 'smooth', block: 'start' })
   formCreate.remove()
-  if (cardEvents) {
-    cardEvents.setAttribute('style', 'display:flex; flex-direction:column')
-  } else if (infoCard) {
-    infoCard.setAttribute('style', 'display:flex; flex-direction:column')
-  }
+  CardEvent(events)
 }
 
 // EDIT EVENT

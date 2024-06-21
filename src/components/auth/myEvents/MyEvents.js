@@ -7,7 +7,6 @@ import { myAttendances } from './helpers'
 
 export const MyEvents = async () => {
   menuToggle()
-  document.querySelector('#card-events').innerHTML = ``
   await getMyEvents()
     .then((evs) => {
       CardEvent(evs.data)
@@ -24,6 +23,5 @@ export const MyAttendances = async (user, events) => {
   setTimeout(() => {
     Loader(false)
   }, 1500)
-  document.querySelector('#card-events').innerHTML = ``
   CardEvent({ message: '❤️My Attendances❤️', events: myAttendancesEvents })
 }

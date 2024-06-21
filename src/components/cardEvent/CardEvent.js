@@ -7,8 +7,15 @@ import { MoreInfo, handleRegister } from './helpers'
 export const CardEvent = async (events, token) => {
   const reversedEvents = [...events.events].reverse()
   if (!events) return null
+  app.innerHTML = `
+    <div id="contain-events">
+        <p id="messageEvents"></p>
+        <p id="events-lenght"></p>
+        <div id="card-events">
+        </div>
+      </div>
+  `
   const section = document.querySelector('#card-events')
-  if (!section) return null
   const pMessage = document.querySelector('#messageEvents')
   const pEventsLength = document.querySelector('#events-lenght')
   pMessage.textContent = events.message
