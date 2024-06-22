@@ -5,9 +5,10 @@ import { user } from '../../services/fetchIsAuth'
 import { MoreInfo, handleRegister } from './helpers'
 import { SearchBar } from '../search/Search'
 
-export const CardEvent = async (events, token) => {
-  const reversedEvents = [...events.events].reverse()
+export const CardEvent = async (events) => {
   if (!events) return null
+
+  let reversedEvents = [...events.events].reverse()
 
   const existContain = document.querySelector('#contain-events')
   if (!existContain) {
@@ -21,13 +22,13 @@ export const CardEvent = async (events, token) => {
       </div>
     `
   }
-
   const searchContainer = document.querySelector('#search-container')
   const pMessage = document.querySelector('#messageEvents')
   const pEventsLength = document.querySelector('#events-length')
-
   pMessage.textContent = events.message
-  pEventsLength.textContent = `Total events: ${reversedEvents.length}`
+  if (pEventsLength) {
+    pEventsLength.textContent = `Total events: ${reversedEvents.length}`
+  }
 
   const renderEvents = (eventsToRender) => {
     const section = document.querySelector('#card-events')
@@ -116,7 +117,7 @@ export const CardEvent = async (events, token) => {
 
   const renderSearchBar = (onSearch) => {
     const searchBarContainer = SearchBar(onSearch)
-    searchContainer.appendChild(searchBarContainer)
+    if (searchContainer) searchContainer.appendChild(searchBarContainer)
   }
 
   renderSearchBar((searchTerm) => {
