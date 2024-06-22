@@ -69,13 +69,16 @@ export const DescriptionEvent = (event) => {
           }</p></div>
           <div class="subscribe-btn">
             <div id="btn-options">
+              <div id="btnsub">
               ${btnOptionCompare(event)}
+              
+              </div>
               ${
                 editEventAuthority(event)
                   ? '<button id="edit-event">Edit</button>'
                   : ''
               }
-            </div>
+            </div> 
             <button id="close-info">Close</button>
           </div>
         </div>
