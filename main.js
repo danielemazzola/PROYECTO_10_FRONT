@@ -1,4 +1,5 @@
 import './src/assets/style.css'
+import { Loader } from './src/components/loader/Loader'
 import { Nav } from './src/components/nav/Nav'
 import { NotFound } from './src/pages/404/NotFound'
 import { Dashboard } from './src/pages/auth/Dashboard'
@@ -17,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return null
   }
   if (token) {
-    appElement.innerHTML = Dashboard(token)
+    Loader(true)
+    appElement.innerHTML = Dashboard()
   } else {
     const recoveryPasswordMatch = path.match(/^\/recovery-password\/(.+)/)
     if (recoveryPasswordMatch) {

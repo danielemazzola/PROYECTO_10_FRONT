@@ -8,8 +8,13 @@ import './profile.css'
 
 export let events = {}
 export const Profile = async (token) => {
-  const app = document.querySelector('#app')
-  app.innerHTML = ``
+  const existingApp = document.querySelector('#app')
+  if (existingApp) {
+    existingApp.remove()
+  }
+  const app = document.createElement('div')
+  app.id = 'app'
+  document.querySelector('body').append(app)
   const header = document.querySelector('header')
   header.innerHTML += Nav()
   const containerNav = header.querySelector('#containerNav')

@@ -63,7 +63,9 @@ export const DescriptionEvent = (event) => {
           <div><h3>${event.title} (${event.location})</h3></div>
           <div><p>Description: ${event.description}</p></div>
           <div><p>Date: ${date(event.date)}</p></div>
-          <div><p>Created by ${event.creator.name}</p></div>
+          <div class="user-creator"><p>Created by ${
+            event.creator.name
+          }</p><img src=${event.creator.avatar}  /></div>
           <div><p id="attendes-count">Attendees: ${
             event.attendees.length
           }</p></div>
