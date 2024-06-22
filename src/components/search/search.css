@@ -1,27 +1,18 @@
-/* Estilos para el contenedor de la barra de búsqueda */
 .search-bar-container {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 300px; /* Ancho máximo ajustable según tu diseño */
-  margin: 10px; /* Espacio opcional para separar la barra de búsqueda de otros elementos */
-  border: 1px solid #ccc; /* Borde del contenedor */
-  border-radius: 20px; /* Bordes curvos */
+  max-width: 300px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
   padding: 8px;
-  background-color: #fff; /* Color de fondo */
 }
 
-/* Estilos para el campo de entrada de búsqueda */
 .search-input {
-  flex: 1; /* Ocupa todo el espacio disponible dentro del contenedor */
-  border: none; /* Sin borde para el campo de entrada */
-  outline: none; /* Sin contorno al enfocar */
-  font-size: 14px; /* Tamaño de fuente */
-}
-
-/* Estilos para el ícono de búsqueda */
-.search-icon {
-  margin-left: 8px; /* Espacio entre el campo de entrada y el ícono */
-  color: #888; /* Color del ícono */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
 }

@@ -12,11 +12,7 @@ export const SearchBar = (onSearch) => {
     onSearch(searchTerm)
   })
 
-  const searchIcon = document.createElement('i')
-  searchIcon.classList.add('fa', 'fa-search', 'search-icon')
-
   searchBarContainer.appendChild(searchInput)
-  searchBarContainer.appendChild(searchIcon)
 
   return searchBarContainer
 }
