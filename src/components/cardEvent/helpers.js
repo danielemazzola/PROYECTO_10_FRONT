@@ -36,7 +36,7 @@ export const DescriptionEvent = (event) => {
           </div>
           <div id="who"><p id="attendes-count">Attendees: ${
             event.attendees.length
-          } <span class="more">¿WHO?</span></p></div>
+          } </p><button class="more">¿WHO?</button></div>
           <div class="subscribe-btn">
             <div id="btn-options">
               <div id="btnsub">
@@ -194,6 +194,7 @@ const subscribeFunction = async (event, user) => {
     const attendesCount = document.querySelector('#attendes-count')
     event.attendees.push(data.data.attendence)
     attendesCount.textContent = `Attendees: ${event.attendees.length}`
+    MoreInfo(event)
     addEventListeners(event)
   }
   Alert(data.status !== 200, data.data.message)
@@ -213,11 +214,13 @@ const unsubscribe = async (user, event) => {
         false
       )
       const attendesCount = document.querySelector('#attendes-count')
+      MoreInfo(event)
       attendesCount.textContent = `Attendees: ${event.attendees.length}`
       addEventListeners(event)
     }
     Alert(data.status === 200, data.data.message)
   } catch (error) {
+    console.log(error)
     Alert(true, error)
   }
 }
