@@ -1,18 +1,19 @@
 import { fetchRegisterEvent } from '../../services/fetchEvents'
 import { Alert } from '../alert/Alert'
 import { date } from '../../utils/date'
-import { createEvent, getEvent, user } from '../../services/fetchIsAuth'
+import {
+  createEvent,
+  getEvent,
+  removeMyAttendance,
+  user
+} from '../../services/fetchIsAuth'
 import { editEvent } from '../auth/createEvent/CreateEvent'
 import { myAttendances } from '../auth/myEvents/helpers'
 import { CardEvent } from './CardEvent'
 import { events } from '../auth/profile/Profile'
 
 let active = Boolean()
-const btnOptionCompare = (event, active) => {
-  if (active || event.attendees.some((att) => att.email === user.data.email))
-    return `<button id="unsubscribe-event">Unsubscribe</button>`
-  else return `<button id="subscribe-event">Subscribe</button>`
-}
+
 export const DescriptionEvent = (event) => {
   const app = document.querySelector('#app')
   const contentCard = document.querySelector('#contain-events')
@@ -38,14 +39,16 @@ export const DescriptionEvent = (event) => {
           } <span class="more">¿WHO?</span></p></div>
           <div class="subscribe-btn">
             <div id="btn-options">
-            ${btnOptionCompare(event)}
+              <div id="btnsub">
+              ${btnOptionCompare(event)}
               
+              </div>
               ${
                 editEventAuthority(event)
                   ? '<button id="edit-event">Edit</button>'
                   : ''
               }
-            </div>
+            </div>              
             <button id="close-info">Close</button>
           </div>
         </div>
@@ -126,12 +129,22 @@ export const MoreInfo = async (event) => {
       Alert(true, 'There are not attendees to this event😑')
     }
   }
+  addEventListeners(event)
+}
 
+// ADDEVENTLISTENER RELOAD
+const addEventListeners = (event) => {
   const subscribeEvent = document.querySelector('#subscribe-event')
-  if (subscribeEvent)
+  if (subscribeEvent) {
     subscribeEvent.addEventListener('click', () =>
       subscribeFunction(event, user)
     )
+  }
+
+  const unsubscribeEvent = document.querySelector('#unsubscribe-event')
+  if (unsubscribeEvent) {
+    unsubscribeEvent.addEventListener('click', () => unsubscribe(user, event))
+  }
 
   const btnEdit = document.querySelector('#edit-event')
   if (btnEdit) btnEdit.addEventListener('click', () => editFunction(event))
@@ -170,17 +183,38 @@ const subscribeFunction = async (event, user) => {
   }
   let id = event._id
   const data = await fetchRegisterEvent({ jsonData, id })
+
   if (data.status === 200) {
-    document.querySelector('#btn-options').innerHTML = ``
-    document.querySelector('#btn-options').innerHTML = btnOptionCompare(
-      event,
-      true
-    )
+    document.querySelector('#btnsub').innerHTML = btnOptionCompare(event, true)
     const attendesCount = document.querySelector('#attendes-count')
-    event.attendees.push(jsonData)
+    event.attendees.push(data.data.attendence)
     attendesCount.textContent = `Attendees: ${event.attendees.length}`
+    addEventListeners(event)
   }
   Alert(data.status !== 200, data.data.message)
+}
+
+//UNSUBSCRIBE EVENT
+const unsubscribe = async (user, event) => {
+  const attendance = event.attendees.find((val) => val.email == user.data.email)
+  try {
+    const data = await removeMyAttendance(attendance)
+    if (data.status === 200) {
+      event.attendees = event.attendees.filter(
+        (att) => att.email !== user.data.email
+      )
+      document.querySelector('#btnsub').innerHTML = btnOptionCompare(
+        event,
+        false
+      )
+      const attendesCount = document.querySelector('#attendes-count')
+      attendesCount.textContent = `Attendees: ${event.attendees.length}`
+      addEventListeners(event)
+    }
+    Alert(data.status === 200, data.data.message)
+  } catch (error) {
+    Alert(true, error)
+  }
 }
 
 //EDIT EVENT
@@ -193,8 +227,11 @@ const closeComponent = () => {
   document
     .querySelector('#header')
     .scrollIntoView({ behavior: 'smooth', block: 'start' })
-  document.querySelector('.container-info').remove()
-  CardEvent(events)
+  const containerInfo = document.querySelector('.container-info')
+  if (containerInfo) {
+    containerInfo.remove()
+    CardEvent(events)
+  }
 }
 
 const editEventAuthority = (event) => {
@@ -202,4 +239,12 @@ const editEventAuthority = (event) => {
   if (event.creator._id === creator._id || creator.roles.includes('admin'))
     return true
   else return false
+}
+
+const btnOptionCompare = (event, active) => {
+  if (active || event.attendees.some((att) => att.email === user.data.email)) {
+    return `<button id="unsubscribe-event">Unsubscribe</button>`
+  } else {
+    return `<button id="subscribe-event">Subscribe</button>`
+  }
 }

@@ -206,7 +206,8 @@
   margin: 20px 0;
 }
 .subscribe-btn > button,
-.subscribe-btn > div > button {
+.subscribe-btn > div > button,
+.subscribe-btn > div > div > button {
   padding: 10px 15px;
   border: none;
   cursor: pointer;
@@ -221,6 +222,10 @@
 }
 #edit-event {
   background-color: black;
+}
+#btn-options {
+  display: flex;
+  gap: 5px;
 }
 .subscribe-btn > button:first-child {
   font-size: 18px;

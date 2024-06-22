@@ -76,6 +76,7 @@ export const getEventsisAuth = async (token) => {
     return null
   }
 }
+
 export const getEvent = async (event) => {
   const token = localStorage.getItem('__EVENT_ACCESS__')
   try {
@@ -189,5 +190,34 @@ export const editEventForm = async (formData, event) => {
     Loader(false)
     Alert('Hubo un problema con la solicitud fetch:', error)
     return
+  }
+}
+
+export const removeMyAttendance = async (attendance) => {
+  const token = localStorage.getItem('__EVENT_ACCESS__')
+  if (!token) {
+    Alert('No se encontró el token de acceso')
+    return
+  }
+  try {
+    Loader(true)
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_API}/attendees/${attendance._id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: attendance
+      }
+    )
+    const data = await response.json()
+    const { status } = response
+    Loader(false)
+    return { data, status }
+  } catch (error) {
+    console.log(error)
+    Alert('Hubo un problema con la solicitud fetch:', error)
+    Loader(false)
   }
 }
