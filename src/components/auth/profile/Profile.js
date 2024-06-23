@@ -64,14 +64,13 @@ export const Profile = async (token) => {
   containerNav
 
   //EVENTS
-  getEventsisAuth(token)
-    .then((evs) => {
-      events = { ...evs }
-      CardEvent(events, token)
-    })
-    .catch((error) => {
-      Alert(true, error)
-    })
+  try {
+    const getEventAuth = await getEventsisAuth(token)
+    events = { ...getEventAuth }
+    CardEvent(events, token)
+  } catch (error) {
+    Alert(true, error)
+  }
 
   //AVATAR
   avatarImg.addEventListener('click', () => {
