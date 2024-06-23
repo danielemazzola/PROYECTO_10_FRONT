@@ -2,7 +2,8 @@ import('./home.css')
 import { getAllEvents } from './helpers'
 
 export const Home = () => {
-  const view = `
+  const app = document.getElementById('app')
+  app.innerHTML = `
     <section id="sectionEvents">
       <div class="infoWelcome">
         <div class="title">
@@ -22,8 +23,5 @@ export const Home = () => {
       </div>
     </section>
     `
-  document.getElementById('app').innerHTML = view
   getAllEvents()
-
-  return view
 }
