@@ -7,9 +7,7 @@ import { SearchBar } from '../search/Search'
 
 export const CardEvent = async (events) => {
   if (!events) return null
-
   let reversedEvents = [...events.events].reverse()
-
   const existContain = document.querySelector('#contain-events')
   if (!existContain) {
     app.innerHTML = `
