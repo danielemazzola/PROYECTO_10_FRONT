@@ -4,7 +4,7 @@
   position: fixed;
   justify-content: center;
   align-items: center;
-  height: 100svh;
+  height: 120svh;
   transform: translateY(-200px);
   background-color: rgba(202, 202, 202, 0.726);
   z-index: 1;

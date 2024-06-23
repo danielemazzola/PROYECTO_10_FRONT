@@ -8,27 +8,27 @@ import { RecoveryPassword } from './src/pages/recovery-password/RecoveryPassword
 
 document.addEventListener('DOMContentLoaded', () => {
   const token = localStorage.getItem('__EVENT_ACCESS__')
-  const appElement = document.querySelector('#app')
-  const headerElement = document.querySelector('header')
+  const app = document.querySelector('#app')
+  const header = document.querySelector('header')
   const path = window.location.pathname
 
   if (!(path === '/' || path.startsWith('/recovery-password/'))) {
-    headerElement.innerHTML = Nav()
-    appElement.innerHTML = NotFound()
+    header.innerHTML = Nav()
+    app.innerHTML = NotFound()
     return null
   }
   if (token) {
     Loader(true)
-    appElement.innerHTML = Dashboard()
+    app.innerHTML = Dashboard()
   } else {
     const recoveryPasswordMatch = path.match(/^\/recovery-password\/(.+)/)
     if (recoveryPasswordMatch) {
       const recoveryToken = recoveryPasswordMatch[1]
-      headerElement.innerHTML = Nav()
-      appElement.innerHTML = RecoveryPassword(recoveryToken)
+      header.innerHTML = Nav()
+      app.innerHTML = RecoveryPassword(recoveryToken)
     } else {
-      headerElement.innerHTML = Nav()
-      appElement.innerHTML = Home()
+      header.innerHTML = Nav()
+      app.innerHTML = Home()
     }
   }
 })
