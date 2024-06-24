@@ -185,10 +185,10 @@
 }
 
 #date-event {
-  background-color: var(--event-white-color);
-  color: var(--event-black-color);
-  padding: 2px var(--event-spacing-xs);
+  background-color: var(--event-black-color);
+  color: var(--event-white-color);
   border-radius: 5px;
+  padding: var(--event-spacing-xs);
 }
 .banner-event {
   width: 100%;
@@ -221,17 +221,14 @@
   font-size: 14px;
 }
 .type-user-span {
-  position: absolute;
   background-color: var(--event-black-color);
   color: var(--event-white-color);
   padding: var(--event-spacing-xs);
   border-radius: 3px;
-  right: -40px;
-  bottom: -5px;
 }
 .user-creator > img {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   object-fit: cover;
@@ -245,7 +242,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: var(--event-spacing-l) 0;
+  margin: var(--event-spacing-xs) 0;
 }
 .subscribe-btn > button,
 .subscribe-btn > div > button,
@@ -292,6 +289,7 @@
 }
 .more {
   width: 70px;
+  margin-top: var(--event-spacing-s);
   padding: var(--event-spacing-xs);
   border-radius: 3px;
   cursor: pointer;

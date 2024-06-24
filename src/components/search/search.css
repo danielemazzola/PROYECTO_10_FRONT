@@ -1,8 +1,7 @@
 .search-bar-container {
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 300px;
+  width: 30%;
   margin: var(--event-spacing-s);
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -12,6 +11,15 @@
 .search-input {
   flex: 1;
   background-color: transparent;
-  border: none;
   outline: none;
+}
+@media (max-width: 869px) {
+  .search-bar-container {
+    width: 50%;
+  }
+}
+@media (max-width: 489px) {
+  .search-bar-container {
+    width: 70%;
+  }
 }

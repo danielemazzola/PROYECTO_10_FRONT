@@ -33,11 +33,11 @@
   height: 100%;
 }
 .infoToggle > p {
-  font-size: 18px;
+  font-size: 16px;
 }
 .infoToggle > p > span {
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .modified-avatar {
@@ -45,8 +45,8 @@
 }
 .add-avatar {
   position: absolute;
-  right: -var(--event-spacing-m);
-  top: -var(--event-spacing-m);
+  right: -15px;
+  top: -15px;
   color: var(--event-white-color);
   background-color: var(--event-green-color);
   padding: 5px var(--event-spacing-s);

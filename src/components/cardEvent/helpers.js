@@ -29,14 +29,14 @@ export const DescriptionEvent = (event) => {
           <div><h3>${event.title} (${event.location})</h3></div>
           <div><p>Description: ${event.description}</p></div>
           <div><p id="date-event">Date: ${date(event.date)} hours</p></div>
-          <div class="user-creator"><p>Created by "${event.creator.name}"</p>
+          <div class="user-creator">
+            <p>Created by "${event.creator.name}"</p>
             <img alt=${event.creator.name} src=${
       event.creator.avatar
     } width=20px loading="lazy" />
-     <span class="type-user-span">${
-       event.creator.roles.includes('admin') ? 'Admin' : 'User'
-     }</span>
-     
+            <span class="type-user-span">${
+              event.creator.roles.includes('admin') ? 'Admin' : 'User'
+            }</span>
           </div>
           <div id="who"><p id="attendes-count">Attendees: ${
             event.attendees.length
