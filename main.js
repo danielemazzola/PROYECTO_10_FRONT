@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return null
   }
   if (token) {
-    Loader(true)
     app.innerHTML = Dashboard()
   } else {
     const recoveryPasswordMatch = path.match(/^\/recovery-password\/(.+)/)
