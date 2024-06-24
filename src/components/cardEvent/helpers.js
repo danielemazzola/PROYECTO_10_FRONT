@@ -260,3 +260,27 @@ const btnOptionCompare = (event, active) => {
     return `<button id="subscribe-event">Subscribe</button>`
   }
 }
+
+// SCROLL
+let isScrolling = false
+export const scrollToTop = () => {
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
+}
+export const scrollFunction = () => {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    if (!isScrolling) {
+      console.log('false')
+      scrollToTopBtn.classList.remove('hide')
+      scrollToTopBtn.classList.add('show')
+      isScrolling = true
+    }
+  } else {
+    if (isScrolling) {
+      console.log('true')
+      scrollToTopBtn.classList.remove('show')
+      scrollToTopBtn.classList.add('hide')
+      isScrolling = false
+    }
+  }
+}

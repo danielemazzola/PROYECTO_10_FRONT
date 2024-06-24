@@ -2,7 +2,12 @@ import './card.css'
 import './helpers'
 import { date } from '../../utils/date'
 import { user } from '../../services/fetchIsAuth'
-import { MoreInfo, handleRegister } from './helpers'
+import {
+  MoreInfo,
+  handleRegister,
+  scrollFunction,
+  scrollToTop
+} from './helpers'
 import { SearchBar } from '../search/Search'
 
 export const CardEvent = async (events) => {
@@ -15,6 +20,7 @@ export const CardEvent = async (events) => {
         <p id="messageEvents"></p>
         <div id="search-container"></div>
         <p id="events-length"></p>
+        <button id="scrollToTopBtn">⬆️</button>
         <div id="card-events">
         </div>
       </div>
@@ -27,6 +33,14 @@ export const CardEvent = async (events) => {
   if (pEventsLength) {
     pEventsLength.textContent = `Total events: ${reversedEvents.length}`
   }
+
+  //SCROLL BUTTON
+  const scrollToTopBtn = document.querySelector('#scrollToTopBtn')
+  window.addEventListener('scroll', () => {
+    scrollFunction()
+  })
+  scrollToTopBtn.addEventListener('click', () => scrollToTop())
+  // END SCROLL BUTOON
 
   const renderEvents = (eventsToRender) => {
     const section = document.querySelector('#card-events')
