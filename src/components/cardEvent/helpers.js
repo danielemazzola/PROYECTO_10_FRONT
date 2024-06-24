@@ -267,19 +267,23 @@ export const scrollToTop = () => {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
 }
-export const scrollFunction = () => {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+export const scrollFunction = (scrollToTopBtn) => {
+  if (
+    document.body.scrollTop > 100 ||
+    document.documentElement.scrollTop > 100
+  ) {
     if (!isScrolling) {
-      console.log('false')
       scrollToTopBtn.classList.remove('hide')
       scrollToTopBtn.classList.add('show')
       isScrolling = true
     }
   } else {
     if (isScrolling) {
-      console.log('true')
       scrollToTopBtn.classList.remove('show')
       scrollToTopBtn.classList.add('hide')
+      setTimeout(() => {
+        scrollToTopBtn.setAttribute('style', 'display none;')
+      }, 500)
       isScrolling = false
     }
   }

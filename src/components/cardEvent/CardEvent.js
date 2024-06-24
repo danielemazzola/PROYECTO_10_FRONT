@@ -37,7 +37,7 @@ export const CardEvent = async (events) => {
   //SCROLL BUTTON
   const scrollToTopBtn = document.querySelector('#scrollToTopBtn')
   window.addEventListener('scroll', () => {
-    scrollFunction()
+    scrollFunction(scrollToTopBtn)
   })
   scrollToTopBtn.addEventListener('click', () => scrollToTop())
   // END SCROLL BUTOON
