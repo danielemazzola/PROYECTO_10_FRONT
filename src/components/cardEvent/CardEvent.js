@@ -20,7 +20,7 @@ export const CardEvent = async (events) => {
         <p id="messageEvents"></p>
         <div id="search-container"></div>
         <p id="events-length"></p>
-        <button id="scrollToTopBtn">⬆️</button>
+        <button id="scrollToTopBtn">👆</button>
         <div id="card-events">
         </div>
       </div>
@@ -36,10 +36,10 @@ export const CardEvent = async (events) => {
 
   //SCROLL BUTTON
   const scrollToTopBtn = document.querySelector('#scrollToTopBtn')
-  window.addEventListener('scroll', () => {
-    scrollFunction(scrollToTopBtn)
-  })
-  scrollToTopBtn.addEventListener('click', () => scrollToTop())
+  if (scrollToTopBtn) {
+    window.addEventListener('scroll', () => scrollFunction(scrollToTopBtn))
+    scrollToTopBtn.addEventListener('click', () => scrollToTop())
+  }
   // END SCROLL BUTOON
 
   const renderEvents = (eventsToRender) => {

@@ -262,7 +262,6 @@ const btnOptionCompare = (event, active) => {
 }
 
 // SCROLL
-let isScrolling = false
 export const scrollToTop = () => {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
@@ -272,19 +271,8 @@ export const scrollFunction = (scrollToTopBtn) => {
     document.body.scrollTop > 100 ||
     document.documentElement.scrollTop > 100
   ) {
-    if (!isScrolling) {
-      scrollToTopBtn.classList.remove('hide')
-      scrollToTopBtn.classList.add('show')
-      isScrolling = true
-    }
+    scrollToTopBtn.classList.add('show')
   } else {
-    if (isScrolling) {
-      scrollToTopBtn.classList.remove('show')
-      scrollToTopBtn.classList.add('hide')
-      setTimeout(() => {
-        scrollToTopBtn.setAttribute('style', 'display none;')
-      }, 500)
-      isScrolling = false
-    }
+    scrollToTopBtn.classList.remove('show')
   }
 }
