@@ -180,6 +180,7 @@
   transform: scale(1.1);
 }
 .user-creator {
+  position: relative;
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -187,6 +188,16 @@
 }
 .user-creator > p {
   font-size: 10px !important;
+}
+.type-user-span {
+  position: absolute;
+  font-size: 8px;
+  background-color: black;
+  color: white;
+  padding: 2px;
+  border-radius: 3px;
+  right: -20px;
+  bottom: -5px;
 }
 .user-creator > img {
   width: 25px;
@@ -197,6 +208,7 @@
   transition: all 0.5s;
 }
 .user-creator > img:hover {
+  z-index: 2;
   transform: scale(5);
 }
 .subscribe-btn {
@@ -227,6 +239,19 @@
   display: flex;
   gap: 5px;
 }
+#unsubscribe-event,
+#subscribe-event,
+#edit-event,
+#close-info {
+  transition: all 0.3s;
+}
+#unsubscribe-event:hover,
+#subscribe-event:hover,
+#edit-event:hover,
+#close-info:hover {
+  transform: scale(1.05);
+}
+
 .subscribe-btn > button:first-child {
   font-size: 18px;
 }
@@ -247,6 +272,7 @@
   color: black;
   background-color: rgb(255, 239, 13);
   transition: all 0.3s;
+  border: none;
 }
 .more:hover {
   transform: scale(1.1);
@@ -268,12 +294,12 @@
   gap: 10px;
 }
 .info-attendees > ul > li {
-  padding: 10px 0;
+  padding: 10px;
   list-style: none;
   text-align: center;
   border-radius: 5px;
 }
-li.grey {
+li.black {
   background-color: black;
   color: white;
 }
@@ -285,12 +311,16 @@ li.white {
 }
 .close-attendees {
   width: 100px;
-  padding: 3px 8px;
+  padding: 10px 15px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   background-color: red;
   color: white;
+  transition: all 0.3s;
+}
+.close-attendees:hover {
+  transform: scale(1.1);
 }
 
 @media (max-width: 1080px) {

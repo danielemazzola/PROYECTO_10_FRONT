@@ -33,6 +33,10 @@ export const DescriptionEvent = (event) => {
             <img alt=${event.creator.name} src=${
       event.creator.avatar
     } width=20px loading="lazy" />
+     <span class="type-user-span">${
+       event.creator.roles.includes('admin') ? 'Admin' : 'User'
+     }</span>
+     
           </div>
           <div id="who"><p id="attendes-count">Attendees: ${
             event.attendees.length
@@ -112,7 +116,7 @@ export const MoreInfo = async (event) => {
         const attendeesList = event.attendees
           .map(
             (ele, index) =>
-              `<li class="${index % 2 === 0 ? 'grey' : 'white'}">${ele.name} ${
+              `<li class="${index % 2 === 0 ? 'black' : 'white'}">${ele.name} ${
                 ele.lastName
               } - ${ele.email}</li>`
           )
@@ -126,7 +130,7 @@ export const MoreInfo = async (event) => {
         closeAttendees.addEventListener('click', () => {
           infoAttendees.remove()
           document
-            .querySelector('#header')
+            .querySelector('#app')
             .scrollIntoView({ behavior: 'smooth', block: 'start' })
         })
       })
