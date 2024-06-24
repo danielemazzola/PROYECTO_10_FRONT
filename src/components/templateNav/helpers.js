@@ -32,7 +32,10 @@ export const handleRegister = () => {
       if (data.status === 409) {
         const formlogin = document.querySelector('#formlogin')
         const btnLogin = formlogin.querySelector('.btnLogin')
-        btnLogin.setAttribute('style', 'background-color:red;')
+        btnLogin.setAttribute(
+          'style',
+          'background-color:var(--event-red-color);'
+        )
       }
       let error
       if (data.status === 409) error = true

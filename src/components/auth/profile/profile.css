@@ -2,15 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 10px 10px 10px;
+  margin: var(--event-spacing-l) var(--event-spacing-s) var(--event-spacing-s)
+    var(--event-spacing-s);
 }
 .containerUser > div {
   display: flex;
   flex-direction: column;
   align-items: end;
+  gap: var(--event-spacing-xs);
 }
 .title-user {
-  font-size: 16px;
   text-transform: upprecase;
   font-weight: 200;
 }
@@ -38,23 +39,22 @@
   flex-direction: column;
 }
 .admin {
-  font-size: 12px;
   font-weight: bold;
-  background-color: black;
-  color: white;
+  background-color: var(--event-black-color);
+  color: var(--event-white-color);
   border-radius: 5px;
-  padding: 3px 5px;
+  padding: 3px var(--event-spacing-xs);
 }
 .menu-icon {
-  width: 20px;
+  width: var(--event-spacing-l);
   z-index: 6;
   position: fixed;
-  right: 20px;
+  right: var(--event-spacing-l);
   top: 50px;
   transition: all 0.3s;
-  background-color: white;
-  padding: 3px;
-  border-radius: 5px;
+  background-color: var(--event-white-color);
+  padding: var(--event-spacing-xs);
+  border-radius: var(--event-spacing-xs);
 }
 .menu-icon:hover {
   cursor: pointer;
@@ -63,33 +63,31 @@
 .containSettings {
   display: flex;
   justify-content: space-around;
-  gap: 10px;
+  gap: var(--event-spacing-s);
   border: 1px solid black;
-  padding: 5px 0;
+  padding: var(--event-spacing-xs) 0;
   border-radius: 3px;
 }
 #menu-items {
-  width: 50%;
-  right: 0px;
-  top: -20px;
-  bottom: -20px;
   position: fixed;
+  width: 50%;
+  right: 0;
+  top: 0;
+  bottom: 0;
   z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin: 20px 0;
+  gap: var(--event-spacing-s);
   padding: 40px 0;
   background-color: rgba(61, 61, 61, 0.932);
 }
 #menu-items > button {
-  padding: 10px 5px;
+  padding: var(--event-spacing-s) var(--event-spacing-xs);
   width: 140px;
-  font-size: 14px;
-  color: white;
-  background-color: black;
+  color: var(--event-white-color);
+  background-color: var(--event-black-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;

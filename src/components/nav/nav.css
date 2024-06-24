@@ -1,6 +1,6 @@
 .nav {
-  padding: 10px;
-  background-color: rgb(0, 0, 0);
+  padding: var(--event-spacing-s);
+  background-color: var(--event-black-color);
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -12,15 +12,14 @@
   align-items: center;
 }
 .link-home {
-  font-size: 30px;
-  color: black;
+  color: var(--event-black-color);
   height: 100%;
   width: 100%;
   font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: var(--event-white-color);
   cursor: pointer;
   border-radius: 5px 0 0 5px;
   transition: all 0.3s;
@@ -36,21 +35,20 @@
 .containerbtns {
   display: flex;
   justify-content: end;
-  gap: 15px;
+  gap: var(--event-spacing-m);
 }
 .containerbtns > button {
   background-color: transparent;
   text-transform: capitalize;
-  color: white;
+  color: var(--event-white-color);
   cursor: pointer;
-  font-size: 10px;
   border: none;
   transition: all 0.3s ease;
   text-align: end;
 }
 
 .containerbtns > button:hover {
-  color: rgb(86, 206, 86);
+  color: var(--event-green-color);
 }
 
 #email,
@@ -59,21 +57,21 @@
 }
 
 .btnLogin {
-  background-color: rgb(86, 206, 86);
-  color: white;
-  padding: 5px;
+  background-color: var(--event-green-color);
+  color: var(--event-white-color);
+  padding: var(--event-spacing-xs);
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.5s;
 }
 .btnLogin:hover {
-  background-color: rgb(78, 156, 78);
+  background-color: var(--event-green-color);
 }
 @media (max-width: 580px) {
   #formlogin {
     display: flex;
     flex-direction: column;
     align-items: end;
-    gap: 10px;
+    gap: var(--event-spacing-s);
   }
 }

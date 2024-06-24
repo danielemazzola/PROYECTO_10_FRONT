@@ -17,7 +17,7 @@ export const CardEvent = async (events) => {
   if (!existContain) {
     app.innerHTML = `
       <div id="contain-events">
-        <p id="messageEvents"></p>
+        <h2 id="messageEvents"></h2>
         <div id="search-container"></div>
         <p id="events-length"></p>
         <button id="scrollToTopBtn">🙄</button>

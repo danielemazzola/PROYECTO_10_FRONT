@@ -1,27 +1,26 @@
 #containerAlert {
   position: fixed;
   right: 0;
-  top: 10px;
+  top: var(--event-spacing-s);
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Espacio entre las alertas */
+  gap: var(--event-spacing-s);
   width: auto;
 }
 
 .alert {
   min-width: 200px;
-  padding: 20px; /* Ajusta según sea necesario */
-  margin-left: 4px;
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
+  padding: var(--event-spacing-l);
+  margin-left: var(--event-spacing-xs);
+  color: var(--event-black-color);
+  background-color: var(--event-white-color);
   animation: slideIn 0.3s ease-out;
   font-weight: bold;
-  font-size: 16px;
   border-left: 4px solid rgb(0, 0, 0);
 }
 
 .alert.error {
-  border-left: 4px solid rgb(255, 0, 0); /* Borde rojo para errores */
+  border-left: 4px solid var(--event-red-color);
 }
 
 @keyframes slideIn {

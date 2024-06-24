@@ -9,7 +9,8 @@ let active = Boolean()
 export const menuToggle = (events) => {
   if (active) {
     const menu = document.querySelector('#menu-icon')
-    if (menu) menu.setAttribute('style', 'background-color:white')
+    if (menu)
+      menu.setAttribute('style', 'background-color:var(--event-white-color);')
     active = false
     const menuItems = document.querySelector('#menu-items')
     menuItems.removeAttribute('class')

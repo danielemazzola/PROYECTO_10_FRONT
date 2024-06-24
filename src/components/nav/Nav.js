@@ -7,7 +7,7 @@ export const Nav = () => {
   const view = `
     <nav class='nav'>
       <div class='logo'>
-        <a href="/" data-link class="link-home">Events</a>
+        <a href="/" data-link class="link-home">Event's</a>
       </div>
       <div id="containerNav">
         <form id="formlogin">

@@ -28,7 +28,7 @@ export const DescriptionEvent = (event) => {
           <div class="banner-event"><img src=${event.image} /></div>
           <div><h3>${event.title} (${event.location})</h3></div>
           <div><p>Description: ${event.description}</p></div>
-          <div><p id="date-event">Date: ${date(event.date)}</p></div>
+          <div><p id="date-event">Date: ${date(event.date)} hours</p></div>
           <div class="user-creator"><p>Created by "${event.creator.name}"</p>
             <img alt=${event.creator.name} src=${
       event.creator.avatar
@@ -268,8 +268,8 @@ export const scrollToTop = () => {
 }
 export const scrollFunction = (scrollToTopBtn) => {
   if (
-    document.body.scrollTop > 100 ||
-    document.documentElement.scrollTop > 100
+    document.body.scrollTop > 300 ||
+    document.documentElement.scrollTop > 300
   ) {
     scrollToTopBtn.classList.add('show')
   } else {

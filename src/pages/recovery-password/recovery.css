@@ -1,12 +1,12 @@
 .form-group {
   display: flex;
-  margin-top: 20px;
+  margin-top: var(--event-spacing-l);
   justify-content: center;
   align-items: center;
 }
 .form-group > h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--event-spacing-l);
 }
 .recovery-password-form {
   display: flex;

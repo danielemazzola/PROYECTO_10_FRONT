@@ -3,10 +3,10 @@
   align-items: center;
   width: 100%;
   max-width: 300px;
-  margin: 10px;
+  margin: var(--event-spacing-s);
   border: 1px solid #ccc;
   border-radius: 20px;
-  padding: 8px;
+  padding: var(--event-spacing-s);
 }
 
 .search-input {
@@ -14,5 +14,4 @@
   background-color: transparent;
   border: none;
   outline: none;
-  font-size: 14px;
 }

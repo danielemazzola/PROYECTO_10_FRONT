@@ -4,17 +4,18 @@
   justify-content: space-around;
   align-items: center;
   animation: animatedOpen 0.3s forwards;
-  margin: 10px 10px;
-  padding: 20px 0;
+  margin: var(--event-spacing-xl) var(--event-spacing-s);
+  padding: var(--event-spacing-l) 0;
 }
 .containTitleAvatar {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--event-spacing-xl);
 }
 .containTitleAvatar > h4 {
+  display: flex;
+  width: 100%;
   text-transform: uppercase;
-  font-size: 18px;
 }
 .containTitleAvatar > div {
   position: relative;
@@ -32,12 +33,11 @@
   height: 100%;
 }
 .infoToggle > p {
-  font-weight: bold;
   font-size: 18px;
 }
 .infoToggle > p > span {
-  font-weight: 300;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .modified-avatar {
@@ -45,20 +45,18 @@
 }
 .add-avatar {
   position: absolute;
-  right: -15px;
-  top: -15px;
-  font-size: 18px;
-  color: rgb(255, 255, 255);
-  background-color: rgb(86, 206, 86);
-  padding: 5px 10px;
+  right: -var(--event-spacing-m);
+  top: -var(--event-spacing-m);
+  color: var(--event-white-color);
+  background-color: var(--event-green-color);
+  padding: 5px var(--event-spacing-s);
   border-radius: 10px;
   z-index: 3;
   cursor: pointer;
   transition: all 0.3s;
 }
 .add-avatar:hover {
-  background-color: rgb(55, 177, 55);
-  font-size: 20px;
+  background-color: var(--event-green-color);
 }
 @keyframes animatedOpen {
   0% {
@@ -81,7 +79,7 @@
 @media (max-width: 675px) {
   #avatarToggle {
     flex-direction: column;
-    gap: 15px;
+    gap: var(--event-spacing-m);
   }
   .containTitleAvatar {
     width: 100%;
@@ -92,9 +90,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    background-color: rgb(238, 238, 238);
+    background-color: var(--event-white-color);
     width: 90%;
-    padding: 20px 10px;
+    padding: var(--event-spacing-l) var(--event-spacing-s);
     border-radius: 10px;
   }
   #avatarToggle > img {
