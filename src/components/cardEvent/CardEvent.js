@@ -20,7 +20,7 @@ export const CardEvent = async (events) => {
         <p id="messageEvents"></p>
         <div id="search-container"></div>
         <p id="events-length"></p>
-        <button id="scrollToTopBtn">👆</button>
+        <button id="scrollToTopBtn">🙄</button>
         <div id="card-events">
         </div>
       </div>
