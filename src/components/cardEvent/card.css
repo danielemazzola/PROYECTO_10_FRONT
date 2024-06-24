@@ -39,7 +39,7 @@
   color: white;
   cursor: pointer;
   font-size: 0;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 /* Animaciones */
@@ -47,6 +47,9 @@
   display: block !important;
   animation: bubbleUp 0.5s forwards;
   font-size: 40px !important;
+}
+.show:hover {
+  font-size: 43px !important;
 }
 
 .hide {
