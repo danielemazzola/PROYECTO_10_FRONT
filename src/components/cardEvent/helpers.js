@@ -307,7 +307,9 @@ const moreInfoAttendees = (event) => {
                       data.attendance.eventToAttendees.createdAt
                     )}</span></p>
                     <p>E-mail: <br><span>${data.attendance.email}</span></p>
-                    <p>Event: <br><span>${data.attendance.title}</span></p>
+                    <p>Event: <br><span>${
+                      data.attendance.eventToAttendees.eventId.title
+                    }</span></p>
                     <p>Creator:${
                       data.attendance.events.length > 0
                         ? data.attendance.events
