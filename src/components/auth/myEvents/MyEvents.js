@@ -2,8 +2,8 @@ import { getMyEvents } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
 import { Loader } from '../../loader/Loader'
+import { menuToggle } from '../menu/helpers'
 import { events } from '../profile/Profile'
-import { menuToggle } from '../profile/helpers'
 import { myAttendances } from './helpers'
 
 export const MyEvents = async () => {

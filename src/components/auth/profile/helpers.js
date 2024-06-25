@@ -1,82 +1,80 @@
-import { closeSession } from '../../../pages/auth/helpers'
-import { user } from '../../../services/fetchIsAuth'
-import { AllEvents } from '../allEvents/AllEvents'
-import { CreateEvent } from '../createEvent/CreateEvent'
-import { MyEvents } from '../myEvents/MyEvents'
-import { MyAttendances } from '../myEvents/MyEvents'
+import { changeAvatar } from '../../../services/fetchIsAuth'
+import { Alert } from '../../alert/Alert'
+import { CardEvent } from '../../cardEvent/CardEvent'
 
-let active = Boolean()
-export const menuToggle = (events) => {
-  if (active) {
-    const menu = document.querySelector('#menu-icon')
-    if (menu)
-      menu.setAttribute('style', 'background-color:var(--event-white-color);')
-    active = false
-    const menuItems = document.querySelector('#menu-items')
-    menuItems.removeAttribute('class')
-    menuItems.classList.add('animate-close')
-    setTimeout(() => {
-      menuItems.remove()
-    }, 300)
+let isOpenToggle = Boolean()
+export const openAvatar = (data, token, events) => {
+  if (isOpenToggle) {
+    isOpenToggle = false
+    closeAvatar(events)
     return
-  } else {
-    active = true
-    const itemsMenu = `
-      <div id="menu-items" class="animate-init">
-        <button id="all-events">All Event</button>
-        <button id="my-attendances">My Attendances</button>
-        <button id="create-event">Create Event</button>
-        <button id="my-events">My Events</button>
-        <button id="close-sesion">Close sesion</button>
-      </div>
-    `
-    header.insertAdjacentHTML('afterbegin', itemsMenu)
+  }
+  app.innerHTML = `
+  <div id="avatarToggle">
+        <div class="containTitleAvatar">
+          <h4>Profile</h4>
+          <div>
+            <label class="add-avatar" for="modified-avatar">&#9998;</label>
+              <input id="modified-avatar" type="file" class="modified-avatar" accept="image/*" />
+              <img id="avatar-img" alt="avatar by ${data.data.name}" src=${
+    data.data.avatar
+  } loading='lazy' />
+          </div>
+        </div>
+        <div class="infoToggle">
+        <p>Name: <span>${data.data.name}</span></p>
+        <p>Lastname: <span>${data.data.lastName}</span></p>
+        <p>E-mail: <span>${data.data.email}</span></p>
+        <p>Role: ${data.data.roles.map(
+          (val, index) => `<span key=${index}> ${val}</span>`
+        )}</p>
+          </div>
+          </div>
+          `
+  document.querySelector('.add-avatar').addEventListener('click', () => {
+    updateAvatar(token)
+  })
 
-    //ALL EVENTS
-    const allEvents = document.querySelector('#all-events')
-    if (allEvents)
-      allEvents.addEventListener('click', () => {
-        app.innerHTML = ``
-        AllEvents(events)
-      })
+  isOpenToggle = true
+  return
+}
 
-    const myAttendances = document.querySelector('#my-attendances')
-    if (myAttendances)
-      myAttendances.addEventListener('click', () => {
-        app.innerHTML = ``
-        MyAttendances(user, events)
-      })
-
-    //CREATE EVENT
-    const createEvent = document.querySelector('#create-event')
-    if (createEvent)
-      createEvent.addEventListener('click', () => {
-        app.innerHTML = ``
-        CreateEvent(events)
-      })
-
-    //MY EVENTS
-    const myEvents = document.querySelector('#my-events')
-    if (myEvents)
-      myEvents.addEventListener('click', () => {
-        app.innerHTML = ``
-        MyEvents()
-      })
-
-    //CLOSE
-    const closeSesion = document.querySelector('#close-sesion')
-    if (closeSesion)
-      closeSesion.addEventListener('click', () => closeSesionMenu())
+//CLOSE AVATAR COMPONENT
+const closeAvatar = (events) => {
+  CardEvent(events)
+  const containImg = document.querySelector('#avatarToggle')
+  if (containImg) {
+    containImg.style.animation = 'animateClose 0.3s forwards'
+    setTimeout(() => {
+      containImg.remove()
+    }, 300)
     return
   }
 }
 
-//CLOSE SESION
-const closeSesionMenu = () => {
-  const menuItems = document.querySelector('#menu-items')
-  menuToggle()
-  closeSession()
-  setTimeout(() => {
-    menuItems.remove()
-  }, 300)
+// ADD AVATAR
+const updateAvatar = (token) => {
+  document
+    .getElementById('modified-avatar')
+    .addEventListener('change', async (e) => {
+      const fileInput = e.target
+      const file = fileInput.files[0]
+
+      if (file) {
+        const avatar = document.querySelectorAll('#avatar-img')
+        const fileURL = URL.createObjectURL(file)
+
+        try {
+          const data = await changeAvatar(file, token)
+          for (const av of avatar) {
+            av.src = `${data.data.updateAvatar.avatar}`
+          }
+          Alert(data.status !== 201, data.data.message)
+        } catch (error) {
+          Alert(true, 'There was an error, please try again😢' + error)
+        }
+      } else {
+        Alert(true, 'Not selected a image.')
+      }
+    })
 }

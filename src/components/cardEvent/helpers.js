@@ -1,14 +1,8 @@
 import { fetchRegisterEvent } from '../../services/fetchEvents'
 import { Alert } from '../alert/Alert'
 import { date } from '../../utils/date'
-import {
-  createEvent,
-  getEvent,
-  removeMyAttendance,
-  user
-} from '../../services/fetchIsAuth'
+import { getEvent, removeMyAttendance, user } from '../../services/fetchIsAuth'
 import { editEvent } from '../auth/createEvent/CreateEvent'
-import { myAttendances } from '../auth/myEvents/helpers'
 import { CardEvent } from './CardEvent'
 import { events } from '../auth/profile/Profile'
 

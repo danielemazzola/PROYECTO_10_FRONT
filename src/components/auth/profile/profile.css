@@ -45,21 +45,6 @@
   border-radius: 5px;
   padding: 3px var(--event-spacing-xs);
 }
-.menu-icon {
-  width: var(--event-spacing-l);
-  z-index: 6;
-  position: fixed;
-  right: var(--event-spacing-l);
-  top: 50px;
-  transition: all 0.3s;
-  background-color: var(--event-white-color);
-  padding: var(--event-spacing-xs);
-  border-radius: var(--event-spacing-xs);
-}
-.menu-icon:hover {
-  cursor: pointer;
-  transform: scale(1.1) !important;
-}
 .containSettings {
   display: flex;
   justify-content: space-around;

@@ -1,9 +1,9 @@
-import { closeSession, openAvatar } from '../../../pages/auth/helpers'
 import { getEventsisAuth, isAuth } from '../../../services/fetchIsAuth'
 import { Alert } from '../../alert/Alert'
 import { CardEvent } from '../../cardEvent/CardEvent'
 import { Nav } from '../../nav/Nav'
-import { menuToggle } from './helpers'
+import { Menu } from '../menu/Menu'
+import { openAvatar } from './helpers'
 import './profile.css'
 
 export let events = {}
@@ -37,7 +37,6 @@ export const Profile = async (token) => {
   const pEmail = document.createElement('email')
   const config = document.createElement('div')
   const containSettings = document.createElement('div')
-  const menu = document.createElement('img')
 
   divContentUser.classList.add('containerUser')
   containSettings.classList.add('containSettings')
@@ -45,7 +44,6 @@ export const Profile = async (token) => {
   pEmail.classList.add('title-user')
   avatarImg.classList.add('avatarImg')
   config.classList.add('container-config')
-  menu.classList.add('menu-icon')
 
   h3Title.textContent = data.data.name
   pEmail.textContent = data.data.email
@@ -53,9 +51,6 @@ export const Profile = async (token) => {
   avatarImg.setAttribute('loading', 'lazy')
   avatarImg.src = data.data.avatar
   avatarImg.alt = `avatar by ${data.data.name}`
-  menu.alt = `Settings`
-  menu.setAttribute('loading', 'lazy')
-  menu.src = '../../images/menu.png'
 
   header.append(divContentUser)
   divContentUser.append(avatarImg, containInfoUser)
@@ -86,11 +81,8 @@ export const Profile = async (token) => {
   } else {
     adminTarget.textContent = 'User'
   }
+
+  Menu(events)
   containInfoUser.append(adminTarget)
   config.append(containSettings)
-  containSettings.append(menu)
-
-  menu.addEventListener('click', () => {
-    menuToggle(events)
-  })
 }

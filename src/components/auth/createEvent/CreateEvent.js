@@ -1,5 +1,5 @@
 import './create.css'
-import { menuToggle } from '../profile/helpers'
+import { menuToggle } from '../menu/helpers'
 import { FormComponent } from './helpers'
 
 export const CreateEvent = (events) => {
