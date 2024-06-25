@@ -112,16 +112,10 @@ You can use the following scripts for development and production builds:
 | date.js    | Utility for formatting date types   |
 | helpers.js | Utility functions related to routes |
 
-## 📝 License
+## Application URL
 
-This project is licensed under the MIT License.
+You can access the live application here: [Events Web App](https://events-dani.vercel.app/)
 
-## 👥 Contributors
+Both the backend and frontend are deployed on Vercel.
 
-- **Dani** - [https://github.com/danielemazzola](https://github.com/danielemazzola)
-
-Feel free to contribute to this project by submitting issues or pull requests. Let's rock the code together! 🤘
-
-```
-
-```
+- **Frontend Repo**: [https://github.com/danielemazzola/PROYECTO_10](https://github.com/danielemazzola/PROYECTO_10)
