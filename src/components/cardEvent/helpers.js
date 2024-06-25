@@ -278,25 +278,21 @@ const moreInfoAttendees = (event) => {
       li.addEventListener('click', async () => {
         try {
           //FETCH GET PROFILE ATTENDANCE
-          const data = await getProfileAttendance(li.id)
-          Alert(false, 'Attendance found❤️')
+          const { data } = await getProfileAttendance(li.id)
+          Alert(false, data.message)
           const existTemplate = document.querySelector('#profile-information')
           if (existTemplate) existTemplate.remove()
           const profileInfoHtml = `
             <div id="profile-information">
               <div>
-                <h5>${data.data.attendees.name} ${''} ${
-            data.data.attendees.lastName
-          }</h5>
+                <h5>${data.attendees.name} ${''} ${data.attendees.lastName}</h5>
               </div>
               <div class="profile-info">
                 <p>Register date: <br><span>${date(
-                  data.data.attendees.createdAt
+                  data.attendees.createdAt
                 )}</span></p>
-                <p>E-mail: <br><span>${data.data.attendees.email}</span></p>
-                <p>Event: <br><span>${
-                  data.data.attendees.eventId.title
-                }</span></p>
+                <p>E-mail: <br><span>${data.attendees.email}</span></p>
+                <p>Event: <br><span>${data.attendees.eventId.title}</span></p>
               </div>
               <button id="close-profile">Close profile</button>
             </div>
