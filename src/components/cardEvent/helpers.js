@@ -235,6 +235,7 @@ export const scrollToTop = () => {
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
 }
+
 export const scrollFunction = (scrollToTopBtn) => {
   if (
     document.body.scrollTop > 300 ||
