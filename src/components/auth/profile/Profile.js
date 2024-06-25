@@ -12,7 +12,7 @@ export const Profile = async (token) => {
   if (existingApp) {
     existingApp.remove()
   }
-  const app = document.createElement('div')
+  const app = document.createElement('main')
   app.id = 'app'
   document.querySelector('body').append(app)
   const header = document.querySelector('header')
