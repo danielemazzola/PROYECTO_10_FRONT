@@ -280,6 +280,7 @@ const moreInfoAttendees = (event) => {
         try {
           //FETCH GET PROFILE ATTENDANCE
           const { data } = await getProfileAttendance(li.id)
+          console.log(data)
           Alert(false, data.message)
           const existTemplate = document.querySelector('#profile-information')
           if (existTemplate) existTemplate.remove()
@@ -303,7 +304,7 @@ const moreInfoAttendees = (event) => {
                   }</span>
                   <div class="profile-info">
                     <p>Register date:<br><span>${date(
-                      data.attendance.createdAt
+                      data.attendance.eventToAttendees.createdAt
                     )}</span></p>
                     <p>E-mail: <br><span>${data.attendance.email}</span></p>
                     <p>Event: <br><span>${data.attendance.title}</span></p>
