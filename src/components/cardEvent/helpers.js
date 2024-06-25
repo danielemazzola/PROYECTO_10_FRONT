@@ -1,7 +1,12 @@
 import { fetchRegisterEvent } from '../../services/fetchEvents'
 import { Alert } from '../alert/Alert'
 import { date } from '../../utils/date'
-import { getEvent, removeMyAttendance, user } from '../../services/fetchIsAuth'
+import {
+  getEvent,
+  getProfileAttendance,
+  removeMyAttendance,
+  user
+} from '../../services/fetchIsAuth'
 import { editEvent } from '../auth/createEvent/CreateEvent'
 import { CardEvent } from './CardEvent'
 import { events } from '../auth/profile/Profile'
@@ -97,37 +102,7 @@ export const MoreInfo = async (event) => {
   if (user.data.roles.includes('admin')) {
     const allAttendees = document.querySelector('.more')
     if (event.attendees.length > 0) {
-      allAttendees.addEventListener('click', () => {
-        let infoAttendees = document.querySelector('.info-attendees')
-        if (!infoAttendees) {
-          infoAttendees = document.createElement('div')
-          infoAttendees.classList.add('info-attendees')
-          infoAttendees.id = infoAttendees
-          document
-            .querySelector('.container-description')
-            .appendChild(infoAttendees)
-        }
-        const attendeesList = event.attendees
-          .map(
-            (ele, index) =>
-              `<li class="${index % 2 === 0 ? 'black' : 'white'}">${ele.name} ${
-                ele.lastName
-              } - ${ele.email}</li>`
-          )
-          .join('')
-        infoAttendees.innerHTML = `
-          <ul>${attendeesList}</ul>
-          <button class="close-attendees">Close List</button>
-        `
-        infoAttendees.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        const closeAttendees = document.querySelector('.close-attendees')
-        closeAttendees.addEventListener('click', () => {
-          infoAttendees.remove()
-          document
-            .querySelector('#app')
-            .scrollIntoView({ behavior: 'smooth', block: 'start' })
-        })
-      })
+      allAttendees.addEventListener('click', () => moreInfoAttendees(event))
     } else {
       Alert(true, 'There are not attendees to this event😑')
     }
@@ -268,5 +243,78 @@ export const scrollFunction = (scrollToTopBtn) => {
     scrollToTopBtn.classList.add('show')
   } else {
     scrollToTopBtn.classList.remove('show')
+  }
+}
+
+const moreInfoAttendees = (event) => {
+  let infoAttendees = document.querySelector('.info-attendees')
+  if (!infoAttendees) {
+    infoAttendees = document.createElement('div')
+    infoAttendees.classList.add('info-attendees')
+    document.querySelector('.container-description').appendChild(infoAttendees)
+  }
+  const attendeesList = event.attendees
+    .map(
+      (ele, index) => `<li id=${ele._id}>${ele.name} ${ele.lastName} 🔍</li>`
+    )
+    .join('')
+  infoAttendees.innerHTML = `
+          <ul id="list-attendees">${attendeesList}</ul>
+          <button class="close-attendees">Close List</button>
+        `
+  infoAttendees.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const closeAttendees = document.querySelector('.close-attendees')
+  closeAttendees.addEventListener('click', () => {
+    infoAttendees.remove()
+    document
+      .querySelector('#app')
+      .scrollIntoView({ behavior: 'smooth', block: 'start' })
+  })
+
+  const profileAttendance = document.querySelector('#list-attendees')
+  if (profileAttendance) {
+    const lis = profileAttendance.querySelectorAll('li')
+    for (const li of lis) {
+      li.addEventListener('click', async () => {
+        try {
+          //FETCH GET PROFILE ATTENDANCE
+          const data = await getProfileAttendance(li.id)
+          Alert(false, 'Attendance found❤️')
+          const existTemplate = document.querySelector('#profile-information')
+          if (existTemplate) existTemplate.remove()
+          const profileInfoHtml = `
+            <div id="profile-information">
+              <div>
+                <h5>${data.data.attendees.name} ${''} ${
+            data.data.attendees.lastName
+          }</h5>
+              </div>
+              <div class="profile-info">
+                <p>Register date: <br><span>${date(
+                  data.data.attendees.createdAt
+                )}</span></p>
+                <p>E-mail: <br><span>${data.data.attendees.email}</span></p>
+                <p>Event: <br><span>${
+                  data.data.attendees.eventId.title
+                }</span></p>
+              </div>
+              <button id="close-profile">Close profile</button>
+            </div>
+          `
+          app.insertAdjacentHTML('beforeend', profileInfoHtml)
+          const closeProfile = document.querySelector('#close-profile')
+          if (closeProfile) {
+            closeProfile.addEventListener('click', () => {
+              const profileInfoElement = document.querySelector(
+                '#profile-information'
+              )
+              if (profileInfoElement) profileInfoElement.remove()
+            })
+          }
+        } catch (error) {
+          Alert(true, error)
+        }
+      })
+    }
   }
 }

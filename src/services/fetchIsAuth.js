@@ -221,3 +221,29 @@ export const removeMyAttendance = async (attendance) => {
     Loader(false)
   }
 }
+
+export const getProfileAttendance = async (id) => {
+  const token = localStorage.getItem('__EVENT_ACCESS__')
+  try {
+    Loader(true)
+    const response = await fetch(
+      `${import.meta.env.VITE_URL_API}/attendees/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText)
+    }
+    const data = await response.json()
+    const { status } = response
+    Loader(false)
+    return { data, status }
+  } catch (error) {
+    Loader(false)
+    console.log('Hubo un problema con la solicitud fetch:', error)
+    return null
+  }
+}
