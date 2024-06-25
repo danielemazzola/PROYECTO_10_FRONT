@@ -2,6 +2,10 @@
 
 Welcome to **Proyecto 10 Rock the Code**! This is a web application for managing events built with Vite and vanilla JavaScript. The application provides a streamlined experience for creating, editing, and viewing events.
 
+![App Screenshot](public/images/events.png 'Home')
+![App Screenshot](public/images/events2.png 'Card event')
+![App Screenshot](public/images/events5.png 'Information attendances')
+
 ## 🚀 Technologies Used
 
 | Technology         | Description                            |
@@ -97,6 +101,8 @@ You can use the following scripts for development and production builds:
 | home              | Home page displaying events        |
 | recovery-password | Page for password recovery         |
 
+![App Screenshot](public/images/events3.png 'NOT FOUND')
+
 ## 🛠️ Services
 
 | Service        | Description                                 |
@@ -104,6 +110,8 @@ You can use the following scripts for development and production builds:
 | fetchAuth.js   | Authentication, register and forgot service |
 | fetchEvents.js | Service for fetching events and register    |
 | fetchIsAuth.js | Service to check authentication status      |
+
+![App Screenshot](public/images/events4.png 'Card event information')
 
 ## 🔧 Utilities
 
