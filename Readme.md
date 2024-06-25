@@ -118,4 +118,4 @@ You can access the live application here: [Events Web App](https://events-dani.v
 
 Both the backend and frontend are deployed on Vercel.
 
-- **Frontend Repo**: [https://github.com/danielemazzola/PROYECTO_10](https://github.com/danielemazzola/PROYECTO_10)
+- **Back-end Repo**: [https://github.com/danielemazzola/PROYECTO_10](https://github.com/danielemazzola/PROYECTO_10)
