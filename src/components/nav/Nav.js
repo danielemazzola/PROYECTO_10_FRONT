@@ -1,7 +1,6 @@
-import { toggleForm, login } from './helpers'
-
 import('./nav.css')
 import('./helpers')
+import { toggleForm, login } from './helpers'
 
 export const Nav = () => {
   const view = `

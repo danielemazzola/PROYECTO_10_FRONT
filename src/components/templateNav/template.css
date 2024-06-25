@@ -14,6 +14,10 @@
   gap: 5px;
   text-align: start;
 }
+.register-form > input,
+.forgot-password-form > input {
+  border: 1px solid var(--event-black-color);
+}
 .form-group {
   display: flex;
   flex-direction: column;
@@ -56,7 +60,7 @@ input {
   transition: all 0.3s;
 }
 .closeContainer:hover {
-  font-weight: 600;
+  transform: scale(1.1);
 }
 
 .animate-init {

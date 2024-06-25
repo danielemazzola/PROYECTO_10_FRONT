@@ -1,4 +1,4 @@
-import '../nav/nav.css'
+import './template.css'
 import { fetchRegister, fetchForgotPassword } from '../../services/fetchAuth'
 import { Alert } from '../alert/Alert'
 
