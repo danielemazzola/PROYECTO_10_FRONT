@@ -283,20 +283,55 @@ const moreInfoAttendees = (event) => {
           const existTemplate = document.querySelector('#profile-information')
           if (existTemplate) existTemplate.remove()
           const profileInfoHtml = `
-            <div id="profile-information">
+          <div id="profile-information">
+            <div class="container-profile">
               <div>
-                <h5>${data.attendees.name} ${''} ${data.attendees.lastName}</h5>
+                <h5>
+                  ${data.attendance.name} ${data.attendance.lastName}
+                </h5>
               </div>
-              <div class="profile-info">
-                <p>Register date: <br><span>${date(
-                  data.attendees.createdAt
-                )}</span></p>
-                <p>E-mail: <br><span>${data.attendees.email}</span></p>
-                <p>Event: <br><span>${data.attendees.eventId.title}</span></p>
+              <div>
+                ${
+                  data.attendance.roles
+                    ? `
+                  <img src="${
+                    data.attendance.avatar
+                  }" width="25" loading="lazy" alt="${data.attendance.name}" />
+                  <span class="type-user">${
+                    data.attendance.roles.includes('admin') ? 'Admin' : 'User'
+                  }</span>
+                  <div class="profile-info">
+                    <p>Register date:<br><span>${date(
+                      data.attendance.createdAt
+                    )}</span></p>
+                    <p>E-mail: <br><span>${data.attendance.email}</span></p>
+                    <p>Event: <br><span>${data.attendance.title}</span></p>
+                    <p>Creator:${
+                      data.attendance.events.length > 0
+                        ? data.attendance.events
+                            .map((val) => `<br><span>${val.title}</span>`)
+                            .join('')
+                        : `<br><span>Haven't created any events yet 😅</span>`
+                    }</p>
+                  </div>`
+                    : `
+                  <span class="type-user">Guest</span>
+                  <div class="profile-info">
+                    <p>Register date: <br><span>${date(
+                      data.attendance.createdAt
+                    )}</span></p>
+                    <p>E-mail: <br><span>${data.attendance.email}</span></p>
+                    <p>Event: <br><span>${
+                      data.attendance.eventId.title
+                    }</span></p>
+                  </div>
+                `
+                }
               </div>
               <button id="close-profile">Close profile</button>
             </div>
-          `
+          </div>
+        `
           app.insertAdjacentHTML('beforeend', profileInfoHtml)
           const closeProfile = document.querySelector('#close-profile')
           if (closeProfile) {
