@@ -4,12 +4,16 @@ Welcome to **Proyecto 10 Rock the Code**! This is a web application for managing
 
 ## 🚀 Technologies Used
 
-- **Vite**: A fast and modern development build tool.
-- **Vanilla JavaScript**: Pure JavaScript without any frameworks.
+| Technology         | Description                            |
+| ------------------ | -------------------------------------- |
+| Vite               | Fast and modern development build tool |
+| Vanilla JavaScript | Pure JavaScript without frameworks     |
 
 ## 📁 Project Structure
 
-The project is structured as follows:
+The project structure is organized as follows:
+
+### Root Directories
 
 ```
 ├── public/
@@ -19,8 +23,9 @@ The project is structured as follows:
 │ ├── assets/
 │ │ └── style.css
 │ ├── components/
-│ │ ├── alert.css
-│ │ └── Alert.js
+│ │ ├── alert/
+│ │ │ ├── alert.css
+│ │ │ └── Alert.js
 │ ├── auth/
 │ │ ├── allEvents/
 │ │ │ └── AllEvents.js
@@ -66,21 +71,45 @@ The project is structured as follows:
 └── vite.config.js
 ```
 
-## 📦 Installation
+## 📦 Scripts
 
-To get started with this project, follow these steps:
+You can use the following scripts for development and production builds:
 
-1. Clone the repository:
-   git clone https://github.com/your-repository-url.git
+```json
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+}
 
-2. Navigate to the project directory:
-   cd PROYECTO_10_FRONT
+## Environment Variables
 
-3. Install dependencies:
-   npm install
+- **.env**: Contains environment variables required for the application.
+  - `VITE_URL_API`: API URL for fetching data.
 
-4. Start the development server:
-   npm run dev
+## 📜 Pages
+
+| Page              | Description                             |
+|-------------------|-----------------------------------------|
+| 404               | Error page when route is not found      |
+| auth              | Authentication related pages             |
+| home              | Home page displaying events              |
+| recovery-password | Page for password recovery              |
+
+## 🛠️ Services
+
+| Service           | Description                             |
+|-------------------|-----------------------------------------|
+| fetchAuth.js      | Authentication service                  |
+| fetchEvents.js    | Service for fetching events             |
+| fetchIsAuth.js    | Service to check authentication status  |
+
+## 🔧 Utilities
+
+| Utility           | Description                             |
+|-------------------|-----------------------------------------|
+| date.js           | Utility for formatting date types       |
+| helpers.js        | Utility functions related to routes     |
 
 ## 📝 License
 
@@ -88,6 +117,7 @@ This project is licensed under the MIT License.
 
 ## 👥 Contributors
 
-- **Your Name** - [Your GitHub Profile](https://github.com/danielemazzola/PROYECTO_10_FRONT)
+- **Your Name** - [Your GitHub Profile](https://github.com/your-profile)
 
 Feel free to contribute to this project by submitting issues or pull requests. Let's rock the code together! 🤘
+```
