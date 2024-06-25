@@ -81,6 +81,7 @@ You can use the following scripts for development and production builds:
   "build": "vite build",
   "preview": "vite preview"
 }
+```
 
 ## Environment Variables
 
@@ -89,27 +90,27 @@ You can use the following scripts for development and production builds:
 
 ## 📜 Pages
 
-| Page              | Description                             |
-|-------------------|-----------------------------------------|
-| 404               | Error page when route is not found      |
-| auth              | Authentication related pages             |
-| home              | Home page displaying events              |
-| recovery-password | Page for password recovery              |
+| Page              | Description                        |
+| ----------------- | ---------------------------------- |
+| 404               | Error page when route is not found |
+| auth              | Authentication related pages       |
+| home              | Home page displaying events        |
+| recovery-password | Page for password recovery         |
 
 ## 🛠️ Services
 
-| Service           | Description                             |
-|-------------------|-----------------------------------------|
-| fetchAuth.js      | Authentication service                  |
-| fetchEvents.js    | Service for fetching events             |
-| fetchIsAuth.js    | Service to check authentication status  |
+| Service        | Description                            |
+| -------------- | -------------------------------------- |
+| fetchAuth.js   | Authentication service                 |
+| fetchEvents.js | Service for fetching events            |
+| fetchIsAuth.js | Service to check authentication status |
 
 ## 🔧 Utilities
 
-| Utility           | Description                             |
-|-------------------|-----------------------------------------|
-| date.js           | Utility for formatting date types       |
-| helpers.js        | Utility functions related to routes     |
+| Utility    | Description                         |
+| ---------- | ----------------------------------- |
+| date.js    | Utility for formatting date types   |
+| helpers.js | Utility functions related to routes |
 
 ## 📝 License
 
@@ -120,4 +121,7 @@ This project is licensed under the MIT License.
 - **Your Name** - [Your GitHub Profile](https://github.com/your-profile)
 
 Feel free to contribute to this project by submitting issues or pull requests. Let's rock the code together! 🤘
+
+```
+
 ```
