@@ -16,17 +16,17 @@ const getEvents = async () => {
     return null
   }
 }
-const fetchRegisterEvent = async (elements) => {
+const fetchRegisterEvent = async (values) => {
   try {
     Loader(true)
     const response = await fetch(
-      `${import.meta.env.VITE_URL_API}/attendees/${elements.id}`,
+      `${import.meta.env.VITE_URL_API}/attendees/${values.id}`,
       {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
         },
-        body: JSON.stringify(elements.jsonData)
+        body: JSON.stringify(values.jsonData)
       }
     )
     const data = await response.json()

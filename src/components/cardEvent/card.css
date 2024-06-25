@@ -126,6 +126,13 @@
   padding-right: var(--event-spacing-xs);
   font-weight: bold;
 }
+#attendes-count > span {
+  font-size: 16px;
+  background-color: var(--event-black-color);
+  padding: 3px 7px;
+  color: var(--event-white-color);
+  border-radius: 100%;
+}
 .form-register-event {
   margin-top: var(--event-spacing-s);
   display: flex;

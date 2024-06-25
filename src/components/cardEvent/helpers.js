@@ -32,9 +32,9 @@ export const DescriptionEvent = (event) => {
               event.creator.roles.includes('admin') ? 'Admin' : 'User'
             }</span>
           </div>
-          <div id="who"><p id="attendes-count">Attendees: ${
+          <div id="who"><p id="attendes-count">Attendees: <span>${
             event.attendees.length
-          } </p><button class="more">¿WHO?</button></div>
+          }</span> </p><button class="more">¿WHO?</button></div>
           <div class="subscribe-btn">
             <div id="btn-options">
               <div id="btnsub">
