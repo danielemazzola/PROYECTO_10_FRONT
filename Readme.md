@@ -99,11 +99,11 @@ You can use the following scripts for development and production builds:
 
 ## 🛠️ Services
 
-| Service        | Description                            |
-| -------------- | -------------------------------------- |
-| fetchAuth.js   | Authentication service                 |
-| fetchEvents.js | Service for fetching events            |
-| fetchIsAuth.js | Service to check authentication status |
+| Service        | Description                                 |
+| -------------- | ------------------------------------------- |
+| fetchAuth.js   | Authentication, register and forgot service |
+| fetchEvents.js | Service for fetching events and register    |
+| fetchIsAuth.js | Service to check authentication status      |
 
 ## 🔧 Utilities
 
@@ -118,7 +118,7 @@ This project is licensed under the MIT License.
 
 ## 👥 Contributors
 
-- **Your Name** - [Your GitHub Profile](https://github.com/your-profile)
+- **Dani** - [https://github.com/danielemazzola](https://github.com/danielemazzola)
 
 Feel free to contribute to this project by submitting issues or pull requests. Let's rock the code together! 🤘
 
