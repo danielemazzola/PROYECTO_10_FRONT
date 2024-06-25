@@ -11,6 +11,7 @@ Welcome to **Proyecto 10 Rock the Code**! This is a web application for managing
 
 The project is structured as follows:
 
+```
 ├── public/
 │ ├── images/
 │ └── index.html
@@ -63,6 +64,7 @@ The project is structured as follows:
 ├── package.json
 ├── README.md
 └── vite.config.js
+```
 
 ## 📦 Installation
 
