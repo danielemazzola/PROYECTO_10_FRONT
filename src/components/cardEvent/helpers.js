@@ -280,7 +280,7 @@ const moreInfoAttendees = (event) => {
         try {
           //FETCH GET PROFILE ATTENDANCE
           const { data } = await getProfileAttendance(li.id)
-          console.log(data)
+          const { attendance } = data
           Alert(false, data.message)
           const existTemplate = document.querySelector('#profile-information')
           if (existTemplate) existTemplate.remove()
@@ -289,31 +289,31 @@ const moreInfoAttendees = (event) => {
             <div class="container-profile">
               <div>
                 <h5>
-                  ${data.attendance.name} ${data.attendance.lastName}
+                  ${attendance.name} ${attendance.lastName}
                 </h5>
               </div>
               <div>
                 ${
-                  data.attendance.roles
+                  attendance.roles
                     ? `
                   <img src="${
-                    data.attendance.avatar
-                  }" width="25" loading="lazy" alt="${data.attendance.name}" />
+                    attendance.avatar
+                  }" width="25" loading="lazy" alt="${attendance.name}" />
                   <span class="type-user">${
-                    data.attendance.roles.includes('admin') ? 'Admin' : 'User'
+                    attendance.roles.includes('admin') ? 'Admin' : 'User'
                   }</span>
                   <div class="profile-info">
                     <p>Register date:<br><span>${date(
-                      data.attendance.eventToAttendees.createdAt
+                      attendance.attendance.createdAt
                     )}</span></p>
-                    <p>E-mail: <br><span>${data.attendance.email}</span></p>
+                    <p>E-mail: <br><span>${attendance.email}</span></p>
                     <p>Event: <br><span>${
-                      data.attendance.eventToAttendees.eventId.title
+                      attendance.attendance.eventId.title
                     }</span></p>
                     <p>Creator:${
-                      data.attendance.events.length > 0
-                        ? data.attendance.events
-                            .map((val) => `<br><span>${val.title}</span>`)
+                      attendance.events.length > 0
+                        ? attendance.events
+                            .map((val) => `<br><span>- ${val.title}</span>`)
                             .join('')
                         : `<br><span>Haven't created any events yet 😅</span>`
                     }</p>
@@ -322,12 +322,10 @@ const moreInfoAttendees = (event) => {
                   <span class="type-user">Guest</span>
                   <div class="profile-info">
                     <p>Register date: <br><span>${date(
-                      data.attendance.createdAt
+                      attendance.createdAt
                     )}</span></p>
-                    <p>E-mail: <br><span>${data.attendance.email}</span></p>
-                    <p>Event: <br><span>${
-                      data.attendance.eventId.title
-                    }</span></p>
+                    <p>E-mail: <br><span>${attendance.email}</span></p>
+                    <p>Event: <br><span>${attendance.eventId.title}</span></p>
                   </div>
                 `
                 }
