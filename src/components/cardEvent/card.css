@@ -242,10 +242,6 @@
   object-fit: cover;
   transition: all 0.5s;
 }
-.user-creator > img:hover {
-  z-index: 2;
-  transform: scale(5);
-}
 .subscribe-btn {
   display: flex;
   justify-content: space-between;
