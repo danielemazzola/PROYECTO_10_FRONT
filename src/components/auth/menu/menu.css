@@ -1,7 +1,7 @@
 .menu-icon {
   width: var(--event-spacing-l);
   z-index: 6;
-  position: fixed;
+  position: absolute;
   right: var(--event-spacing-l);
   top: 50px;
   transition: all 0.3s;
