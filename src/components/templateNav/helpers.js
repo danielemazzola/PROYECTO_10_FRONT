@@ -1,6 +1,7 @@
 import './template.css'
 import { fetchRegister, fetchForgotPassword } from '../../services/fetchAuth'
 import { Alert } from '../alert/Alert'
+import { login } from '../nav/helpers'
 
 export const btnCloseComponent = () => {
   const btnClose = document.querySelector('.closeContainer')
@@ -29,17 +30,26 @@ export const handleRegister = () => {
         return
       }
       const data = await fetchRegister(jsonData)
+      const formlogin = document.querySelector('#formlogin')
+      const btnLogin = formlogin.querySelector('.btnLogin')
+      let error
       if (data.status === 409) {
-        const formlogin = document.querySelector('#formlogin')
-        const btnLogin = formlogin.querySelector('.btnLogin')
         btnLogin.setAttribute(
           'style',
           'background-color:var(--event-red-color);'
         )
-      }
-      let error
-      if (data.status === 409) error = true
-      else {
+        error = true
+      } else {
+        const emailInput = formlogin.querySelector('#email')
+        const passwordInput = formlogin.querySelector('#password')
+        const clickLogin = formlogin.querySelector('#btn_login')
+        emailInput.value = jsonData.email
+        passwordInput.value = jsonData.password
+        Alert(false, 'Logging you in, please wait...')
+        setTimeout(() => {
+          clickLogin.click()
+        }, 2000)
+
         error = false
         auth.remove()
       }
