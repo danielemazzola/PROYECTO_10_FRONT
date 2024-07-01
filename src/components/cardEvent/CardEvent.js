@@ -141,7 +141,28 @@ export const CardEvent = async (events) => {
         event.location.toLowerCase().includes(searchTerm.toLowerCase())
       )
       pEventsLength.textContent = `Total events: ${filteredEvents.length}`
-      renderEvents(filteredEvents)
+      if (filteredEvents.length) {
+        renderEvents(filteredEvents)
+      } else {
+        let latestCreatedEvents = reversedEvents.slice(0, 5)
+        const existingLatestEvents = document.querySelector(
+          '.latest-created-events'
+        )
+        if (existingLatestEvents) {
+          existingLatestEvents.remove()
+        }
+        const latestEvents = document
+          .querySelector('#events-length')
+          .insertAdjacentHTML(
+            'afterend',
+            `
+        <p id="events-length" class="latest-created-events">Recommended latest created events: ${latestCreatedEvents.length}</p>
+        
+        `
+          )
+        //pEventsLength.textContent = `
+        renderEvents(latestCreatedEvents)
+      }
     }
   })
 
