@@ -39,7 +39,6 @@ const componentNav = (btnAttribute) => {
 
 // LOGIN
 export const login = async (e) => {
-  console.log(e)
   const formData = new FormData(e.target)
   let jsonData = {}
   formData.forEach((value, key) => {

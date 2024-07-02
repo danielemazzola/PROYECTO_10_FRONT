@@ -1,4 +1,4 @@
-import { dateFormEdit } from '../../../utils/date'
+import { getDate } from '../../../utils/date'
 export const FormEvent = (event) => {
   const formEventHTML = `
     <div class="contain-create-event">
@@ -15,7 +15,7 @@ export const FormEvent = (event) => {
         }" />
         <label class="date-hour">Date and Hour&#8595;</label>
         <input name="date" type="datetime-local" required value="${
-          event ? dateFormEdit(event.date) : ''
+          event ? getDate(event.date, true) : ''
         }" />
         <div class="option-img-event">
           <label class="add-img-event" for="file-create">

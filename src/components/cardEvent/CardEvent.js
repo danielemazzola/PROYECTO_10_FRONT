@@ -1,6 +1,6 @@
 import './card.css'
 import './helpers'
-import { date } from '../../utils/date'
+import { getDate } from '../../utils/date'
 import { user } from '../../services/fetchIsAuth'
 import {
   MoreInfo,
@@ -64,7 +64,7 @@ export const CardEvent = async (events) => {
       const title = document.createElement('h2')
       const dateP = document.createElement('span')
       title.textContent = `${event.title}`
-      dateP.textContent = `Location: ${event.location} | ${date(
+      dateP.textContent = `Location: ${event.location} | ${getDate(
         event.date
       )} hours`
       const description = document.createElement('p')

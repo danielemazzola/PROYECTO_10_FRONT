@@ -1,6 +1,6 @@
 import { fetchRegisterEvent } from '../../services/fetchEvents'
 import { Alert } from '../alert/Alert'
-import { date } from '../../utils/date'
+import { getDate } from '../../utils/date'
 import {
   getEvent,
   getProfileAttendance,
@@ -27,7 +27,7 @@ export const DescriptionEvent = (event) => {
           <div class="banner-event"><img src=${event.image} /></div>
           <div><h3>${event.title} (${event.location})</h3></div>
           <div><p>Description: ${event.description}</p></div>
-          <div><p id="date-event">Date: ${date(event.date)} hours</p></div>
+          <div><p id="date-event">Date: ${getDate(event.date)} hours</p></div>
           <div class="user-creator">
             <p>Created by "${event.creator.name}"</p>
             <img alt=${event.creator.name} src=${
@@ -65,7 +65,7 @@ export const DescriptionEvent = (event) => {
           <div class="banner-event"><img src=${event.image} /></div>
           <div><h3>${event.title} (${event.location})</h3></div>
           <div><p>Description: ${event.description}</p></div>
-          <div><p>Date: ${date(event.date)}</p></div>
+          <div><p>Date: ${getDate(event.date)}</p></div>
           <div class="user-creator"><p>Created by ${
             event.creator.name
           }</p><img src=${event.creator.avatar}  /></div>
@@ -303,7 +303,7 @@ const moreInfoAttendees = (event) => {
                     attendance.roles.includes('admin') ? 'Admin' : 'User'
                   }</span>
                   <div class="profile-info">
-                    <p>Register date:<br><span>${date(
+                    <p>Register date:<br><span>${getDate(
                       attendance.attendance.createdAt
                     )}</span></p>
                     <p>E-mail: <br><span>${attendance.email}</span></p>
@@ -321,7 +321,7 @@ const moreInfoAttendees = (event) => {
                     : `
                   <span class="type-user">Guest</span>
                   <div class="profile-info">
-                    <p>Register date: <br><span>${date(
+                    <p>Register date: <br><span>${getDate(
                       attendance.createdAt
                     )}</span></p>
                     <p>E-mail: <br><span>${attendance.email}</span></p>
